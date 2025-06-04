@@ -7,18 +7,35 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    final ThemeData theme = ThemeData(primarySwatch: Colors.deepPurple);
+
     return MaterialApp(
+      theme: theme.copyWith(
+        colorScheme: theme.colorScheme.copyWith(secondary: Colors.pink),
+      ),
       home: Scaffold(
         appBar: AppBar(
           title: Text('Scaffold - AppBar'),
-          backgroundColor: Color.fromARGB(255, 35, 120, 255),
+          backgroundColor: theme.primaryColor,
           centerTitle: true,
-          foregroundColor: Color(0xFFFFFFFFFF),
+          foregroundColor: theme.secondaryHeaderColor,
         ),
-        body: Center(child: Text('Hello Body')),
+        body: Center(
+          child: Text(
+            'Hello Body',
+            style: TextStyle(fontSize: 36.0, decorationThickness: 1.3),
+          ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            debugPrint('Button Clicked');
+          },
+          backgroundColor: theme.primaryColorDark,
+          foregroundColor: theme.primaryColorLight,
+          child: const Icon(Icons.navigation),
+        ),
       ),
     );
   }
