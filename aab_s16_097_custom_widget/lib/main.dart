@@ -12,15 +12,24 @@ class MyApp extends StatelessWidget {
     final ThemeData theme = ThemeData(primarySwatch: Colors.deepPurple);
 
     return MaterialApp(
-      home: MyHomePage(theme: theme),
+      home: MyHomePage(),
       title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.deepPurple,
+        textTheme: TextTheme(
+          headlineLarge: TextStyle(
+            color: Colors.pink,
+            fontWeight: FontWeight.bold,
+            fontSize: 30.0,
+          ),
+        ),
+      ),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  final theme;
-  const MyHomePage({this.theme, Key? key}) : super(key: key);
+  const MyHomePage({super.key});
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -42,10 +51,15 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Counter Worked', style: TextStyle(fontSize: 30)),
+            Text(
+              'Counter Worked',
+              // style: TextStyle(fontSize: 30)),
+              style: Theme.of(context).textTheme.headlineLarge,
+            ),
             Text(
               _count.toString(),
-              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+              //style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+              style: Theme.of(context).textTheme.headlineLarge,
             ),
           ], //children
         ),
