@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData theme = ThemeData(primarySwatch: Colors.deepPurple);
+    //final ThemeData theme = ThemeData(primarySwatch: Colors.deepPurple);
 
     return MaterialApp(
       home: MyHomePage(),
@@ -42,8 +42,8 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: widget.theme.primaryColor,
-        foregroundColor: widget.theme.secondaryHeaderColor,
+        backgroundColor: Theme.of(context).primaryColor,
+        foregroundColor: Theme.of(context).secondaryHeaderColor,
         title: Text('AppBar in MyHomePage'), //
       ),
       backgroundColor: Colors.lightBlue,
