@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.deepPurple,
         textTheme: TextTheme(
           headlineLarge: TextStyle(
-            color: Colors.pink,
+            color: Colors.deepPurple,
             fontWeight: FontWeight.bold,
             fontSize: 30.0,
           ),
@@ -34,7 +34,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _count = 0;
+  Color _colorSelected = Colors.white;
 
   @override
   Widget build(BuildContext context) {
@@ -44,30 +44,58 @@ class _HomePageState extends State<HomePage> {
         foregroundColor: Theme.of(context).secondaryHeaderColor,
         title: Text('AppBar in HomePage'), //
       ),
-      backgroundColor: Colors.lightBlue,
+      backgroundColor: const Color.fromARGB(255, 176, 227, 250),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: BoxBorder.all(color: Colors.black, width: 5.0),
-              ),
-              height: 100,
-              width: 100,
-            ),
             Text(
               'Selected Color',
               style: Theme.of(context).textTheme.headlineLarge,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+            Container(
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: BoxBorder.all(color: Colors.black, width: 5.0),
+                color: _colorSelected,
+              ),
+              height: 100,
+              width: 100,
+              margin: EdgeInsets.only(bottom: 20),
+            ),
 
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                ElevatedButton(onPressed: () {}, child: Text('Red')),
-                ElevatedButton(onPressed: () {}, child: Text('Blue')),
-                ElevatedButton(onPressed: () {}, child: Text('Green')),
+                ElevatedButton(
+                  onPressed: () {
+                    setColorSelected(Colors.red);
+                  },
+                  style: ButtonStyle(
+                    backgroundColor: WidgetStatePropertyAll<Color>(Colors.red),
+                  ),
+                  child: Text('Red'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    setColorSelected(Colors.green);
+                  },
+                  style: ButtonStyle(
+                    backgroundColor: WidgetStatePropertyAll<Color>(
+                      Colors.green,
+                    ),
+                  ),
+                  child: Text('Green'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    setColorSelected(Colors.blue);
+                  },
+                  style: ButtonStyle(
+                    backgroundColor: WidgetStatePropertyAll<Color>(Colors.blue),
+                  ),
+                  child: Text('Blue'),
+                ),
               ],
             ),
           ], //children
@@ -76,9 +104,9 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  void incrementCount() {
+  void setColorSelected(Color colorSelected) {
     setState(() {
-      _count += 1;
+      _colorSelected = colorSelected;
     });
   }
 }
