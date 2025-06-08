@@ -8,6 +8,7 @@
 .history
 
 feeling_wheel_custom_painter/
+flutter_game_physics/
 
 # Flutter repo-specific
 /bin/cache/
