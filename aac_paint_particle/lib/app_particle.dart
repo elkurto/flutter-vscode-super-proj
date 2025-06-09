@@ -13,7 +13,7 @@ class _AppParticleWidgetState extends State<AppParticleWidget>
   AnimationController? _controller;
   bool _loaded = false;
   int? _prevMillis = null;
-  Size size = Size(200, 200);
+  Size _size = Size(200, 200);
   List<Particle> listParticle = [];
 
   @override
@@ -21,21 +21,23 @@ class _AppParticleWidgetState extends State<AppParticleWidget>
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 1),
+      duration: const Duration(seconds: 100),
     );
     _controller!.repeat();
     _controller!.addListener(
       () => setState(() {
         // update state
-        size = MediaQuery.of(context).size;
-        int nowMillis = DateTime.now().millisecond;
+        _size = MediaQuery.of(context).size;
+
+        debugPrint("_size =${_size.width},${_size.height}");
+        int nowMillis = DateTime.now().millisecondsSinceEpoch;
         if (listParticle.isEmpty) {
           listParticle.addAll(
-            List<Particle>.generate(5, (index) {
+            List<Particle>.generate(50, (index) {
               return Particle.randomDir(
                 index,
-                size.width / 2.0,
-                size.height / 2.0,
+                _size.width / 2.0,
+                _size.height / 2.0,
               );
             }),
           );
@@ -48,14 +50,14 @@ class _AppParticleWidgetState extends State<AppParticleWidget>
           _prevMillis = nowMillis;
           for (Particle p in listParticle) {
             p.x += p.vx * dt;
-            p.y += p.vx * dt;
+            p.y += p.vy * dt;
 
             if (p.x <= 0.0 ||
                 p.y <= 0.0 ||
-                size.width <= p.x ||
-                size.height <= p.y) {
-              p.x = size.width / 2.0;
-              p.y = size.height / 2.0;
+                _size.width <= p.x ||
+                _size.height <= p.y) {
+              p.x = _size.width / 2.0;
+              p.y = _size.height / 2.0;
             }
           }
         }
