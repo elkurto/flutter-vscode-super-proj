@@ -1,7 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 
-
 class AppParticleWidget extends StatefulWidget {
   const AppParticleWidget({super.key});
 
@@ -11,39 +10,117 @@ class AppParticleWidget extends StatefulWidget {
 
 class _AppParticleWidgetState extends State<AppParticleWidget>
     with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  List<Particle> listParticle =List<Particle>.generate(5, (index){Particle.random(index);};)
+  AnimationController? _controller;
+  bool _loaded = false;
+  int? _prevMillis = null;
+  Size size = Size(200, 200);
+  List<Particle> listParticle = [];
+
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(vsync: this);
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 1),
+    );
+    _controller!.repeat();
+    _controller!.addListener(
+      () => setState(() {
+        // update state
+        size = MediaQuery.of(context).size;
+        int nowMillis = DateTime.now().millisecond;
+        if (listParticle.isEmpty) {
+          listParticle.addAll(
+            List<Particle>.generate(5, (index) {
+              return Particle.randomDir(
+                index,
+                size.width / 2.0,
+                size.height / 2.0,
+              );
+            }),
+          );
+        }
+
+        if (_prevMillis == null) {
+          _prevMillis = nowMillis;
+        } else {
+          int dt = nowMillis - _prevMillis!;
+          _prevMillis = nowMillis;
+          for (Particle p in listParticle) {
+            p.x += p.vx * dt;
+            p.y += p.vx * dt;
+
+            if (p.x <= 0.0 ||
+                p.y <= 0.0 ||
+                size.width <= p.x ||
+                size.height <= p.y) {
+              p.x = size.width / 2.0;
+              p.y = size.height / 2.0;
+            }
+          }
+        }
+
+        _loaded = true;
+      }),
+    );
   }
 
   @override
   void dispose() {
-    _controller.dispose();
+    _controller?.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    if (!_loaded) {
+      return const Center(child: Text('loading...'));
+    }
+    return Container(
+      decoration: BoxDecoration(color: Colors.black),
+      child: CustomPaint(
+        size: MediaQuery.of(context).size,
+        painter: ParticlePainter(listParticle),
+      ),
+    );
   }
 }
 
 class Particle {
   int id;
-  double x ;
+  double x;
   double y;
   double vx; // pixel/millis
   double vy; // pixel/millis
-  
-  static double v0 =0.005;
+
+  static double v0 = 0.005;
   Particle(this.id, this.x, this.y, this.vx, this.vy);
 
   // a factory constructor -- because decent languages use biz logic in ctor
-  factory Particle.random({id,x,y}) {
-    double theta =Random().nextDouble() * 2*pi;
-    return Particle(id,x,y,v0*cos(theta), v0*sin(theta));
-  };
+  factory Particle.randomDir(int id, double x, double y) {
+    double theta = Random().nextDouble() * 2 * pi;
+    return Particle(id, x, y, v0 * cos(theta), v0 * sin(theta));
+  }
+}
+
+class ParticlePainter extends CustomPainter {
+  final List<Particle> listParticle;
+  final Paint cirlePaint = Paint()
+    ..color = Colors.pinkAccent
+    ..style = PaintingStyle.fill;
+
+  // pass drawables to Painter via Ctor
+  ParticlePainter(this.listParticle);
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    for (Particle p in listParticle) {
+      canvas.drawCircle(Offset(p.x, p.y), 10.0, cirlePaint);
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) {
+    return true;
+  }
 }
