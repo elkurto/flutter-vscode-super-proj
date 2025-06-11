@@ -95,7 +95,7 @@ class Particle {
   double vx; // pixel/millis
   double vy; // pixel/millis
 
-  static double v0 = 0.005;
+  static double v0 = 0.05;
   Particle(this.id, this.x, this.y, this.vx, this.vy);
 
   // a factory constructor -- because decent languages use biz logic in ctor

@@ -1,0 +1,11 @@
+{
+  "configurations": [
+    {
+      "name": "Flutter (lib/main.dart)",
+      "type": "dart",
+      "request": "launch",
+      "cwd": "aac_paint_particle",
+      "program": "lib/main.dart"
+    }
+  ]
+}
