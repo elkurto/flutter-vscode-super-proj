@@ -12,8 +12,9 @@ class _AppParticleWidgetState extends State<AppParticleWidget>
     with SingleTickerProviderStateMixin {
   AnimationController? _controller;
   bool _loaded = false;
-  int? _prevMillis = null;
-  Size _size = Size(200, 200);
+  DateTime? dateTimePrev = null;
+  int dt = 20;
+  Size? size = null;
   List<Particle> listParticle = [];
 
   @override
@@ -27,37 +28,38 @@ class _AppParticleWidgetState extends State<AppParticleWidget>
     _controller!.addListener(
       () => setState(() {
         // update state
-        _size = MediaQuery.of(context).size;
+        size ??= MediaQuery.of(context).size;
 
-        debugPrint("_size =${_size.width},${_size.height}");
-        int nowMillis = DateTime.now().millisecondsSinceEpoch;
+        debugPrint("_size =${size!.width},${size!.height}");
+
+        DateTime dateTimeNow = DateTime.now();
         if (listParticle.isEmpty) {
           listParticle.addAll(
             List<Particle>.generate(50, (index) {
               return Particle.randomDir(
                 index,
-                _size.width / 2.0,
-                _size.height / 2.0,
+                size!.width / 2.0,
+                size!.height / 2.0,
               );
             }),
           );
         }
 
-        if (_prevMillis == null) {
-          _prevMillis = nowMillis;
+        if (dateTimePrev == null) {
+          dateTimePrev = dateTimeNow;
         } else {
-          int dt = nowMillis - _prevMillis!;
-          _prevMillis = nowMillis;
+          int dt = dateTimeNow.difference(dateTimePrev!).inMilliseconds;
+          dateTimePrev = dateTimeNow;
           for (Particle p in listParticle) {
             p.x += p.vx * dt;
             p.y += p.vy * dt;
 
             if (p.x <= 0.0 ||
                 p.y <= 0.0 ||
-                _size.width <= p.x ||
-                _size.height <= p.y) {
-              p.x = _size.width / 2.0;
-              p.y = _size.height / 2.0;
+                size!.width <= p.x ||
+                size!.height <= p.y) {
+              p.x = size!.width / 2.0;
+              p.y = size!.height / 2.0;
             }
           }
         }
