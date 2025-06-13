@@ -80,12 +80,10 @@ class _AppParticleWidgetState extends State<AppParticleWidget>
     if (!_loaded) {
       return const Center(child: Text('loading...'));
     }
+    size = MediaQuery.of(context).size;
     return Container(
       decoration: BoxDecoration(color: Colors.black),
-      child: CustomPaint(
-        size: MediaQuery.of(context).size,
-        painter: ParticlePainter(listParticle),
-      ),
+      child: CustomPaint(size: size!, painter: ParticlePainter(listParticle)),
     );
   }
 }
