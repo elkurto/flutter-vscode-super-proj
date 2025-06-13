@@ -1,6 +1,14 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 
+class GameState {
+  bool loaded = false;
+  int dt = 20;
+  Size? size;
+  DateTime? dateTimePrev;
+  List<Particle> listParticle = [];
+}
+
 class AppParticleWidget extends StatefulWidget {
   const AppParticleWidget({super.key});
 
@@ -11,11 +19,12 @@ class AppParticleWidget extends StatefulWidget {
 class _AppParticleWidgetState extends State<AppParticleWidget>
     with SingleTickerProviderStateMixin {
   AnimationController? _controller;
-  bool _loaded = false;
-  DateTime? dateTimePrev = null;
-  int dt = 20;
-  Size? size = null;
-  List<Particle> listParticle = [];
+  //bool _loaded = false;
+  //DateTime? dateTimePrev = null;
+  //int dt = 20;
+  //Size? size = null;
+  //List<Particle> listParticle = [];
+  GameState _gameState = GameState();
 
   @override
   void initState() {
@@ -28,43 +37,43 @@ class _AppParticleWidgetState extends State<AppParticleWidget>
     _controller!.addListener(
       () => setState(() {
         // update state
-        size ??= MediaQuery.of(context).size;
-
-        debugPrint("_size =${size!.width},${size!.height}");
+        _gameState.size ??= MediaQuery.of(context).size;
 
         DateTime dateTimeNow = DateTime.now();
-        if (listParticle.isEmpty) {
-          listParticle.addAll(
+        if (_gameState.listParticle.isEmpty) {
+          _gameState.listParticle.addAll(
             List<Particle>.generate(50, (index) {
               return Particle.randomDir(
                 index,
-                size!.width / 2.0,
-                size!.height / 2.0,
+                _gameState.size!.width / 2.0,
+                _gameState.size!.height / 2.0,
               );
             }),
           );
         }
 
-        if (dateTimePrev == null) {
-          dateTimePrev = dateTimeNow;
+        if (_gameState.dateTimePrev == null) {
+          _gameState.dateTimePrev = dateTimeNow;
         } else {
-          int dt = dateTimeNow.difference(dateTimePrev!).inMilliseconds;
-          dateTimePrev = dateTimeNow;
-          for (Particle p in listParticle) {
+          int dt = dateTimeNow
+              .difference(_gameState.dateTimePrev!)
+              .inMilliseconds;
+          _gameState.dateTimePrev = dateTimeNow;
+          for (Particle p in _gameState.listParticle) {
             p.x += p.vx * dt;
             p.y += p.vy * dt;
 
             if (p.x <= 0.0 ||
                 p.y <= 0.0 ||
-                size!.width <= p.x ||
-                size!.height <= p.y) {
-              p.x = size!.width / 2.0;
-              p.y = size!.height / 2.0;
+                _gameState.size!.width <= p.x ||
+                _gameState.size!.height <= p.y) {
+              p.x = _gameState.size!.width / 2.0;
+              p.y = _gameState.size!.height / 2.0;
             }
           }
         }
 
-        _loaded = true;
+        _gameState.loaded = true;
       }),
     );
   }
@@ -77,13 +86,16 @@ class _AppParticleWidgetState extends State<AppParticleWidget>
 
   @override
   Widget build(BuildContext context) {
-    if (!_loaded) {
+    if (!_gameState.loaded) {
       return const Center(child: Text('loading...'));
     }
-    size = MediaQuery.of(context).size;
+    _gameState.size = MediaQuery.of(context).size;
     return Container(
       decoration: BoxDecoration(color: Colors.black),
-      child: CustomPaint(size: size!, painter: ParticlePainter(listParticle)),
+      child: CustomPaint(
+        size: _gameState.size!,
+        painter: ParticlePainter(_gameState.listParticle, _gameState),
+      ),
     );
   }
 }
@@ -107,12 +119,13 @@ class Particle {
 
 class ParticlePainter extends CustomPainter {
   final List<Particle> listParticle;
+  final GameState gameState;
   final Paint cirlePaint = Paint()
     ..color = Colors.pinkAccent
     ..style = PaintingStyle.fill;
 
   // pass drawables to Painter via Ctor
-  ParticlePainter(this.listParticle);
+  ParticlePainter(this.listParticle, this.gameState);
 
   @override
   void paint(Canvas canvas, Size size) {
