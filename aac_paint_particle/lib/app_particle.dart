@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 
 class GameState {
   bool loaded = false;
+  bool shouldRepaint = true;
+  int dtSinceRepaint = 10000;
   int dt = 20;
   Size? size;
   DateTime? dateTimePrev;
@@ -34,6 +36,7 @@ class _AppParticleWidgetState extends State<AppParticleWidget>
       duration: const Duration(seconds: 100),
     );
     _controller!.repeat();
+
     _controller!.addListener(
       () => setState(() {
         // update state
@@ -55,13 +58,20 @@ class _AppParticleWidgetState extends State<AppParticleWidget>
         if (_gameState.dateTimePrev == null) {
           _gameState.dateTimePrev = dateTimeNow;
         } else {
-          int dt = dateTimeNow
+          _gameState.dt = dateTimeNow
               .difference(_gameState.dateTimePrev!)
               .inMilliseconds;
+
+          _gameState.dtSinceRepaint += _gameState.dt;
+          if (_gameState.dtSinceRepaint >= 20) {
+            _gameState.shouldRepaint = true;
+            _gameState.dtSinceRepaint = 0;
+          }
+
           _gameState.dateTimePrev = dateTimeNow;
           for (Particle p in _gameState.listParticle) {
-            p.x += p.vx * dt;
-            p.y += p.vy * dt;
+            p.x += p.vx * _gameState.dt;
+            p.y += p.vy * _gameState.dt;
 
             if (p.x <= 0.0 ||
                 p.y <= 0.0 ||
@@ -136,6 +146,6 @@ class ParticlePainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    return true;
+    return (gameState.dt > 5);
   }
 }
