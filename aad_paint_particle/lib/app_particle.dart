@@ -73,10 +73,11 @@ class _AppParticleWidgetState extends State<AppParticleWidget>
   late final AnimationController _controller;
   late final Animation<double> _animation;
   late final GameState _gameState; //= GameState(_animation);
-  late final CustomPaint _customPaint = CustomPaint(
-    size: _gameState.size!,
-    painter: ParticlePainter(_gameState),
-  );
+  // late final CustomPaint _customPaint = CustomPaint(
+  //   painter: ParticlePainter(_gameState),
+  //   child: const SizedBox.expand(),
+  // );
+
   //bool _loaded = false;
   //DateTime? dateTimePrev = null;
   //int dt = 20;
@@ -90,12 +91,24 @@ class _AppParticleWidgetState extends State<AppParticleWidget>
       vsync: this,
       duration: const Duration(seconds: 10),
     );
-    _animation = Tween(begin: 0.0, end: 100.0).animate(_controller);
-    _controller.repeat();
+    _animation = Tween(begin: 0.0, end: 100.0).animate(_controller)
+      ..addListener(() {
+        print("In addListener");
+        _gameState.act();
+      });
+
     _gameState = GameState(_animation);
     _gameState.loaded = true;
 
-    _controller.addListener(() => setState(() {}));
+    _controller.addListener(() => setState(() => {}));
+    // _customPaint.painter?.addListener(() {_gameState.act();});
+    // _controller.addListener(
+    //   () => setState(() {
+    //     _gameState.act();
+    //   }),
+    // );
+    _controller.forward();
+    _controller.repeat();
   }
 
   @override
@@ -112,7 +125,10 @@ class _AppParticleWidgetState extends State<AppParticleWidget>
     _gameState.size ??= MediaQuery.of(context).size;
     return Container(
       decoration: BoxDecoration(color: Colors.black),
-      child: _customPaint,
+      child: CustomPaint(
+        painter: ParticlePainter(_gameState),
+        child: const SizedBox.expand(),
+      ),
     );
   }
 }
@@ -149,7 +165,7 @@ class ParticlePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     gameState.size = size;
-    gameState.act();
+    //gameState.act();
     print("gameState.dateTimePrev =${gameState.dateTimePrev}");
     List<Particle> listParticle = gameState.listParticle;
     for (Particle p in listParticle) {
