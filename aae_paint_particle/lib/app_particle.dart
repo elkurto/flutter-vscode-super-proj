@@ -40,7 +40,7 @@ class GameState {
     DateTime dateTimeNow = DateTime.now();
     if (listParticle.isEmpty) {
       listParticle.addAll(
-        List<Particle>.generate(50, (index) {
+        List<Particle>.generate(150, (index) {
           return Particle.randomDir(
             index,
             size!.width / 2.0,
