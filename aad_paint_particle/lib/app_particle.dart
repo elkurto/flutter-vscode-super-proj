@@ -109,7 +109,7 @@ class _AppParticleWidgetState extends State<AppParticleWidget>
     if (!_gameState.isLoaded()) {
       return const Center(child: Text('loading...'));
     }
-    _gameState.size = MediaQuery.of(context).size;
+    _gameState.size ??= MediaQuery.of(context).size;
     return Container(
       decoration: BoxDecoration(color: Colors.black),
       child: _customPaint,
@@ -148,6 +148,7 @@ class ParticlePainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
+    gameState.size = size;
     gameState.act();
     print("gameState.dateTimePrev =${gameState.dateTimePrev}");
     List<Particle> listParticle = gameState.listParticle;
