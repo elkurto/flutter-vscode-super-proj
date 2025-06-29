@@ -16,6 +16,49 @@ class GameState {
   bool isLoaded() {
     return loaded;
   }
+
+  void act() {
+    // update state
+
+    DateTime dateTimeNow = DateTime.now();
+    if (listParticle.isEmpty) {
+      listParticle.addAll(
+        List<Particle>.generate(50, (index) {
+          return Particle.randomDir(
+            index,
+            size!.width / 2.0,
+            size!.height / 2.0,
+          );
+        }),
+      );
+    }
+
+    if (dateTimePrev == null) {
+      dateTimePrev = dateTimeNow;
+    } else {
+      dt = dateTimeNow.difference(dateTimePrev!).inMilliseconds;
+
+      dtSinceRepaint += dt;
+      if (dtSinceRepaint >= 20) {
+        shouldRepaint = true;
+        dtSinceRepaint = 0;
+      }
+
+      dateTimePrev = dateTimeNow;
+      for (Particle p in listParticle) {
+        p.x += p.vx * dt;
+        p.y += p.vy * dt;
+
+        if (p.x <= 0.0 ||
+            p.y <= 0.0 ||
+            size!.width <= p.x ||
+            size!.height <= p.y) {
+          p.x = size!.width / 2.0;
+          p.y = size!.height / 2.0;
+        }
+      }
+    }
+  }
 }
 
 class AppParticleWidget extends StatefulWidget {
@@ -52,53 +95,7 @@ class _AppParticleWidgetState extends State<AppParticleWidget>
     _gameState = GameState(_animation);
     _gameState.loaded = true;
 
-    _controller.addListener(
-      () => setState(() {
-        // update state
-        _gameState.size ??= MediaQuery.of(context).size;
-
-        DateTime dateTimeNow = DateTime.now();
-        if (_gameState.listParticle.isEmpty) {
-          _gameState.listParticle.addAll(
-            List<Particle>.generate(50, (index) {
-              return Particle.randomDir(
-                index,
-                _gameState.size!.width / 2.0,
-                _gameState.size!.height / 2.0,
-              );
-            }),
-          );
-        }
-
-        if (_gameState.dateTimePrev == null) {
-          _gameState.dateTimePrev = dateTimeNow;
-        } else {
-          _gameState.dt = dateTimeNow
-              .difference(_gameState.dateTimePrev!)
-              .inMilliseconds;
-
-          _gameState.dtSinceRepaint += _gameState.dt;
-          if (_gameState.dtSinceRepaint >= 20) {
-            _gameState.shouldRepaint = true;
-            _gameState.dtSinceRepaint = 0;
-          }
-
-          _gameState.dateTimePrev = dateTimeNow;
-          for (Particle p in _gameState.listParticle) {
-            p.x += p.vx * _gameState.dt;
-            p.y += p.vy * _gameState.dt;
-
-            if (p.x <= 0.0 ||
-                p.y <= 0.0 ||
-                _gameState.size!.width <= p.x ||
-                _gameState.size!.height <= p.y) {
-              p.x = _gameState.size!.width / 2.0;
-              p.y = _gameState.size!.height / 2.0;
-            }
-          }
-        }
-      }),
-    );
+    _controller.addListener(() => setState(() {}));
   }
 
   @override
@@ -151,6 +148,7 @@ class ParticlePainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
+    gameState.act();
     print("gameState.dateTimePrev =${gameState.dateTimePrev}");
     List<Particle> listParticle = gameState.listParticle;
     for (Particle p in listParticle) {
