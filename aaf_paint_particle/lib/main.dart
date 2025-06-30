@@ -1,4 +1,4 @@
-import 'package:aae_paint_particle/app_particle.dart';
+import 'package:aaf_paint_particle/app_particle.dart';
 import 'package:flutter/material.dart';
 
 void main() {
