@@ -206,8 +206,8 @@ class ParticlePainter extends CustomPainter {
       ],
       indices: [
         0, 1, 2, // upper triangle in C
-        1, 2, 3,
-      ], // lower triangle in C
+        1, 2, 3, // lower triangle in C
+      ],
     );
 
     canvas.drawVertices(verticesC, BlendMode.src, paintTriangleA);
