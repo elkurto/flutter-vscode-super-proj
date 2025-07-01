@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'dart:ui';
 import 'package:flutter/material.dart';
 
 class Particle {
@@ -130,13 +131,16 @@ class _AppParticleWidgetState extends State<AppParticleWidget>
 }
 
 class ParticlePainter extends CustomPainter {
-  //final List<Particle> listParticle;
-  //final Animation<double> animation;
-
   final GameState gameState;
   final Animation<double> animation;
-  final Paint cirlePaint = Paint()
+  final Paint circlePaint = Paint()
     ..color = Colors.pinkAccent
+    ..style = PaintingStyle.fill;
+  final Paint paintTriangleA = Paint()
+    ..color = Colors.purple
+    ..style = PaintingStyle.fill;
+  final Paint paintTriangleB = Paint()
+    ..color = Colors.green
     ..style = PaintingStyle.fill;
 
   // pass drawables to Painter via Ctor
@@ -145,12 +149,68 @@ class ParticlePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     gameState.size = size;
-    //gameState.act();
-    print("gameState.dateTimePrev =${gameState.dateTimePrev}");
+
+    //print("gameState.dateTimePrev =${gameState.dateTimePrev}");
     List<Particle> listParticle = gameState.listParticle;
     for (Particle p in listParticle) {
-      canvas.drawCircle(Offset(p.x, p.y), 10.0, cirlePaint);
+      canvas.drawCircle(Offset(p.x, p.y), 10.0, circlePaint);
     }
+
+    // draw a static purple (upward) triangle with the specified vertices
+    final center = Offset(size.width / 2, size.height / 2);
+    final vertices = Vertices(VertexMode.triangles, [
+      center + Offset(0, -15),
+      center + Offset(-14, 13),
+      center + Offset(14, 13),
+    ]);
+
+    canvas.drawVertices(vertices, BlendMode.src, paintTriangleA);
+
+    // draw a static multi-hued (downward) triangle with the specified vertices
+    final centerB = Offset(size.width / 2, size.height / 2 + 30);
+
+    final verticesB = Vertices(
+      VertexMode.triangles,
+      [
+        centerB + Offset(0, 15),
+        centerB + Offset(-14, -13),
+        centerB + Offset(14, -13),
+      ],
+      colors: [
+        // exactly one color per vertex
+        Color(0xAA1A30F4), // blue, opacity=0.70
+        Color(0xAACC00CC), // pink, opacity=0.70
+        Color(0xAACCCC00), // lime, opacity=0.70
+      ],
+    );
+
+    canvas.drawVertices(verticesB, BlendMode.src, paintTriangleA);
+
+    // draw two static multi-hued triangles with the specified vertices
+    final centerC = Offset(size.width / 2, size.height / 2 + 90);
+
+    final verticesC = Vertices(
+      VertexMode.triangles,
+      [
+        centerC + Offset(0, -25),
+        centerC + Offset(-15, 0),
+        centerC + Offset(15, 0),
+        centerC + Offset(0, 25),
+      ],
+      colors: [
+        // one color per vertex
+        Color(0xCCFF0000), // red, opacity=CC , index=0
+        Color(0xCC00FF00), // pink, opacity=CC, index=1
+        Color(0xCC0000FF), // lime, opacity=CC, index=2
+        Color(0xCC9933FF), // purple, opacity=CC, index=3
+      ],
+      indices: [
+        0, 1, 2, // upper triangle in C
+        1, 2, 3,
+      ], // lower triangle in C
+    );
+
+    canvas.drawVertices(verticesC, BlendMode.src, paintTriangleA);
   }
 
   @override
