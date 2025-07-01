@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'dart:typed_data';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 
@@ -211,6 +212,25 @@ class ParticlePainter extends CustomPainter {
     );
 
     canvas.drawVertices(verticesC, BlendMode.src, paintTriangleA);
+
+    // actually draw with vertices
+    final centerD = Offset(size.width / 2 + 50, size.height / 2 + 90);
+    final pt0 = centerD + Offset(0, -25);
+    final pt1 = centerD + Offset(-15, 0);
+    final pt2 = centerD + Offset(15, 0);
+    final pt3 = centerD + Offset(0, 25);
+    final listFloat32VertexXYD = Float32List.fromList([
+      pt0.dx,
+      pt0.dy,
+      pt1.dx,
+      pt1.dy,
+      pt2.dx,
+      pt2.dy,
+      pt3.dx,
+      pt3.dy,
+    ]);
+    final verticesD = Vertices.raw(VertexMode.triangles, listFloat32VertexXYD);
+    canvas.drawVertices(verticesD, BlendMode.src, paintTriangleB);
   }
 
   @override
