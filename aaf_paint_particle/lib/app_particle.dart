@@ -231,6 +231,31 @@ class ParticlePainter extends CustomPainter {
     ]);
     final verticesD = Vertices.raw(VertexMode.triangles, listFloat32VertexXYD);
     canvas.drawVertices(verticesD, BlendMode.src, paintTriangleB);
+
+    // E. draw with vertices with indeces
+    final centerE = Offset(size.width / 2 + 100, size.height / 2 + 90);
+    final pt0E = centerE + Offset(0, -25);
+    final pt1E = centerE + Offset(-15, 0);
+    final pt2E = centerE + Offset(15, 0);
+    final pt3E = centerE + Offset(0, 25);
+    final listFloat32VertexXYE = Float32List.fromList([
+      pt0E.dx,
+      pt0E.dy,
+      pt1E.dx,
+      pt1E.dy,
+      pt2E.dx,
+      pt2E.dy,
+      pt3E.dx,
+      pt3E.dy,
+    ]);
+    final indicesE = Uint16List.fromList([0, 1, 2, 3, 1, 2]);
+
+    final verticesE = Vertices.raw(
+      VertexMode.triangles,
+      listFloat32VertexXYE,
+      indices: indicesE,
+    );
+    canvas.drawVertices(verticesE, BlendMode.src, paintTriangleC);
   }
 
   @override
