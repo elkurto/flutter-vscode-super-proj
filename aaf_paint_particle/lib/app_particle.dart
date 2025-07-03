@@ -249,13 +249,16 @@ class ParticlePainter extends CustomPainter {
       pt3E.dy,
     ]);
     final indicesE = Uint16List.fromList([0, 1, 2, 3, 1, 2]);
+    final Paint paintE = Paint()
+      ..color = Colors.orange
+      ..style = PaintingStyle.fill;
 
     final verticesE = Vertices.raw(
       VertexMode.triangles,
       listFloat32VertexXYE,
       indices: indicesE,
     );
-    canvas.drawVertices(verticesE, BlendMode.src, paintTriangleC);
+    canvas.drawVertices(verticesE, BlendMode.src, paintE);
   }
 
   @override
