@@ -302,7 +302,7 @@ class ParticlePainter extends CustomPainter {
     );
     canvas.drawVertices(verticesF, BlendMode.src, paintF);
 
-    // G -- example of canvas.drawPoints(...)
+    // G -- example of canvas.drawPoints(...)  // rednders 3 white squares of strokeWidth=10
 
     final paintG = Paint()
       ..color = Color(0xCCFFFFFF)
