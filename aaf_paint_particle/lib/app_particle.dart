@@ -288,10 +288,10 @@ class ParticlePainter extends CustomPainter {
       ..style = PaintingStyle.fill;
 
     final colorsF = Int32List.fromList([
-      Color(0xCCFF0000).toARGB32(), // red, opacity=CC , index=0
-      Color(0xCC00FF00).toARGB32(), // pink, opacity=CC, index=1
-      Color(0xCC0000FF).toARGB32(), // lime, opacity=CC, index=2
-      Color(0xCC9933FF).toARGB32(), // purple, opacity=CC, index=3
+      0xCCFF0000, // Color(0xCCFF0000).toARGB32(), // red, opacity=CC , index=0
+      0xCC00FF00, // Color(0xCC00FF00).toARGB32(), // pink, opacity=CC, index=1
+      0xCC0000FF, //  Color(0xCC0000FF).toARGB32(), // blue-purple, opacity=CC, index=2
+      0xCC9933FF, // Color(0xCC9933FF).toARGB32(), // purple, opacity=CC, index=3
     ]);
 
     final verticesF = Vertices.raw(
