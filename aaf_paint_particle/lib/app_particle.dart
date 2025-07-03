@@ -248,7 +248,10 @@ class ParticlePainter extends CustomPainter {
       pt3E.dx,
       pt3E.dy,
     ]);
-    final indicesE = Uint16List.fromList([0, 1, 2, 3, 1, 2]);
+    final indicesE = Uint16List.fromList([
+      0, 1, 2, // upper triangle
+      3, 1, 2, // lower triangle
+    ]);
     final Paint paintE = Paint()
       ..color = Colors.orange
       ..style = PaintingStyle.fill;
