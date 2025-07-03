@@ -301,6 +301,19 @@ class ParticlePainter extends CustomPainter {
       colors: colorsF, // one color per vertex
     );
     canvas.drawVertices(verticesF, BlendMode.src, paintF);
+
+    // G -- example of canvas.drawPoints(...)
+    final paintG = Paint()
+      ..color = Color(0xCCFFFFFF)
+      ..strokeWidth = 5
+      ..style = PaintingStyle.stroke;
+    final centerG = Offset(size.width / 2 + 160, size.height / 2 + 90);
+    final pointsG = List<Offset>.from([
+      centerG + Offset(0, 15),
+      centerG,
+      centerG + Offset(0, -15),
+    ]);
+    canvas.drawPoints(PointMode.points, pointsG, paintG);
   }
 
   @override
