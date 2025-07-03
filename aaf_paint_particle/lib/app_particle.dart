@@ -262,6 +262,45 @@ class ParticlePainter extends CustomPainter {
       indices: indicesE,
     );
     canvas.drawVertices(verticesE, BlendMode.src, paintE);
+
+    // F. draw with vertices with indices and "color per vertex"
+    final centerF = Offset(size.width / 2 + 150, size.height / 2 + 90);
+    final pt0F = centerF + Offset(0, -25);
+    final pt1F = centerF + Offset(-15, 0);
+    final pt2F = centerF + Offset(15, 0);
+    final pt3F = centerF + Offset(0, 25);
+    final listFloat32VertexXYF = Float32List.fromList([
+      pt0F.dx,
+      pt0F.dy,
+      pt1F.dx,
+      pt1F.dy,
+      pt2F.dx,
+      pt2F.dy,
+      pt3F.dx,
+      pt3F.dy,
+    ]);
+    final indicesF = Uint16List.fromList([
+      0, 1, 2, // upper triangle
+      3, 1, 2, // lower triangle
+    ]);
+    final Paint paintF = Paint()
+      ..color = Colors.orange
+      ..style = PaintingStyle.fill;
+
+    final colorsF = Int32List.fromList([
+      Color(0xCCFF0000).toARGB32(), // red, opacity=CC , index=0
+      Color(0xCC00FF00).toARGB32(), // pink, opacity=CC, index=1
+      Color(0xCC0000FF).toARGB32(), // lime, opacity=CC, index=2
+      Color(0xCC9933FF).toARGB32(), // purple, opacity=CC, index=3
+    ]);
+
+    final verticesF = Vertices.raw(
+      VertexMode.triangles,
+      listFloat32VertexXYF,
+      indices: indicesE,
+      colors: colorsF, // one color per vertex
+    );
+    canvas.drawVertices(verticesF, BlendMode.src, paintF);
   }
 
   @override
