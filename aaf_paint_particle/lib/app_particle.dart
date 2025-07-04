@@ -93,7 +93,7 @@ class _AppParticleWidgetState extends State<AppParticleWidget>
     upperBound: 100.0,
   );
   final Duration duration = const Duration(seconds: 20);
-  late final GameState _gameState; //= GameState(_animation);
+  late final GameState _gameState;
 
   @override
   void initState() {
