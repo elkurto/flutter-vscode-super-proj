@@ -38,7 +38,6 @@ class GameState {
 
   void act() {
     // update state
-
     DateTime dateTimeNow = DateTime.now();
     if (listParticle.isEmpty) {
       listParticle.addAll(
