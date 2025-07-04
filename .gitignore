@@ -9,6 +9,7 @@
 
 feeling_wheel_custom_painter/
 flutter_game_physics/
+samples/
 
 # Flutter repo-specific
 /bin/cache/
