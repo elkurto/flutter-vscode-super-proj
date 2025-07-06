@@ -1,6 +1,7 @@
 import 'dart:collection';
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class AppPaintImageWidget extends StatefulWidget {
   const AppPaintImageWidget({super.key});
@@ -74,15 +75,41 @@ class Sprite {
   }
 }
 
+Symbol symbolImageBoomerang = Symbol("boomerang");
+
 class GameState {
   Size? size;
   int? prevEpochMillis;
   int dt = 20;
-  final Map<String, Image> mapNameToImage = HashMap();
+  final Map<Symbol, ui.Image> mapSymbolToImage = HashMap();
   final List<Sprite> listSprite = [];
 
   GameState() {
-    Image image = Image.asset("assets/boomerange.000.50x50.png");
-    mapNameToImage["boomerang"] = image;
+    //Image image = Image.asset("assets/boomerange.000.50x50.png");
+    //mapNameToImage["boomerang"] = image;
+    if (mapSymbolToImage.containsKey(symbolImageBoomerang)) {}
+    loadImageAssets();
+  }
+  void loadImageAssets() {
+    Future<ui.Image> futureUiImage = loadImageAsync(
+      "assets/boomerang.000.50x50.png",
+    );
+
+    futureUiImage.then(initSpriteFromLoadedImage);
+  }
+
+  Future<ui.Image> loadImageAsync(String assetFilename) async {
+    ImmutableBuffer immutableBuffer = await ImmutableBuffer.fromAsset(
+      assetFilename,
+    );
+    ui.Codec codec = await ui.instantiateImageCodecFromBuffer(immutableBuffer);
+    ui.FrameInfo frameInfo = await codec.getNextFrame();
+    return frameInfo.image;
+  }
+
+  void initSpriteFromLoadedImage(ui.Image image) {
+    Sprite sprite = Sprite(image, 0, 0, 50, 50, 0, 0, 50, 50);
+    mapSymbolToImage[symbolImageBoomerang] = image;
+    listSprite.add(sprite);
   }
 }
