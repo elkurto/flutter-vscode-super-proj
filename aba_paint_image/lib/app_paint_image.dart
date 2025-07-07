@@ -1,5 +1,7 @@
+import 'dart:async';
 import 'dart:collection';
 import 'dart:ui' as ui;
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -21,6 +23,8 @@ class _AppPaintImageWidgetState extends State<AppPaintImageWidget>
   @override
   void initState() {
     super.initState();
+
+    _gameState.loadImageAssets();
     _controller.duration = duration;
     _controller.repeat();
     _controller.addListener(_update);
@@ -38,10 +42,10 @@ class _AppPaintImageWidgetState extends State<AppPaintImageWidget>
 
   @override
   Widget build(BuildContext context) {
+    _gameState.size ??= MediaQuery.of(context).size;
     if (!_gameState.isLoaded()) {
       return const Center(child: Text('loading...'));
     }
-    _gameState.size ??= MediaQuery.of(context).size;
 
     return Container(
       decoration: BoxDecoration(color: Colors.black),
@@ -81,7 +85,7 @@ class Sprite {
   double dy = 0.0;
   double dw = 50.0;
   double dh = 50.0;
-  final Paint paintBackground = Paint()..color = Color(0x00000000);
+  final Paint paintBackground = Paint()..color = Color(0xFF000000);
 
   Sprite(
     this.image,
@@ -115,31 +119,56 @@ class GameState {
     //Image image = Image.asset("assets/boomerange.000.50x50.png");
     //mapNameToImage["boomerang"] = image;
     if (mapSymbolToImage.containsKey(symbolImageBoomerang)) {}
-    loadImageAssets();
   }
 
   void loadImageAssets() {
+    print("in loadImageAssets");
     Future<ui.Image> futureUiImage = loadImageAsync(listAssetFilename[0]);
 
     futureUiImage.then(initSpriteFromLoadedImage);
   }
 
   Future<ui.Image> loadImageAsync(String assetFilename) async {
-    ImmutableBuffer immutableBuffer = await ImmutableBuffer.fromAsset(
-      assetFilename,
-    );
-    ui.Codec codec = await ui.instantiateImageCodecFromBuffer(immutableBuffer);
-    ui.FrameInfo frameInfo = await codec.getNextFrame();
-    return frameInfo.image;
+    print("in loadImageAsync");
+    if (kIsWeb) {
+      WidgetsFlutterBinding.ensureInitialized();
+      var image = AssetImage(assetFilename);
+      var key = await image.obtainKey(ImageConfiguration.empty);
+      var stream = image.loadBuffer(
+        key,
+        PaintingBinding.instance.instantiateImageCodecFromBuffer,
+      );
+      var completer = Completer<ui.Image>();
+      stream.addListener(
+        ImageStreamListener((image, synchronousCall) {
+          completer.complete(image.image);
+        }),
+      );
+      return completer.future;
+    }
+    var buffer = await ImmutableBuffer.fromAsset(assetFilename);
+    var codec = await ui.instantiateImageCodecFromBuffer(buffer);
+    var frame = await codec.getNextFrame();
+    return frame.image;
+    // ImmutableBuffer immutableBuffer = await ImmutableBuffer.fromAsset(
+    //   assetFilename,
+    // );
+    // ui.Codec codec = await ui.instantiateImageCodecFromBuffer(immutableBuffer);
+    // ui.FrameInfo frameInfo = await codec.getNextFrame();
+    // return frameInfo.image;
   }
 
   void initSpriteFromLoadedImage(ui.Image image) {
+    print("in initSpriteFromLoadedImage");
     Sprite sprite = Sprite(image, 0, 0, 50, 50, 0, 0, 50, 50);
     mapSymbolToImage[symbolImageBoomerang] = image;
     listSprite.add(sprite);
   }
 
   bool isLoaded() {
+    print(
+      "size =$size && listSprite.length =${listSprite.length} && listAssetFilename =${listAssetFilename.length}",
+    );
     return (size != null && listSprite.length == listAssetFilename.length);
   }
 
