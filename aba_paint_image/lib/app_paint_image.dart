@@ -17,19 +17,17 @@ class _AppPaintImageWidgetState extends State<AppPaintImageWidget>
     upperBound: 100.0,
   );
   final Duration duration = const Duration(seconds: 20);
-  final GameState _gameState =GameState();
+  final GameState _gameState = GameState();
   @override
   void initState() {
     super.initState();
     _controller.duration = duration;
     _controller.repeat();
     _controller.addListener(_update);
-    
-
   }
 
   void _update() {
-    setState(() => _gameState.act())
+    setState(() => _gameState.act());
   }
 
   @override
@@ -39,8 +37,37 @@ class _AppPaintImageWidgetState extends State<AppPaintImageWidget>
   }
 
   @override
-  Widget build(BuildContext buildContext) {
-    return Text("@todo add canvas custompainter and render loaded image");
+  Widget build(BuildContext context) {
+    if (!_gameState.isLoaded()) {
+      return const Center(child: Text('loading...'));
+    }
+    _gameState.size ??= MediaQuery.of(context).size;
+
+    return Container(
+      decoration: BoxDecoration(color: Colors.black),
+      child: CustomPaint(
+        painter: SpriteGamePainter(_gameState, _controller),
+        child: const SizedBox.expand(),
+      ),
+    );
+  }
+}
+
+class SpriteGamePainter extends CustomPainter {
+  final GameState gameState;
+  final Animation<double> animation;
+
+  SpriteGamePainter(this.gameState, this.animation) : super(repaint: animation);
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    gameState.size = size;
+    gameState.draw(canvas);
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) {
+    return true;
   }
 }
 
@@ -83,18 +110,16 @@ class GameState {
   int dt = 20;
   final Map<Symbol, ui.Image> mapSymbolToImage = HashMap();
   final List<Sprite> listSprite = [];
-  
+  final List<String> listAssetFilename = ["assets/boomerang.000.50x50.png"];
   GameState() {
     //Image image = Image.asset("assets/boomerange.000.50x50.png");
     //mapNameToImage["boomerang"] = image;
     if (mapSymbolToImage.containsKey(symbolImageBoomerang)) {}
     loadImageAssets();
   }
-  
+
   void loadImageAssets() {
-    Future<ui.Image> futureUiImage = loadImageAsync(
-      "assets/boomerang.000.50x50.png",
-    );
+    Future<ui.Image> futureUiImage = loadImageAsync(listAssetFilename[0]);
 
     futureUiImage.then(initSpriteFromLoadedImage);
   }
@@ -114,8 +139,12 @@ class GameState {
     listSprite.add(sprite);
   }
 
+  bool isLoaded() {
+    return (size != null && listSprite.length == listAssetFilename.length);
+  }
+
   void act() {
-    if ( size != null) {
+    if (isLoaded()) {
       for (Sprite sprite in listSprite) {
         sprite.act(this);
       }
@@ -123,10 +152,9 @@ class GameState {
   }
 
   void draw(Canvas canvas) {
-
-    if ( size != null) {
+    if (isLoaded()) {
       for (Sprite sprite in listSprite) {
-        sprite.draw( canvas, this);
+        sprite.draw(canvas, this);
       }
     }
   }
