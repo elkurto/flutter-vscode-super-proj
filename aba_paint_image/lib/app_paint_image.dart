@@ -17,19 +17,19 @@ class _AppPaintImageWidgetState extends State<AppPaintImageWidget>
     upperBound: 100.0,
   );
   final Duration duration = const Duration(seconds: 20);
-
+  final GameState _gameState =GameState();
   @override
   void initState() {
     super.initState();
     _controller.duration = duration;
     _controller.repeat();
     _controller.addListener(_update);
+    
+
   }
 
   void _update() {
-    setState(
-      () {}, // @todo update gameState
-    );
+    setState(() => _gameState.act())
   }
 
   @override
@@ -83,13 +83,14 @@ class GameState {
   int dt = 20;
   final Map<Symbol, ui.Image> mapSymbolToImage = HashMap();
   final List<Sprite> listSprite = [];
-
+  
   GameState() {
     //Image image = Image.asset("assets/boomerange.000.50x50.png");
     //mapNameToImage["boomerang"] = image;
     if (mapSymbolToImage.containsKey(symbolImageBoomerang)) {}
     loadImageAssets();
   }
+  
   void loadImageAssets() {
     Future<ui.Image> futureUiImage = loadImageAsync(
       "assets/boomerang.000.50x50.png",
@@ -111,5 +112,22 @@ class GameState {
     Sprite sprite = Sprite(image, 0, 0, 50, 50, 0, 0, 50, 50);
     mapSymbolToImage[symbolImageBoomerang] = image;
     listSprite.add(sprite);
+  }
+
+  void act() {
+    if ( size != null) {
+      for (Sprite sprite in listSprite) {
+        sprite.act(this);
+      }
+    }
+  }
+
+  void draw(Canvas canvas) {
+
+    if ( size != null) {
+      for (Sprite sprite in listSprite) {
+        sprite.draw( canvas, this);
+      }
+    }
   }
 }
