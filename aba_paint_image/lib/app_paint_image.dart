@@ -1,10 +1,9 @@
 import 'dart:async';
 import 'dart:collection';
-import 'dart:js_interop';
 import 'dart:ui' as ui;
-import 'package:flutter/foundation.dart';
+//import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart' as img;
+//import 'package:flutter/material.dart' as img;
 import 'package:flutter/services.dart';
 
 class AppPaintImageWidget extends StatefulWidget {
