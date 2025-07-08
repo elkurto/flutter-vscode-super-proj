@@ -130,12 +130,21 @@ class GameState {
 
   Future<ui.Image> loadImageAsync(String assetFilename) async {
     print("in loadImageAsync");
+    // ImmutableBuffer immutableBuffer = await rootBundle.loadBuffer(
+    //   assetFilename,
+    // );  ?? will this work
+
+    // Image image =Image(image: AssetImage(assetFilename)); // will this work if convrted to ui.Image ?
+    // convert from img.Image to ui.Image
+    // https://medium.com/@ys.commerciale/process-and-show-an-image-in-flutter-aebb0054ce94
+
     if (kIsWeb) {
       WidgetsFlutterBinding.ensureInitialized();
       var image = AssetImage(assetFilename);
       var key = await image.obtainKey(ImageConfiguration.empty);
       var stream = image.loadBuffer(
         key,
+
         PaintingBinding.instance.instantiateImageCodecFromBuffer,
       );
       var completer = Completer<ui.Image>();
