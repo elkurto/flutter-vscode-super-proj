@@ -1,8 +1,10 @@
 import 'dart:async';
 import 'dart:collection';
+import 'dart:js_interop';
 import 'dart:ui' as ui;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' as img;
 import 'package:flutter/services.dart';
 
 class AppPaintImageWidget extends StatefulWidget {
@@ -130,14 +132,50 @@ class GameState {
 
   Future<ui.Image> loadImageAsync(String assetFilename) async {
     print("in loadImageAsync");
-    // ImmutableBuffer immutableBuffer = await rootBundle.loadBuffer(
-    //   assetFilename,
-    // );  ?? will this work
+    /* // this block does not work -- image fails to load.  
+    String assetKey = Uri.file(assetFilename).path;
+    var buffer = await ImmutableBuffer.fromAsset(assetKey);  /// xxx -- should use rootBundle.loadBuffer(assetFilename) 
+    var codec = await ui.instantiateImageCodecFromBuffer(buffer);
+    var frame = await codec.getNextFrame();
+    return frame.image;
+    */
 
+    // this block works 100%
+    ImmutableBuffer immutableBuffer = await rootBundle.loadBuffer(
+      assetFilename,
+    );
+    var codec = await ui.instantiateImageCodecFromBuffer(immutableBuffer);
+    var frame = await codec.getNextFrame();
+    return frame.image;
+
+    /* // this block does not work -- perhaps it formerly worked
     // Image image =Image(image: AssetImage(assetFilename)); // will this work if convrted to ui.Image ?
     // convert from img.Image to ui.Image
-    // https://medium.com/@ys.commerciale/process-and-show-an-image-in-flutter-aebb0054ce94
+    
+    // src =https://medium.com/@ys.commerciale/process-and-show-an-image-in-flutter-aebb0054ce94
 
+    img.Image image = img.Image(image: AssetImage(assetFilename));
+    ui.ImmutableBuffer buffer = await ui.ImmutableBuffer.fromUint8List(
+      image.getBytes(format: img.Format.rgba),
+    );
+
+    ui.ImageDescriptor id = ui.ImageDescriptor.raw(
+      buffer,
+      height: image.height,
+      width: image.width,
+      pixelFormat: ui.PixelFormat.rgba8888,
+    );
+    ui.Codec codec = await id.instantiateCodec(
+      targetHeight: image.height,
+      targetWidth: image.width,
+    );
+    ui.FrameInfo fi = await codec.getNextFrame();
+    ui.Image uiImage = fi.image;
+    return uiImage;
+    */
+
+    /* // this block works too but it's ugly.  why kIsWeb ???
+    // src = https://gist.github.com/jonahwilliams/5d02438e6b2d1686a9a8401164689dd6
     if (kIsWeb) {
       WidgetsFlutterBinding.ensureInitialized();
       var image = AssetImage(assetFilename);
@@ -159,6 +197,8 @@ class GameState {
     var codec = await ui.instantiateImageCodecFromBuffer(buffer);
     var frame = await codec.getNextFrame();
     return frame.image;
+    */
+
     // ImmutableBuffer immutableBuffer = await ImmutableBuffer.fromAsset(
     //   assetFilename,
     // );
