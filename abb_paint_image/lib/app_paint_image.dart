@@ -90,7 +90,7 @@ class Sprite {
   double vx = 5.0 / 1000.0;
   double vy = 5.0 / 1000.0;
   double theta = 45.0 * pi / 180.0;
-  double vtheta = 1.0 / 1000.0;
+  double vtheta = 10.0 / 1000.0;
   Sprite(
     this.image,
     this.sx,
