@@ -90,7 +90,7 @@ class Sprite {
   double vx = 5.0 / 1000.0;
   double vy = 5.0 / 1000.0;
   double theta = 45.0 * pi / 180.0;
-  double vtheta = 10.0 / 1000.0;
+  double vtheta = 5.0 / 1000.0;
   Sprite(
     this.image,
     this.sx,
@@ -142,7 +142,7 @@ class GameState {
   //   1.0, 0.0, 0.0, 0.0, // row 1
   //   0.0, 1.0, 0.0, 0.0, // row 2
   //   0.0, 0.0, 1.0, 0.0, // row 3
-  //   0.0, 0.0, 0.0, 0.0, // row 4
+  //   0.0, 0.0, 0.0, 1.0, // row 4
   // ]); // does not work
   final matrix4x4ResetTransform = Matrix4.identity();
 
@@ -167,16 +167,16 @@ class GameState {
 
   void initSpriteFromLoadedImage(ui.Image image) {
     print("in initSpriteFromLoadedImage");
-    Sprite sprite = Sprite(image, 0, 0, 50, 50, 100, 100, 125, 125);
+    Sprite sprite = Sprite(image, 0, 0, 50, 50, 100, 100, 50, 50);
     mapSymbolToImage[symbolImageBoomerang] = image;
     listSprite.add(sprite);
     nImageLoaded += 1;
   }
 
   bool isLoaded() {
-    print(
-      "size =$size && listSprite.length =${listSprite.length} && listAssetFilename =${listAssetFilename.length}",
-    );
+    // print(
+    //   "size =$size && listSprite.length =${listSprite.length} && listAssetFilename =${listAssetFilename.length}",
+    // );
     return (size != null && listSprite.length == nImageLoaded);
   }
 
