@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:collection';
+import 'dart:math';
 import 'dart:ui' as ui;
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -80,12 +82,15 @@ class Sprite {
   double sy = 0.0;
   double sw = 50.0;
   double sh = 50.0;
-  double dx = 0.0;
-  double dy = 0.0;
+  double dx = 100.0;
+  double dy = 100.0;
   double dw = 50.0;
   double dh = 50.0;
   final Paint paintBackground = Paint()..color = Color(0xFF000000);
-
+  double vx = 5.0 / 1000.0;
+  double vy = 5.0 / 1000.0;
+  double theta = 45.0 * pi / 180.0;
+  double vtheta = 1.0 / 1000.0;
   Sprite(
     this.image,
     this.sx,
@@ -97,11 +102,28 @@ class Sprite {
     this.dw,
     this.dh,
   );
-  void act(GameState gameState) {}
+  void act(GameState gameState) {
+    dx = gameState.dt * vx + dx;
+    dy = gameState.dt * vy + dy;
+    if (dx < 0 ||
+        gameState.size!.width < dx ||
+        dy < 0 ||
+        gameState.size!.height < dy) {
+      dx = gameState.size!.width / 2;
+      dy = gameState.size!.height / 2;
+    }
+    theta = theta + vtheta * gameState.dt;
+  }
+
   void draw(Canvas canvas, GameState gameState) {
     Rect rectSrc = Rect.fromLTWH(sx, sy, sw, sh);
     Rect rectDest = Rect.fromLTWH(dx, dy, dw, dh);
+    //gameState.resetTransform(canvas);
+    canvas.translate(1 * (dx + dw / 2), 1 * (dy + dh / 2));
+    canvas.rotate(theta);
+    canvas.translate(-1 * (dx + dw / 2), -1 * (dy + dh / 2));
     canvas.drawImageRect(image, rectSrc, rectDest, paintBackground);
+    //canvas.restore();
   }
 }
 
@@ -115,6 +137,14 @@ class GameState {
   final List<Sprite> listSprite = [];
   final List<String> listAssetFilename = ["assets/boomerang.000.50x50.png"];
   int nImageLoaded = 0;
+
+  // final matrix4x4ResetTransform = Float64List.fromList([
+  //   1.0, 0.0, 0.0, 0.0, // row 1
+  //   0.0, 1.0, 0.0, 0.0, // row 2
+  //   0.0, 0.0, 1.0, 0.0, // row 3
+  //   0.0, 0.0, 0.0, 0.0, // row 4
+  // ]); // does not work
+  final matrix4x4ResetTransform = Matrix4.identity();
 
   void loadImageAssets() {
     print("in loadImageAssets");
@@ -137,7 +167,7 @@ class GameState {
 
   void initSpriteFromLoadedImage(ui.Image image) {
     print("in initSpriteFromLoadedImage");
-    Sprite sprite = Sprite(image, 0, 0, 50, 50, 0, 0, 50, 50);
+    Sprite sprite = Sprite(image, 0, 0, 50, 50, 100, 100, 125, 125);
     mapSymbolToImage[symbolImageBoomerang] = image;
     listSprite.add(sprite);
     nImageLoaded += 1;
@@ -173,5 +203,9 @@ class GameState {
         uiImage.dispose();
       }
     }
+  }
+
+  void resetTransform(Canvas canvas) {
+    canvas.transform(matrix4x4ResetTransform.storage);
   }
 }
