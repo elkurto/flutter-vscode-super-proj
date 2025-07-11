@@ -121,7 +121,7 @@ class Sprite {
     // draw boomerang 01
     canvas.save(); // must save to restore // must restore to avoid side effects
     canvas.translate(1 * (dx + dw / 2), 1 * (dy + dh / 2));
-    canvas.rotate(theta);
+    canvas.rotate(theta); // rotate at 1 * vtheta
     canvas.translate(-1 * (dx + dw / 2), -1 * (dy + dh / 2));
     canvas.drawImageRect(image, rectSrc, rectDest, paintBackground);
     canvas.restore(); // reset the transform // to avoid side effects.
@@ -130,7 +130,7 @@ class Sprite {
     canvas.save(); // must save to restore // must restore to avoid side effects
     canvas.transform(Matrix4.identity().storage);
     canvas.translate(1 * (dx + dw / 2), 1 * (dy + dh / 2));
-    canvas.rotate(theta + theta);
+    canvas.rotate(2 * theta); // rotate at 2 * vtheta
     canvas.translate(-1 * (dx + dw / 2), -1 * (dy + dh / 2));
     canvas.drawImageRect(image, rectSrc, rectDest, paintBackground);
     canvas.restore(); // reset the transform // to avoid side effects.
