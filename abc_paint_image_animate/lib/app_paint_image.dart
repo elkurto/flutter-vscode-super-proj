@@ -169,17 +169,25 @@ class GameState {
 
   void initSpriteFromLoadedImage(ui.Image image) {
     print("in initSpriteFromLoadedImage");
-    Sprite sprite = Sprite(image, 0, 0, 50, 50, 100, 100, 50, 50);
-    mapSymbolToImage[symbolImageBoomerang] = image;
-    listSprite.add(sprite);
     nImageLoaded += 1;
+    mapSymbolToImage[symbolImageBoomerang] = image;
+
+    Sprite sprite = Sprite(image, 0, 0, 50, 50, 100, 100, 50, 50);
+    listSprite.add(sprite);
+
+    Sprite sprite2 = Sprite(image, 0, 0, 50, 50, 200, 100, 50, 50);
+    listSprite.add(sprite2);
+
+    // @todo make several sprites
+    // @todo add touch events
+    // @todo add swipe events
   }
 
   bool isLoaded() {
     // print(
     //   "size =$size && listSprite.length =${listSprite.length} && listAssetFilename =${listAssetFilename.length}",
     // );
-    return (size != null && listSprite.length == nImageLoaded);
+    return (size != null && listAssetFilename.length == nImageLoaded);
   }
 
   void act() {
