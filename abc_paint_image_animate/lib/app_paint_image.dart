@@ -148,14 +148,6 @@ class GameState {
   final List<String> listAssetFilename = ["assets/boomerang.000.50x50.png"];
   int nImageLoaded = 0;
 
-  // final matrix4x4ResetTransform = Float64List.fromList([
-  //   1.0, 0.0, 0.0, 0.0, // row 1
-  //   0.0, 1.0, 0.0, 0.0, // row 2
-  //   0.0, 0.0, 1.0, 0.0, // row 3
-  //   0.0, 0.0, 0.0, 1.0, // row 4
-  // ]); // does not work
-  final matrix4x4ResetTransform = Matrix4.identity();
-
   void loadImageAssets() {
     print("in loadImageAssets");
     Future<ui.Image> futureUiImage = loadImageAsync(listAssetFilename[0]);
@@ -213,9 +205,5 @@ class GameState {
         uiImage.dispose();
       }
     }
-  }
-
-  void resetTransform(Canvas canvas) {
-    canvas.transform(matrix4x4ResetTransform.storage);
   }
 }
