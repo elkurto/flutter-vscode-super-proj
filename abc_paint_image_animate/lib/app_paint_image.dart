@@ -85,11 +85,11 @@ class Sprite {
   double dy = 100.0;
   double dw = 50.0;
   double dh = 50.0;
-  final Paint paintBackground = Paint()..color = Color(0xFF000000);
+  final Paint paintBackground = Paint()..color = Color(0xAA000000);
   double vx = 5.0 / 1000.0;
   double vy = 5.0 / 1000.0;
   double theta = 45.0 * pi / 180.0;
-  double vtheta = 5.0 / 1000.0;
+  double vtheta = 2.5 / 1000.0;
   Sprite(
     this.image,
     this.sx,
@@ -128,9 +128,9 @@ class Sprite {
 
     // draw boomerang 02
     canvas.save(); // must save to restore // must restore to avoid side effects
-    canvas.transform(Matrix4.identity().storage);
+
     canvas.translate(1 * (dx + dw / 2), 1 * (dy + dh / 2));
-    canvas.rotate(2 * theta); // rotate at 2 * vtheta
+    canvas.rotate(-1 * theta); // rotate at 2 * vtheta
     canvas.translate(-1 * (dx + dw / 2), -1 * (dy + dh / 2));
     canvas.drawImageRect(image, rectSrc, rectDest, paintBackground);
     canvas.restore(); // reset the transform // to avoid side effects.
@@ -178,9 +178,10 @@ class GameState {
     Sprite sprite2 = Sprite(image, 0, 0, 50, 50, 200, 100, 50, 50);
     listSprite.add(sprite2);
 
-    // @todo make several sprites
+    // @done make several sprites
     // @todo add touch events
     // @todo add swipe events
+    // @todo render image to mesh or proceedural shader
   }
 
   bool isLoaded() {
