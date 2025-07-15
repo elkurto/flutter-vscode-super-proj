@@ -241,3 +241,12 @@ class GameState {
     }
   }
 }
+
+/*
+TODOS
+1. use drawAtlasRaw
+2. make GameState a const , so that SpriteGamePainter and CustomPainter can be const.
+3. add collision and inelastic collision
+4. 
+
+*/
