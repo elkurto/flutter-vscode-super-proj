@@ -133,6 +133,7 @@ class Sprite {
     canvas.rotate(-1 * theta); // rotate at 2 * vtheta
     canvas.translate(-1 * (dx + dw / 2), -1 * (dy + dh / 2));
     canvas.drawImageRect(image, rectSrc, rectDest, paintBackground);
+
     canvas.restore(); // reset the transform // to avoid side effects.
   }
 }
