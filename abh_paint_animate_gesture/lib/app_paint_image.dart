@@ -244,9 +244,12 @@ class GameState {
 
 /*
 TODOS
-1. use drawAtlasRaw
+1. use drawAtlasRaw  (in lieu of drawImage) -- what is an RSTransform parameter 
 2. make GameState a const , so that SpriteGamePainter and CustomPainter can be const.
 3. add collision and inelastic collision
-4. 
+4. mesh rendering 
+5. use Matrix4
+6. faux 3d rendering
+7. 2-3-4-tree in dart
 
 */
