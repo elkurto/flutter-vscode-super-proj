@@ -124,6 +124,7 @@ class Sprite {
     Rect rectSrc = Rect.fromLTWH(sx, sy, sw, sh);
     Rect rectDest = Rect.fromLTWH(dx, dy, dw, dh);
 
+    /*
     // draw boomerang 01
     canvas.save(); // must save to restore // must restore to avoid side effects
     canvas.translate(1 * (dx + dw / 2), 1 * (dy + dh / 2));
@@ -141,6 +142,27 @@ class Sprite {
     canvas.drawImageRect(image, rectSrc, rectDest, paintBackground);
 
     canvas.restore(); // reset the transform // to avoid side effects.
+    */
+    var rSTransform = RSTransform.fromComponents(
+      rotation: theta,
+      scale: 1,
+      anchorX: 25,
+      anchorY: 25,
+      translateX: dx,
+      translateY: dy,
+    );
+    canvas.save();
+
+    canvas.drawAtlas(
+      image,
+      <RSTransform>[rSTransform],
+      <Rect>[Rect.fromLTWH(0, 0, 50, 50)],
+      null,
+      null,
+      null,
+      paintBackground,
+    );
+    canvas.restore();
   }
 }
 
