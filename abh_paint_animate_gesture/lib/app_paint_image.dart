@@ -251,5 +251,10 @@ TODOS
 5. use Matrix4
 6. faux 3d rendering
 7. 2-3-4-tree in dart
-
+8. multiscreen nav
+9. adverts
+10. persistent local storage of game state 
+11. levels
+12. game-physics-sym
+13, sound controller
 */
