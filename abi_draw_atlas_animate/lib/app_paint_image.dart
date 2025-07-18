@@ -146,8 +146,10 @@ class Sprite {
     var rSTransform = RSTransform.fromComponents(
       rotation: theta,
       scale: 1,
+      // Center of the sprite relative to its rect
       anchorX: 25,
       anchorY: 25,
+      // Location at which to draw the center of the sprite
       translateX: dx,
       translateY: dy,
     );
