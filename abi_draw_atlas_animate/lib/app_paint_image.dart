@@ -159,7 +159,7 @@ class Sprite {
     // rotate counter-clockwise (backward/ negative)
     var rSTransformCCW = RSTransform.fromComponents(
       rotation: -1 * theta,
-      scale: 1,
+      scale: 1.5,
       // Center of the sprite relative to its rect
       anchorX: sw / 2, // center-of-rotation of sprite-space
       anchorY: sh / 2,
@@ -225,11 +225,6 @@ class GameState {
 
     Sprite sprite2 = Sprite(image, 0, 0, 50, 50, 200, 100, 50, 50);
     listSprite.add(sprite2);
-
-    // @done make several sprites
-    // @todo add touch events
-    // @todo add swipe events
-    // @todo render image to mesh or proceedural shader
   }
 
   bool isLoaded() {
@@ -298,4 +293,9 @@ TODOS
 11. levels
 12. game-physics-sym
 13, sound controller
+
+    // @done make several sprites
+    // @done add touch events
+    // @todo add swipe events
+    // @todo render image to mesh or proceedural shader
 */
