@@ -143,22 +143,39 @@ class Sprite {
 
     canvas.restore(); // reset the transform // to avoid side effects.
     */
+
+    // rotate clockwise (forward/ positive)
     var rSTransform = RSTransform.fromComponents(
       rotation: theta,
       scale: 1,
       // Center of the sprite relative to its rect
-      anchorX: 25,
-      anchorY: 25,
+      anchorX: sw / 2, // center-of-rotation of sprite-space
+      anchorY: sh / 2,
       // Location at which to draw the center of the sprite
-      translateX: dx,
-      translateY: dy,
+      translateX: dx + sw / 2,
+      translateY: dy + sw / 2,
+    );
+
+    // rotate counter-clockwise (backward/ negative)
+    var rSTransformCCW = RSTransform.fromComponents(
+      rotation: -1 * theta,
+      scale: 1,
+      // Center of the sprite relative to its rect
+      anchorX: sw / 2, // center-of-rotation of sprite-space
+      anchorY: sh / 2,
+      // Location at which to draw the center of the sprite in viewport-space
+      translateX: dx + sw / 2,
+      translateY: dy + sw / 2,
     );
     canvas.save();
 
     canvas.drawAtlas(
       image,
-      <RSTransform>[rSTransform],
-      <Rect>[Rect.fromLTWH(0, 0, 50, 50)],
+      <RSTransform>[rSTransform, rSTransformCCW],
+      <Rect>[
+        Rect.fromLTWH(0, 0, 50, 50),
+        Rect.fromLTWH(0, 0, 50, 50),
+      ], // src rect in image_space
       null,
       null,
       null,
