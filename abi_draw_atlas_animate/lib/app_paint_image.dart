@@ -121,10 +121,11 @@ class Sprite {
   }
 
   void draw(Canvas canvas, GameState gameState) {
+    /*
     Rect rectSrc = Rect.fromLTWH(sx, sy, sw, sh);
     Rect rectDest = Rect.fromLTWH(dx, dy, dw, dh);
 
-    /*
+    
     // draw boomerang 01
     canvas.save(); // must save to restore // must restore to avoid side effects
     canvas.translate(1 * (dx + dw / 2), 1 * (dy + dh / 2));
@@ -143,6 +144,9 @@ class Sprite {
 
     canvas.restore(); // reset the transform // to avoid side effects.
     */
+
+    //// Extrapolated from code comments in source code
+    ////   https://github.com/flutter/engine/blob/main/lib/ui/painting.dart#L5951
 
     // rotate clockwise (forward/ positive)
     var rSTransform = RSTransform.fromComponents(
@@ -287,7 +291,7 @@ TODOS
 5. use Matrix4
 6. faux 3d rendering
 7. 2-3-4-tree in dart
-8. multiscreen nav
+8. navigation multiscreen  - see https://github.com/flutter/website/blob/main/examples/ui/navigation/README
 9. adverts
 10. persistent local storage of game state 
 11. levels
