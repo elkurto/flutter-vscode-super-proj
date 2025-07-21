@@ -10,6 +10,7 @@
 feeling_wheel_custom_painter/
 flutter_game_physics/
 samples/
+observable_flutter_cube/
 
 # Flutter repo-specific
 /bin/cache/
