@@ -10,10 +10,13 @@ import 'package:vector_math/vector_math_64.dart';
 // additional reference
 //  src =https://github.com/google/vector_math.dart/blob/master/lib/src/vector_math_64/opengl.dart
 Vector2 project(Vector3 point, double rotation, double aspectRatio) {
+  // This viewMatrix makes
   final viewMatrix = makeViewMatrix(
+    // camera position
     Vector3(math.cos(rotation), 0.25, math.sin(rotation)) * 2,
-    Vector3.all(0.5),
-    Vector3(0, 1, 0),
+
+    Vector3.all(0.5), // lookat point
+    Vector3(0, 1, 0), // upward (unit-vector)
   );
 
   // final viewMatrix = makeViewMatrix(

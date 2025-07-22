@@ -168,12 +168,12 @@ class GameState {
 
 /*
 TODOS
-1. use drawAtlasRaw  (in lieu of drawImage) -- what is an RSTransform parameter 
-2. make GameState a const , so that SpriteGamePainter and CustomPainter can be const.
+1. @done - see abi - use drawAtlasRaw  (in lieu of drawImage) -- what is an RSTransform parameter 
+2. @done - make GameState a const , so that SpriteGamePainter and CustomPainter can be const.
 3. add collision and inelastic collision
 4. mesh rendering 
 5. use Matrix4
-6. faux 3d rendering
+6. @done - see abj - faux 3d rendering
 7. 2-3-4-tree in dart
 8. navigation multiscreen  - see https://github.com/flutter/website/blob/main/examples/ui/navigation/README
 9. adverts
@@ -182,8 +182,8 @@ TODOS
 12. game-physics-sym
 13, sound controller
 
-    // @done make several sprites
-    // @done add touch events
-    // @todo add swipe events
-    // @todo render image to mesh or proceedural shader
+14. @done make several sprites  - see abi
+15. @done add touch events      - see abi
+16. @todo add swipe events
+17. faux 3d render - walk-through field of triangles - (w/ wasd controls)
 */
