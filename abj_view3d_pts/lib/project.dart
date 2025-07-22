@@ -6,6 +6,9 @@ import 'package:vector_math/vector_math_64.dart';
 // in an attempt to understand projection matrices.
 // Also go watch - Faking 3d graphics in flutter - https://www.youtube.com/watch?v=DmId-KOgPkg
 //  Filip Hracek - "Faking 3D in Flutter — pair programming with Craig Labenz"
+//
+// additional reference
+//  src =https://github.com/google/vector_math.dart/blob/master/lib/src/vector_math_64/opengl.dart
 Vector2 project(Vector3 point, double rotation, double aspectRatio) {
   final viewMatrix = makeViewMatrix(
     Vector3(math.cos(rotation), 0.25, math.sin(rotation)) * 2,
