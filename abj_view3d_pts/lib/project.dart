@@ -8,11 +8,16 @@ import 'package:vector_math/vector_math_64.dart';
 //  Filip Hracek - "Faking 3D in Flutter — pair programming with Craig Labenz"
 Vector2 project(Vector3 point, double rotation, double aspectRatio) {
   final viewMatrix = makeViewMatrix(
-    Vector3(0.25, math.cos(rotation), math.sin(rotation)) * 2,
+    Vector3(math.cos(rotation), 0.25, math.sin(rotation)) * 2,
     Vector3.all(0.5),
-    Vector3(1, 0, 0),
+    Vector3(0, 1, 0),
   );
 
+  // final viewMatrix = makeViewMatrix(
+  //   Vector3(1, 0, 0),
+  //   Vector3.all(0.5),
+  //   Vector3(0, 1, 0),
+  // );
   const near = 1.0;
   const fov = 60.0;
   const zoom = 1.0;
