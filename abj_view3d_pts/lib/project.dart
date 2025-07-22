@@ -14,7 +14,8 @@ Vector2 project(Vector3 point, double rotation, double aspectRatio) {
   );
 
   // final viewMatrix = makeViewMatrix(
-  //   Vector3(1, 0, 0),
+  //   // this works
+  //   Vector3(2, 0, .1), // 2,0,0.1 okay // exception when 0,0,0
   //   Vector3.all(0.5),
   //   Vector3(0, 1, 0),
   // );
