@@ -125,10 +125,15 @@ class GameState {
 
   void act() {
     if (isLoaded()) {
-      //int nowMs = DateTime.now().millisecondsSinceEpoch;
-      //dt = nowMs - prevEpochMillis;
-      theta += vtheta * dt;
-      theta = theta % (2 * math.pi);
+      if (prevEpochMillis == null) {
+        prevEpochMillis = DateTime.now().millisecondsSinceEpoch;
+      } else {
+        int nowMs = DateTime.now().millisecondsSinceEpoch;
+        dt = nowMs - prevEpochMillis!;
+        theta += vtheta * dt;
+        theta = theta % (2 * math.pi);
+        prevEpochMillis = nowMs;
+      }
     }
   }
 
