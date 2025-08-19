@@ -5,6 +5,7 @@ void main() {
   runApp(const CupertinoApp(title: 'Navigation Basics', home: FirstRoute()));
 }
 
+// a widget that represents a home screen
 class FirstRoute extends StatelessWidget {
   const FirstRoute({super.key});
 
@@ -29,6 +30,7 @@ class FirstRoute extends StatelessWidget {
   }
 }
 
+// a widget that represents a second screen
 class SecondRoute extends StatelessWidget {
   const SecondRoute({super.key});
 
