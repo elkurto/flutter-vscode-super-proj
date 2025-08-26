@@ -13,7 +13,7 @@ location.
 
 data model : 
   Artist created a collection of ArtObject
-  
+  Artist <>----> ArtObject
 
  */
 
