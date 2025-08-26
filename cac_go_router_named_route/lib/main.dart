@@ -26,40 +26,40 @@ class Artist {
     required this.mapIdArtwork,
   });
 
-  final int id;
+  final String id;
 
   /// The name of the artist.
   final String name;
 
   /// created artworks (art object)
-  final Map<int, Artwork> mapIdArtwork;
+  final Map<String, Artwork> mapIdArtwork;
 }
 
 /// Person data class.
 class Artwork {
   /// Creates a person.
   const Artwork({required this.id, required this.name});
-  final int id;
+  final String id;
 
   /// The first name of the person.
   final String name;
 }
 
-const Map<int, Artist> mapIdArtist = <int, Artist>{
-  1: Artist(
-    id: 1,
+const Map<String, Artist> mapIdArtist = <String, Artist>{
+  "1": Artist(
+    id: "1",
     name: 'Doe',
-    mapIdArtwork: <int, Artwork>{
-      1001: Artwork(id: 1001, name: 'ballad'),
-      1002: Artwork(id: 1002, name: 'djmix'),
+    mapIdArtwork: <String, Artwork>{
+      "1001": Artwork(id: "1001", name: 'ballad'),
+      "1002": Artwork(id: "1002", name: 'djmix'),
     },
   ),
-  2: Artist(
-    id: 2,
+  "2": Artist(
+    id: "2",
     name: 'Wong',
-    mapIdArtwork: <int, Artwork>{
-      2001: Artwork(id: 2001, name: 'landscape'),
-      2002: Artwork(id: 2002, name: 'pottery'),
+    mapIdArtwork: <String, Artwork>{
+      "2001": Artwork(id: "2001", name: 'landscape'),
+      "2002": Artwork(id: "2002", name: 'pottery'),
     },
   ),
 };
@@ -126,7 +126,7 @@ class HomeScreen extends StatelessWidget {
       body: ListView(
         children: <Widget>[
           // make a :widget:ListTile
-          for (final MapEntry<int, Artist> entry in mapIdArtist.entries)
+          for (final MapEntry<String, Artist> entry in mapIdArtist.entries)
             ListTile(
               title: Text(entry.value.name),
               onTap: () => context.go(
@@ -154,12 +154,13 @@ class ArtistScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Map<int, Artwork> mapIdArtwork = mapIdArtist[artistid]!.mapIdArtwork;
+    final Map<String, Artwork> mapIdArtwork =
+        mapIdArtist[artistid]!.mapIdArtwork;
     return Scaffold(
       appBar: AppBar(title: Text(mapIdArtist[artistid]!.name)),
       body: ListView(
         children: <Widget>[
-          for (final MapEntry<int, Artwork> entry in mapIdArtwork.entries)
+          for (final MapEntry<String, Artwork> entry in mapIdArtwork.entries)
             ListTile(
               title: Text(entry.value.name),
               onTap: () => context.go(
