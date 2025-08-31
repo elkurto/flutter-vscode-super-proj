@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 /// src = flutter create --sample=widgets.FocusNode.1 abm_keyboard_focus_sample --platform web
+/// src = https://api.flutter.dev/flutter/widgets/FocusNode-class.html
 ///
 /// Flutter code sample for [FocusNode] to acquire Keyboard input
 
