@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 /// src = https://docs.flutter.dev/ui/interactivity/actions-and-shortcuts#putting-it-together
-
+/// Use action and intent idiom to select and copy text from a textfield.
+///
 /// A text field that also has buttons to select all the text and copy the
 /// selected text to the clipboard.
 class CopyableTextField extends StatefulWidget {
