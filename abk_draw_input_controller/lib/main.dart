@@ -34,7 +34,7 @@ class MyHomePage extends StatelessWidget {
       //   backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       //   title: Text(title),
       // ),
-      body: Center(child: AppPaintImageWidget()),
+      body: child: AppPaintImageWidget(),
     );
   }
 }

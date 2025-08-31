@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-/// Flutter code sample for [FocusNode].
+/// src = flutter create --sample=widgets.FocusNode.1 abm_keyboard_focus_sample --platform web
+///
+/// Flutter code sample for [FocusNode] to acquire Keyboard input
 
 void main() => runApp(const FocusNodeExampleApp());
 
@@ -50,7 +52,9 @@ class _ColorfulButtonState extends State<ColorfulButton> {
 
   KeyEventResult _handleKeyPress(FocusNode node, KeyEvent event) {
     if (event is KeyDownEvent) {
-      debugPrint('Focus node ${node.debugLabel} got key event: ${event.logicalKey}');
+      debugPrint(
+        'Focus node ${node.debugLabel} got key event: ${event.logicalKey}',
+      );
       switch (event.logicalKey) {
         case LogicalKeyboardKey.keyR:
           debugPrint('Changing color to red.');
@@ -100,7 +104,9 @@ class _ColorfulButtonState extends State<ColorfulButton> {
           height: 100,
           color: _focused ? _color : Colors.white,
           alignment: Alignment.center,
-          child: Text(_focused ? "I'm in color! Press R,G,B!" : 'Press to focus'),
+          child: Text(
+            _focused ? "I'm in color! Press R,G,B!" : 'Press to focus',
+          ),
         ),
       ),
     );
@@ -113,6 +119,9 @@ class FocusNodeExample extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final TextTheme textTheme = Theme.of(context).textTheme;
-    return DefaultTextStyle(style: textTheme.headlineMedium!, child: const ColorfulButton());
+    return DefaultTextStyle(
+      style: textTheme.headlineMedium!,
+      child: const ColorfulButton(),
+    );
   }
 }
