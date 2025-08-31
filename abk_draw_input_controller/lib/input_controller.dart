@@ -6,7 +6,7 @@ class InputControllerSingleton {
   // i have the state
   bool firePrimaryPressed = false;
   bool fireSecondaryPressed = false;
-  bool pausePressed = false;
+  bool paused = false;
 
   // 1. private named constructor
   //
