@@ -44,11 +44,12 @@ const List<Product> allProducts = [
       image: 'assets/products/guitar.png'),
 ];
 
-// this is a read only value 
+// this is a read only Provider that lists all products
 final productsProvider = Provider((refs) {
   return allProducts;
 });
 
+// this is a read only Provider that return a filtered sublist of products.
 final reducedProductsProvider =Provider((refs) {
   return allProducts.where((p)=> p.price < 50 ).toList();
 })
