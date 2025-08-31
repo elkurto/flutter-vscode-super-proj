@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_files/models/product.dart';
 
+// simulate a datasource
 const List<Product> allProducts = [
   Product(
       id: '1',
