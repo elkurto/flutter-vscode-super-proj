@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_files/models/product.dart';
 
-// simulate a datasource
+// A.0. simulate a datasource
 const List<Product> allProducts = [
   Product(
       id: '1',
@@ -45,12 +45,13 @@ const List<Product> allProducts = [
       image: 'assets/products/guitar.png'),
 ];
 
+// A.1. Create a provider (that uses A.0 datasource)
 // this is a read only Provider that lists all products
 final productsProvider = Provider((refs) {
   return allProducts;
 });
 
 // this is a read only Provider that return a filtered sublist of products.
-final reducedProductsProvider =Provider((refs) {
-  return allProducts.where((p)=> p.price < 50 ).toList();
-})
+final reducedProductsProvider = Provider((refs) {
+  return allProducts.where((p) => p.price < 50).toList();
+});
