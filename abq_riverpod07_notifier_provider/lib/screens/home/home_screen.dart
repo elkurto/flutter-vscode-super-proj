@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_files/providers/cart_provider.dart';
 import 'package:riverpod_files/providers/products_provider.dart';
 import 'package:riverpod_files/shared/cart_icon.dart';
 
@@ -23,6 +24,8 @@ class HomeScreen extends ConsumerWidget {
     // Note: :method: ref.watch allow initial read and
     //   later updates of data in :riverpad.Provider:"productsProvider"
     final allProducts = ref.watch(productsProvider); //new
+    // A.8.4 Use ref.watch to access data from cartNotifierProvider
+    final cartProducts = ref.watch(cartNotifierProvider); //new
 
     return Scaffold(
       appBar: AppBar(
@@ -49,7 +52,30 @@ class HomeScreen extends ConsumerWidget {
                     Image.asset(allProducts[index].image,
                         width: 60, height: 60),
                     Text(allProducts[index].title),
-                    Text("\$${allProducts[index].price}")
+                    Text("\$${allProducts[index].price}"),
+
+                    // A.8.5 use the :cartNotifierProvider:cartProducts
+                    if (cartProducts.contains(allProducts[index]))
+                      TextButton(
+                        onPressed: () {
+                          // A.9.2 acquire notifier, then invoke biz method
+                          ref
+                              .read(cartNotifierProvider.notifier)
+                              .removeProduct(allProducts[index]);
+                        }, // do remove
+                        child: const Text('Remove'),
+                      ),
+                    // A.8.6 use the :cartNotifierProvider:cartProducts
+                    if (!cartProducts.contains(allProducts[index]))
+                      TextButton(
+                        onPressed: () {
+                          // A.9.2 acquire notifier, then invoke biz method
+                          ref
+                              .read(cartNotifierProvider.notifier)
+                              .addProduct(allProducts[index]);
+                        }, // do add
+                        child: const Text('Add To Cart'),
+                      ),
                   ],
                 ));
           },

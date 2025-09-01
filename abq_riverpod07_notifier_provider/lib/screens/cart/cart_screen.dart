@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod_files/providers/products_provider.dart';
+import 'package:riverpod_files/providers/cart_provider.dart';
 
 /// see :branch:lesson-5 for updates A.7.x
+/// see :branch:lesson-7 for updated A.8.x
 // A.7.1 extend ConsumerStatefulWidget instead of StatefulWidget
 //class CartScreen extends StatefulWidget { // old code
 class CartScreen extends ConsumerStatefulWidget {
@@ -25,7 +26,11 @@ class _CartScreenState extends ConsumerState<CartScreen> {
   Widget build(BuildContext context) {
     // A.7.4 watch the data from reducedProductsProvider (see products_provider.dart)
     // Note: ref exposed as inherited field of "ConsumerState<CartScreen>"
-    final cartProducts = ref.watch(reducedProductsProvider);
+    // Note: this is a readonly provider
+    //final cartProducts = ref.watch(reducedProductsProvider); // replaced by A.8.3 cartNotifierProvider
+    // A.8.3 use cartNotifierProvider (for read and write access to data)
+    final cartProducts =
+        ref.watch(cartNotifierProvider); // replaces A.7.4 above.
 
     return Scaffold(
       appBar: AppBar(
