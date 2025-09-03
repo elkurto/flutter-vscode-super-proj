@@ -40,6 +40,13 @@ class MyFormWidgetWithOnKeyHandler extends StatelessWidget {
     return Focus(
       onKeyEvent: (node, event) {
         // prevent typing vowels -- allow non-vowel
+        // alternatively you could use
+        //  a. a TextField.controller or
+        //  b. TextField.onChange or
+        //  c. full KeyboardLisitener
+        // Dev can extend this simple example to transferring keyDown events
+        // to an input controller.
+
         return (listKeyVowel.contains(event.logicalKey)
             ? KeyEventResult.handled
             : KeyEventResult.ignored);
