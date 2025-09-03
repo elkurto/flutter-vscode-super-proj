@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 void main() {
-  runApp(const MyApp(appTitle: 'On Key X'));
+  runApp(const MyApp(appTitle: 'Focus.onKeyEvent'));
 }
 
 class MyApp extends StatelessWidget {
