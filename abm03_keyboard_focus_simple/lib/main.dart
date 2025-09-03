@@ -38,8 +38,26 @@ class MyFormWidgetWithOnKeyHandler extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+          child: TextField(
+            decoration: InputDecoration(
+              border: OutlineInputBorder(),
+              hintText: 'Enter a search term',
+            ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+          child: TextFormField(
+            decoration: const InputDecoration(
+              border: UnderlineInputBorder(),
+              labelText: 'Enter your username',
+            ),
+          ),
+        ),
         Focus(
           onKeyEvent: (node, event) {
             // prevent typing vowels -- allow non-vowel
@@ -47,7 +65,16 @@ class MyFormWidgetWithOnKeyHandler extends StatelessWidget {
                 ? KeyEventResult.handled
                 : KeyEventResult.ignored);
           },
-          child: TextField(key: super.key),
+          child: Padding(
+            // format
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+            child: TextFormField(
+              decoration: const InputDecoration(
+                border: UnderlineInputBorder(),
+                labelText: 'Enter text -prevent vowels',
+              ),
+            ),
+          ),
         ),
       ],
     );
