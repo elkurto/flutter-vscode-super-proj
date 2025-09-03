@@ -54,7 +54,7 @@ class _KeyboardListenerExampleState extends State<KeyboardListenerExample> {
         }
         // Return KeyEventResult.handled if you want to consume the event
         // and prevent it from being propagated further up the tree.
-        return KeyEventResult.ignored; //@todo fix this
+        //return KeyEventResult.ignored; //@todo fix this
         // Allow other listeners to process the event
       },
       child: Column(
