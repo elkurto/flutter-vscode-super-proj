@@ -27,10 +27,14 @@ class InputControllerSingleton {
       case LogicalKeyboardKey.space:
         firePrimaryDown = bIsKeyDown;
         break;
+      case LogicalKeyboardKey.shift:
+        fireSecondaryDown = bIsKeyDown;
+        break;
+      case LogicalKeyboardKey.keyP:
+        paused = !paused;
+        break;
       default:
-    }
-    if (keyEvent.logicalKey == LogicalKeyboardKey.space) {
-      firePrimaryDown = bIsKeyDown;
+        print("no match");
     }
   }
 }
