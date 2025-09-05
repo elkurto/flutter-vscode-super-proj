@@ -6,8 +6,8 @@ import 'package:flutter/services.dart';
 
 class InputControllerSingleton {
   // i have the state
-  bool firePrimaryPressed = false;
-  bool fireSecondaryPressed = false;
+  bool firePrimaryDown = false;
+  bool fireSecondaryDown = false;
   bool paused = false;
 
   // 1. private named constructor
@@ -22,7 +22,16 @@ class InputControllerSingleton {
   static InputControllerSingleton get instance => _instance;
 
   void handleKeyEvent(KeyEvent keyEvent) {
-    if (keyEvent.logicalKey == LogicalKeyboardKey.space) {}
+    bool bIsKeyDown = (keyEvent is KeyDownEvent);
+    switch (keyEvent.logicalKey) {
+      case LogicalKeyboardKey.space:
+        firePrimaryDown = bIsKeyDown;
+        break;
+      default:
+    }
+    if (keyEvent.logicalKey == LogicalKeyboardKey.space) {
+      firePrimaryDown = bIsKeyDown;
+    }
   }
 }
 
