@@ -259,6 +259,7 @@ class GameState {
 
       if (inputController.firePrimaryDown) {
         addSpriteAtLocalOffset(Offset(50, 200));
+        //inputController.firePrimaryDown = false;
       }
     }
   }
