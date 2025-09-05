@@ -253,6 +253,13 @@ class GameState {
       for (Sprite sprite in listSprite) {
         sprite.act(this);
       }
+
+      InputControllerSingleton inputController =
+          InputControllerSingleton.instance;
+
+      if (inputController.firePrimaryDown) {
+        addSpriteAtLocalOffset(Offset(50, 200));
+      }
     }
   }
 
