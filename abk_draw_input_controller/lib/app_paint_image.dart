@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:collection';
 import 'dart:math';
 import 'dart:ui' as ui;
+import 'package:abk_draw_input_controller/input_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -20,6 +21,7 @@ class _AppPaintImageWidgetState extends State<AppPaintImageWidget>
   );
   final Duration duration = const Duration(seconds: 20);
   final GameState _gameState = GameState();
+  final FocusNode _focusNode = FocusNode();
 
   @override
   void initState() {
@@ -38,6 +40,7 @@ class _AppPaintImageWidgetState extends State<AppPaintImageWidget>
   @override
   void dispose() {
     _controller.dispose();
+    _focusNode.dispose();
     super.dispose();
   }
 
@@ -48,14 +51,21 @@ class _AppPaintImageWidgetState extends State<AppPaintImageWidget>
       return const Center(child: Text('loading...'));
     }
 
-    return Container(
-      decoration: BoxDecoration(color: Colors.black),
-      child: GestureDetector(
-        onTapDown: (details) =>
-            _gameState.addSpriteAtLocalOffset(details.localPosition),
-        child: CustomPaint(
-          painter: SpriteGamePainter(_gameState, _controller),
-          child: const SizedBox.expand(),
+    return KeyboardListener(
+      focusNode: _focusNode,
+      autofocus: true,
+      onKeyEvent: (KeyEvent event) {
+        InputController.handleKeyEvent(event);
+      },
+      child: Container(
+        decoration: BoxDecoration(color: Colors.black),
+        child: GestureDetector(
+          onTapDown: (details) =>
+              _gameState.addSpriteAtLocalOffset(details.localPosition),
+          child: CustomPaint(
+            painter: SpriteGamePainter(_gameState, _controller),
+            child: const SizedBox.expand(),
+          ),
         ),
       ),
     );
