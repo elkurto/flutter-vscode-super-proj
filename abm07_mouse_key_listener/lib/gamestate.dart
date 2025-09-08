@@ -6,6 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class GameState {
+  GameState._internal();
+  static final GameState _instance = GameState._internal();
+  static GameState get instance => _instance;
+
   Size? size;
   int? prevEpochMillis;
   int dt = 20;

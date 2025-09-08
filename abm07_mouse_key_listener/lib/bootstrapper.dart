@@ -1,3 +1,4 @@
+import 'package:abm07_mouse_key_listener/assetcontroller.dart' show AssetController;
 import 'package:abm07_mouse_key_listener/gamestate.dart' show GameState;
 import 'package:abm07_mouse_key_listener/inputcontroller.dart' show InputController;
 
