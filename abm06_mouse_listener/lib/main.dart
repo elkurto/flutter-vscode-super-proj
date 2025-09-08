@@ -43,6 +43,7 @@ class MouseTrackerExampleState extends State<MouseTrackerExample> {
               _mousePosition = event.localPosition;
             });
           },
+          // create a 300x200 window and track mouse only in this window.
           child: Container(
             width: 300,
             height: 200,
