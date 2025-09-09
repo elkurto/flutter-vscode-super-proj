@@ -1,36 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class HandlerKeyDownEvent {
-  void call(KeyEvent keyEvent) {
-    return; // do nothing
-  }
-}
-
-class HandlerKeyUpEvent {
-  void call(KeyEvent keyEvent) {
-    return; // do nothing
-  }
-}
-
-class HandlerTapDownDetails {
-  void call(TapDownDetails keyEvent) {
-    return; // do nothing
-  }
-}
-
-class HandlerTapUpDetails {
-  void call(TapDownDetails keyEvent) {
-    return; // do nothing
-  }
-}
-
-class HandlerMouseMoveEvent {
-  void call(PointerHoverEvent pointerHoverEvent) {
-    return;
-  }
-}
-
 class InputController {
   // i have the state
   bool firePrimaryDown = false;
