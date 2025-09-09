@@ -1,4 +1,29 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+class HandlerKeyEvent {
+  void call(KeyEvent keyEvent) {
+    return; // do nothing
+  }
+}
+
+class HandlerTapDownDetails {
+  void call(TapDownDetails keyEvent) {
+    return; // do nothing
+  }
+}
+
+class HandlerTapUpDetails {
+  void call(TapDownDetails keyEvent) {
+    return; // do nothing
+  }
+}
+
+class HandlerMouseMoveEvent {
+  void call(PointerHoverEvent pointerHoverEvent) {
+    return;
+  }
+}
 
 class InputController {
   // i have the state
@@ -15,6 +40,11 @@ class InputController {
 
   // 3. static getter to allow clients to retreive instance
   static InputController get instance => _instance;
+
+  Map<KeyEvent, HandlerKeyEvent> mapKeyEvent = {};
+  List<HandlerMouseMoveEvent> listHandlerMouseMove = [];
+  List<HandlerTapDownDetails> listHandlerTapDownDetails = [];
+  List<HandlerTapUpDetails> listHandlerTapUpDetails = [];
 
   void handleKeyEvent(KeyEvent keyEvent) {
     bool bIsKeyDown = (keyEvent is KeyDownEvent);

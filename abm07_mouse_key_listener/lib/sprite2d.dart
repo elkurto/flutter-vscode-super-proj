@@ -1,0 +1,115 @@
+import 'dart:async';
+import 'dart:collection';
+import 'dart:math';
+import 'dart:ui' as ui;
+import 'package:abi_draw_atlas_animate/app_paint_image.dart' show GameState;
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+class Sprite {
+  ui.Image image;
+  double sx = 0.0;
+  double sy = 0.0;
+  double sw = 50.0;
+  double sh = 50.0;
+  double dx = 100.0;
+  double dy = 100.0;
+  double dw = 50.0;
+  double dh = 50.0;
+  final Paint paintBackground = Paint()..color = Color(0xAA000000);
+  double vx = 5.0 / 1000.0;
+  double vy = 5.0 / 1000.0;
+  double theta = 45.0 * pi / 180.0;
+  double vtheta = 2.5 / 1000.0;
+  Sprite(
+    this.image,
+    this.sx,
+    this.sy,
+    this.sw,
+    this.sh,
+    this.dx,
+    this.dy,
+    this.dw,
+    this.dh,
+  );
+  void act(GameState gameState) {
+    dx = gameState.dt * vx + dx;
+    dy = gameState.dt * vy + dy;
+    if (dx < 0 ||
+        gameState.size!.width < dx ||
+        dy < 0 ||
+        gameState.size!.height < dy) {
+      dx = gameState.size!.width / 2;
+      dy = gameState.size!.height / 2;
+    }
+    theta = theta + vtheta * gameState.dt;
+  }
+
+  void draw(Canvas canvas, GameState gameState) {
+    /*
+    Rect rectSrc = Rect.fromLTWH(sx, sy, sw, sh);
+    Rect rectDest = Rect.fromLTWH(dx, dy, dw, dh);
+
+    
+    // draw boomerang 01
+    canvas.save(); // must save to restore // must restore to avoid side effects
+    canvas.translate(1 * (dx + dw / 2), 1 * (dy + dh / 2));
+    canvas.rotate(theta); // rotate at 1 * vtheta
+    canvas.translate(-1 * (dx + dw / 2), -1 * (dy + dh / 2));
+    canvas.drawImageRect(image, rectSrc, rectDest, paintBackground);
+    canvas.restore(); // reset the transform // to avoid side effects.
+
+    // draw boomerang 02
+    canvas.save(); // must save to restore // must restore to avoid side effects
+
+    canvas.translate(1 * (dx + dw / 2), 1 * (dy + dh / 2));
+    canvas.rotate(-1 * theta); // rotate at 2 * vtheta
+    canvas.translate(-1 * (dx + dw / 2), -1 * (dy + dh / 2));
+    canvas.drawImageRect(image, rectSrc, rectDest, paintBackground);
+
+    canvas.restore(); // reset the transform // to avoid side effects.
+    */
+
+    //// Extrapolated from code comments in source code
+    ////   https://github.com/flutter/engine/blob/main/lib/ui/painting.dart#L5951
+
+    // rotate clockwise (forward/ positive)
+    var rSTransform = RSTransform.fromComponents(
+      rotation: theta,
+      scale: 1,
+      // Center of the sprite relative to its rect
+      anchorX: sw / 2, // center-of-rotation of sprite-space
+      anchorY: sh / 2,
+      // Location at which to draw the center of the sprite
+      translateX: dx + sw / 2,
+      translateY: dy + sw / 2,
+    );
+
+    // rotate counter-clockwise (backward/ negative)
+    var rSTransformCCW = RSTransform.fromComponents(
+      rotation: -1 * theta,
+      scale: 1.5,
+      // Center of the sprite relative to its rect
+      anchorX: sw / 2, // center-of-rotation of sprite-space
+      anchorY: sh / 2,
+      // Location at which to draw the center of the sprite in viewport-space
+      translateX: dx + sw / 2,
+      translateY: dy + sw / 2,
+    );
+    canvas.save();
+
+    canvas.drawAtlas(
+      image,
+      <RSTransform>[rSTransform, rSTransformCCW],
+      <Rect>[
+        Rect.fromLTWH(0, 0, 50, 50),
+        Rect.fromLTWH(0, 0, 50, 50),
+      ], // src rect in image_space
+      null,
+      null,
+      null,
+      paintBackground,
+    );
+    canvas.restore();
+  }
+}
