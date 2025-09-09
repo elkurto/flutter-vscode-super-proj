@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class HandlerKeyEvent {
+class HandlerKeyDownEvent {
+  void call(KeyEvent keyEvent) {
+    return; // do nothing
+  }
+}
+
+class HandlerKeyUpEvent {
   void call(KeyEvent keyEvent) {
     return; // do nothing
   }
@@ -40,14 +46,30 @@ class InputController {
 
   // 3. static getter to allow clients to retreive instance
   static InputController get instance => _instance;
+  Map<LogicalKeyboardKey, void Function(KeyEvent)> mapFnKeyDownEvent = {};
+  Map<LogicalKeyboardKey, void Function(KeyEvent)> mapFnKeyUpEvent = {};
 
-  Map<KeyEvent, HandlerKeyEvent> mapKeyEvent = {};
-  List<HandlerMouseMoveEvent> listHandlerMouseMove = [];
-  List<HandlerTapDownDetails> listHandlerTapDownDetails = [];
-  List<HandlerTapUpDetails> listHandlerTapUpDetails = [];
+  List<void Function(PointerHoverEvent)> listFnPositionHoverEvent = [];
+  List<void Function(TapDownDetails)> listFnTapDownDetails = [];
+  List<void Function(TapUpDetails)> listFnTapUpDetails = [];
+
+  void registerListenerOfKeyDownEvent(
+    LogicalKeyboardKey logicalKeyboardKey,
+    void Function(KeyEvent) handler,
+  ) {
+    mapFnKeyDownEvent[logicalKeyboardKey] = handler;
+  }
+
+  void registerListenerOfKeyUpEvent(
+    LogicalKeyboardKey logicalKeyboardKey,
+    void Function(KeyEvent) handler,
+  ) {
+    mapFnKeyDownEvent[logicalKeyboardKey] = handler;
+  }
 
   void handleKeyEvent(KeyEvent keyEvent) {
     bool bIsKeyDown = (keyEvent is KeyDownEvent);
+
     switch (keyEvent.logicalKey) {
       case LogicalKeyboardKey.space:
         firePrimaryDown = bIsKeyDown;
