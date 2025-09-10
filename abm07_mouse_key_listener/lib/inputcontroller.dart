@@ -45,6 +45,22 @@ class InputController {
     mapFnKeyDownEvent.remove(logicalKeyboardKey);
   }
 
+  void registerListenerOfPointerHoverEvent(
+    void Function(PointerHoverEvent) fnHandler,
+  ) {
+    listFnPositionHoverEvent.add(fnHandler);
+  }
+
+  void registerListenerOfTapDownDetails(
+    void Function(TapDownDetails) fnHandler,
+  ) {
+    listFnTapDownDetails.add(fnHandler);
+  }
+
+  void registerListenerOfTapUpDetails(void Function(TapUpDetails) fnHandler) {
+    listFnTapUpDetails.add(fnHandler);
+  }
+
   void handleKeyEvent(KeyEvent keyEvent) {
     bool bIsKeyDown = (keyEvent is KeyDownEvent);
 
