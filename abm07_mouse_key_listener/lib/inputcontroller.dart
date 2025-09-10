@@ -37,14 +37,6 @@ class InputController {
     mapFnKeyDownEvent[logicalKeyboardKey] = handler;
   }
 
-  void unregisterListenerOfKeyDownEvent(LogicalKeyboardKey logicalKeyboardKey) {
-    mapFnKeyDownEvent.remove(logicalKeyboardKey);
-  }
-
-  void unregisterListenerOfKeyUpEvent(LogicalKeyboardKey logicalKeyboardKey) {
-    mapFnKeyDownEvent.remove(logicalKeyboardKey);
-  }
-
   void registerListenerOfPointerHoverEvent(void Function(PointerHoverEvent) fnHandler) {
     listFnPositionHoverEvent.add(fnHandler);
   }
@@ -55,6 +47,26 @@ class InputController {
 
   void registerListenerOfTapUpDetails(void Function(TapUpDetails) fnHandler) {
     listFnTapUpDetails.add(fnHandler);
+  }
+
+  void unregisterListenerOfKeyDownEvent(LogicalKeyboardKey logicalKeyboardKey) {
+    mapFnKeyDownEvent.remove(logicalKeyboardKey);
+  }
+
+  void unregisterListenerOfKeyUpEvent(LogicalKeyboardKey logicalKeyboardKey) {
+    mapFnKeyDownEvent.remove(logicalKeyboardKey);
+  }
+
+  void unregisterListenerOfPointerHoverEvent(void Function(PointerHoverEvent) fnHandler) {
+    listFnPositionHoverEvent.remove(fnHandler);
+  }
+
+  void unregisterListenerOfTapDownDetails(void Function(TapDownDetails) fnHandler) {
+    listFnTapDownDetails.remove(fnHandler);
+  }
+
+  void unregisterListenerOfTapUpDetails(void Function(TapUpDetails) fnHandler) {
+    listFnTapUpDetails.remove(fnHandler);
   }
 
   void handleKeyEvent(KeyEvent keyEvent) {
