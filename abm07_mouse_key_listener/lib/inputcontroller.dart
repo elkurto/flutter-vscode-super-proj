@@ -37,6 +37,14 @@ class InputController {
     mapFnKeyDownEvent[logicalKeyboardKey] = handler;
   }
 
+  void unregisterListenerOfKeyDownEvent(LogicalKeyboardKey logicalKeyboardKey) {
+    mapFnKeyDownEvent.remove(logicalKeyboardKey);
+  }
+
+  void unregisterListenerOfKeyUpEvent(LogicalKeyboardKey logicalKeyboardKey) {
+    mapFnKeyDownEvent.remove(logicalKeyboardKey);
+  }
+
   void handleKeyEvent(KeyEvent keyEvent) {
     bool bIsKeyDown = (keyEvent is KeyDownEvent);
 
