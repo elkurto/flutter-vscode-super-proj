@@ -29,9 +29,7 @@ class GameState {
     print("in loadImageAsync");
 
     // this block works 100%
-    ImmutableBuffer immutableBuffer = await rootBundle.loadBuffer(
-      assetFilename,
-    );
+    ImmutableBuffer immutableBuffer = await rootBundle.loadBuffer(assetFilename);
     var codec = await ui.instantiateImageCodecFromBuffer(immutableBuffer);
     var frame = await codec.getNextFrame();
     return frame.image;
@@ -84,18 +82,28 @@ class GameState {
   void addSpriteAtLocalOffset(Offset offset) {
     ui.Image? image = mapSymbolToImage[symbolImageBoomerang];
     if (image != null) {
-      Sprite sprite = Sprite(
-        image,
-        0,
-        0,
-        50,
-        50,
-        offset.dx - 50 / 2,
-        offset.dy - 50 / 2,
-        50,
-        50,
-      );
+      Sprite sprite = Sprite(image, 0, 0, 50, 50, offset.dx - 50 / 2, offset.dy - 50 / 2, 50, 50);
       listSprite.add(sprite);
     }
   }
+
+  void handleKeyDownEvent(KeyEvent keyEvent) {
+    switch (keyEvent.logicalKey) {
+      case LogicalKeyboardKey.space:
+        firePrimaryDown = bIsKeyDown;
+        break;
+      case LogicalKeyboardKey.shift:
+        fireSecondaryDown = bIsKeyDown;
+        break;
+      case LogicalKeyboardKey.keyP:
+        paused = !paused;
+        break;
+      default:
+        print("no match");
+    }
+  }
+}
+
+class KeyMapperDefault {
+  void apply() {}
 }
