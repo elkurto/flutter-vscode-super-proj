@@ -98,6 +98,12 @@ class GameState {
     bRequestFirePrimary = true;
   }
 
+  void requestFireTap(TapDownDetails tapDownDetails) {
+    // @todo sort out the device kind api
+    //- https://api.flutter.dev/flutter/dart-ui/PointerDeviceKind.html
+    //- https://api.flutter.dev/flutter/gestures/TapDownDetails/TapDownDetails.html
+  }
+
   bool bRequestFireSecondary = false;
   void requestFireSecondary(KeyEvent keyEvent) {
     bRequestFireSecondary = true;
@@ -121,6 +127,8 @@ class KeyMapperDefault {
       gameState.requestFireSecondary,
     );
 
-    // tap
+    // tapDownDetails == [button01], then requestPrimaryFire
+    // tapDownDetails == [button03], then requestSecondaryFire
+    inputController.registerListenerOfTapDownDetails(gameState.requestFirePrimaryTap);
   }
 }
