@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:collection';
 import 'dart:math';
 import 'dart:ui' as ui;
+import 'package:abm07_mouse_key_listener/inputcontroller.dart' show InputController;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -87,23 +88,39 @@ class GameState {
     }
   }
 
-  void handleKeyDownEvent(KeyEvent keyEvent) {
-    switch (keyEvent.logicalKey) {
-      case LogicalKeyboardKey.space:
-        firePrimaryDown = bIsKeyDown;
-        break;
-      case LogicalKeyboardKey.shift:
-        fireSecondaryDown = bIsKeyDown;
-        break;
-      case LogicalKeyboardKey.keyP:
-        paused = !paused;
-        break;
-      default:
-        print("no match");
-    }
+  bool bPause = false;
+  void togglePause(KeyEvent keyEvent) {
+    bPause = !bPause;
+  }
+
+  bool bRequestFirePrimary = false;
+  void requestFirePrimary(KeyEvent keyEvent) {
+    bRequestFirePrimary = true;
+  }
+
+  bool bRequestFireSecondary = false;
+  void requestFireSecondary(KeyEvent keyEvent) {
+    bRequestFireSecondary = true;
   }
 }
 
 class KeyMapperDefault {
-  void apply() {}
+  void apply(GameState gameState, InputController inputController) {
+    // pause
+    inputController.registerListenerOfKeyDownEvent(LogicalKeyboardKey.keyP, gameState.togglePause);
+
+    // shiftLeft = fireFirePrimary
+    inputController.registerListenerOfKeyDownEvent(
+      LogicalKeyboardKey.shiftLeft,
+      gameState.requestFirePrimary,
+    );
+
+    // rightRight == requestFireSecondary
+    inputController.registerListenerOfKeyDownEvent(
+      LogicalKeyboardKey.shiftRight,
+      gameState.requestFireSecondary,
+    );
+
+    // tap
+  }
 }
