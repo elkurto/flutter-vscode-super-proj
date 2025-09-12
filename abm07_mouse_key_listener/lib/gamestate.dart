@@ -98,10 +98,11 @@ class GameState {
     bRequestFirePrimary = true;
   }
 
-  void requestFireTap(TapDownDetails tapDownDetails) {
+  void requestFirePrimaryTap(TapDownDetails tapDownDetails) {
     // @todo sort out the device kind api
     //- https://api.flutter.dev/flutter/dart-ui/PointerDeviceKind.html
     //- https://api.flutter.dev/flutter/gestures/TapDownDetails/TapDownDetails.html
+    bRequestFirePrimary = true;
   }
 
   bool bRequestFireSecondary = false;
