@@ -130,6 +130,7 @@ class KeyMapperDefault {
 
     // tapDownDetails == [button01], then requestPrimaryFire
     // tapDownDetails == [button03], then requestSecondaryFire
-    inputController.registerListenerOfTapDownDetails(gameState.requestFirePrimaryTap);
+    inputController.registerListenerOfTapDownDetails01(gameState.requestFirePrimaryTap);
+    // todo handle secondary and tertiary taps.
   }
 }
