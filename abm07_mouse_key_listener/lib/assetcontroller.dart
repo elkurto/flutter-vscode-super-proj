@@ -5,5 +5,9 @@ class AssetController {
 
   static AssetController get instance => _instance;
 
-  //@todo load assets to a map
+  void loadListSymbolImage(List<Symbol> listSymbolImage) {
+    for ( Symbol symbol in listSymbolImage ) {
+      symbol.
+    }
+  }
 }
