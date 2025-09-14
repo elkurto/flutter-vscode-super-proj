@@ -7,7 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class Sprite {
-  ui.Image image;
+  String assetPath;
+  ui.Image? image;
   double sx = 0.0;
   double sy = 0.0;
   double sw = 50.0;
@@ -21,24 +22,59 @@ class Sprite {
   double vy = 5.0 / 1000.0;
   double theta = 45.0 * pi / 180.0;
   double vtheta = 2.5 / 1000.0;
-  Sprite(
-    this.image,
-    this.sx,
-    this.sy,
-    this.sw,
-    this.sh,
-    this.dx,
-    this.dy,
-    this.dw,
-    this.dh,
-  );
+
+  void update({
+    double? sx,
+    double? sy,
+    double? sw,
+    double? sh,
+    double? dx,
+    double? dy,
+    double? dw,
+    double? dh,
+    double? vx,
+    double? vy,
+    double? theta,
+    double? vtheta,
+  }) {
+    if (sx != null) {
+      this.sx = sx;
+    }
+    if (sy != null) {
+      this.sy = sy;
+    }
+    if (sw != null) {
+      this.sw = sw;
+    }
+    if (sh != null) {
+      this.sh = sh;
+    }
+    if (dx != null) {
+      this.dx = dx;
+    }
+    if (dy != null) {
+      this.dy = dy;
+    }
+    if (dw != null) {
+      this.dw = dw;
+    }
+    if (dh != null) {
+      this.dh = dh;
+    }
+    if (theta != null) {
+      this.theta = theta;
+    }
+    if (vtheta != null) {
+      this.vtheta = vtheta;
+    }
+  }
+
+  Sprite(this.assetPath);
+
   void act(GameState gameState) {
     dx = gameState.dt * vx + dx;
     dy = gameState.dt * vy + dy;
-    if (dx < 0 ||
-        gameState.size!.width < dx ||
-        dy < 0 ||
-        gameState.size!.height < dy) {
+    if (dx < 0 || gameState.size!.width < dx || dy < 0 || gameState.size!.height < dy) {
       dx = gameState.size!.width / 2;
       dy = gameState.size!.height / 2;
     }
@@ -101,10 +137,7 @@ class Sprite {
     canvas.drawAtlas(
       image,
       <RSTransform>[rSTransform, rSTransformCCW],
-      <Rect>[
-        Rect.fromLTWH(0, 0, 50, 50),
-        Rect.fromLTWH(0, 0, 50, 50),
-      ], // src rect in image_space
+      <Rect>[Rect.fromLTWH(0, 0, 50, 50), Rect.fromLTWH(0, 0, 50, 50)], // src rect in image_space
       null,
       null,
       null,
