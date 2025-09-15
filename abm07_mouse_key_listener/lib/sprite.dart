@@ -1,10 +1,10 @@
-import 'dart:async';
-import 'dart:collection';
+//import 'dart:async';
+//import 'dart:collection';
 import 'dart:math';
 import 'dart:ui' as ui;
-import 'package:abi_draw_atlas_animate/app_paint_image.dart' show GameState;
+import 'package:abm07_mouse_key_listener/gamestate.dart' show GameState;
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+//import 'package:flutter/services.dart';
 
 class Sprite {
   String assetPath;
@@ -132,17 +132,21 @@ class Sprite {
       translateX: dx + sw / 2,
       translateY: dy + sw / 2,
     );
-    canvas.save();
 
-    canvas.drawAtlas(
-      image,
-      <RSTransform>[rSTransform, rSTransformCCW],
-      <Rect>[Rect.fromLTWH(0, 0, 50, 50), Rect.fromLTWH(0, 0, 50, 50)], // src rect in image_space
-      null,
-      null,
-      null,
-      paintBackground,
-    );
-    canvas.restore();
+    if (image != null) {
+      canvas.save();
+
+      canvas.drawAtlas(
+        image!,
+        <RSTransform>[rSTransform, rSTransformCCW],
+        <Rect>[Rect.fromLTWH(0, 0, 50, 50), Rect.fromLTWH(0, 0, 50, 50)], // src rect in image_space
+        null,
+        null,
+        null,
+        paintBackground,
+      );
+
+      canvas.restore();
+    }
   }
 }
