@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:collection';
 import 'dart:math';
 import 'dart:ui' as ui;
+import 'package:abm07_mouse_key_listener/assetcontroller.dart';
 import 'package:abm07_mouse_key_listener/inputcontroller.dart' show InputController;
 import 'package:abm07_mouse_key_listener/sprite.dart' show Sprite;
 import 'package:flutter/material.dart';
@@ -15,7 +16,9 @@ class GameState {
   Size? size;
   int? prevEpochMillis;
   int dt = 20;
-  final Map<Symbol, ui.Image> mapSymbolToImage = HashMap();
+
+  AssetController assetController = AssetController.instance;
+  //final Map<Symbol, ui.Image> mapSymbolToImage = HashMap();
   final List<Sprite> listSprite = [];
   final List<String> listAssetFilename = ["assets/boomerang.000.50x50.png"];
   int nImageLoaded = 0;
