@@ -149,4 +149,23 @@ class Sprite {
       canvas.restore();
     }
   }
+
+  Sprite duplicate() {
+    var dup = Sprite(this.assetPath);
+    dup.update(
+      sx: sx,
+      sy: sy,
+      sw: sw,
+      sh: sh,
+      dx: dx,
+      dy: dy,
+      dw: dw,
+      dh: dh,
+      vx: vx,
+      vy: vy,
+      theta: theta,
+      vtheta: vtheta,
+    );
+    return dup;
+  }
 }
