@@ -5,9 +5,9 @@ import 'dart:collection';
 import 'dart:async';
 
 class AssetController {
-  AssetController.internal();
+  AssetController._internal();
 
-  static final AssetController _instance = AssetController.internal();
+  static final AssetController _instance = AssetController._internal();
 
   static AssetController get instance => _instance;
 
