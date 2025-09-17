@@ -24,6 +24,14 @@ class Level {
 
     return bIsLoaded;
   }
+
+  void dispose() {
+    for (Sprite sprite in mapSymbolToSpritePrototype.values) {
+      if (sprite.image != null) {
+        sprite.image!.dispose();
+      }
+    }
+  }
 }
 
 class Level000 extends Level {

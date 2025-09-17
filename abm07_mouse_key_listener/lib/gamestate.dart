@@ -26,40 +26,40 @@ class GameState {
   //final List<String> listAssetFilename = ["assets/boomerang.000.50x50.png"];
   int nImageLoaded = 0;
 
-  void loadImageAssets() {
-    print("in loadImageAssets");
-    Future<ui.Image> futureUiImage = loadImageAsync(listAssetFilename[0]);
+  // void loadImageAssets() {
+  //   print("in loadImageAssets");
+  //   Future<ui.Image> futureUiImage = loadImageAsync(listAssetFilename[0]);
 
-    futureUiImage.then(initSpriteFromLoadedImage);
-  }
+  //   futureUiImage.then(initSpriteFromLoadedImage);
+  // }
 
-  Future<ui.Image> loadImageAsync(String assetFilename) async {
-    print("in loadImageAsync");
+  // Future<ui.Image> loadImageAsync(String assetFilename) async {
+  //   print("in loadImageAsync");
 
-    // this block works 100%
-    ImmutableBuffer immutableBuffer = await rootBundle.loadBuffer(assetFilename);
-    var codec = await ui.instantiateImageCodecFromBuffer(immutableBuffer);
-    var frame = await codec.getNextFrame();
-    return frame.image;
-  }
+  //   // this block works 100%
+  //   ImmutableBuffer immutableBuffer = await rootBundle.loadBuffer(assetFilename);
+  //   var codec = await ui.instantiateImageCodecFromBuffer(immutableBuffer);
+  //   var frame = await codec.getNextFrame();
+  //   return frame.image;
+  // }
 
-  void initSpriteFromLoadedImage(ui.Image image) {
-    print("in initSpriteFromLoadedImage");
-    nImageLoaded += 1;
-    mapSymbolToImage[symbolImageBoomerang] = image;
+  // void initSpriteFromLoadedImage(ui.Image image) {
+  //   print("in initSpriteFromLoadedImage");
+  //   nImageLoaded += 1;
+  //   mapSymbolToImage[symbolImageBoomerang] = image;
 
-    Sprite sprite = Sprite(image, 0, 0, 50, 50, 100, 100, 50, 50);
-    listSprite.add(sprite);
+  //   Sprite sprite = Sprite(image, 0, 0, 50, 50, 100, 100, 50, 50);
+  //   listSprite.add(sprite);
 
-    Sprite sprite2 = Sprite(image, 0, 0, 50, 50, 200, 100, 50, 50);
-    listSprite.add(sprite2);
-  }
+  //   Sprite sprite2 = Sprite(image, 0, 0, 50, 50, 200, 100, 50, 50);
+  //   listSprite.add(sprite2);
+  // }
 
   bool isLoaded() {
     // print(
     //   "size =$size && listSprite.length =${listSprite.length} && listAssetFilename =${listAssetFilename.length}",
     // );
-    return (size != null && listAssetFilename.length == nImageLoaded);
+    return (size != null && level.isLoaded());
   }
 
   void act() {
