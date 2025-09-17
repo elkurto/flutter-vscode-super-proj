@@ -1,12 +1,28 @@
 import 'package:abm07_mouse_key_listener/assetcontroller.dart' show AssetController;
-import 'package:abm07_mouse_key_listener/sprite.dart' show Sprite, new;
+import 'package:abm07_mouse_key_listener/sprite.dart' show Sprite;
 import 'package:abm07_mouse_key_listener/symboldefn.dart';
 
 class Level {
   Map<Symbol, Sprite> mapSymbolToSpritePrototype = {};
+  bool bIsLoaded = false;
 
   void loadImages() {
     AssetController.instance.loadImageAssets(mapSymbolToSpritePrototype);
+  }
+
+  bool isLoaded() {
+    if (!bIsLoaded) {
+      bool bTempIsAllLoaded = true;
+      for (Sprite spritePrototype in mapSymbolToSpritePrototype.values) {
+        if (spritePrototype.image == null) {
+          bTempIsAllLoaded = false;
+          break;
+        }
+      }
+      bIsLoaded = bTempIsAllLoaded;
+    }
+
+    return bIsLoaded;
   }
 }
 
@@ -16,9 +32,8 @@ class Level000 extends Level {
   }
 
   void _initMapSymbolToSpritePrototype() {
-    Sprite spriteBoomerang =Sprite("assets/boomerang.000.50x50.png");
-    spriteBoomerang.update(sx:125, sy:100);
-    super.mapSymbolToSpritePrototype[symbolBoomerang] =spriteBoomerang;
-
+    Sprite spriteBoomerangPrototype = Sprite("assets/boomerang.000.50x50.png");
+    spriteBoomerangPrototype.update(sx: 125, sy: 100);
+    super.mapSymbolToSpritePrototype[symbolBoomerang] = spriteBoomerangPrototype;
   }
 }

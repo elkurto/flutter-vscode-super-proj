@@ -13,9 +13,9 @@ class AssetController {
 
   Map<Symbol, ui.Image> mapSymbolImage = {};
 
-  void loadImageAssets(Map<Symbol, Sprite> mapSymbolToAssetPathOfImage) {
-    for (Symbol symbol in mapSymbolToAssetPathOfImage.keys) {
-      Sprite? sprite = mapSymbolToAssetPathOfImage[symbol];
+  void loadImageAssets(Map<Symbol, Sprite> mapSymbolToSpritePrototype) {
+    for (Symbol symbol in mapSymbolToSpritePrototype.keys) {
+      Sprite? sprite = mapSymbolToSpritePrototype[symbol];
 
       if (sprite != null) {
         String assetPath = sprite.assetPath;

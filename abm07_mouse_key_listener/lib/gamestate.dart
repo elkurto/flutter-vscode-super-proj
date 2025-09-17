@@ -4,6 +4,7 @@ import 'dart:math';
 import 'dart:ui' as ui;
 import 'package:abm07_mouse_key_listener/assetcontroller.dart';
 import 'package:abm07_mouse_key_listener/inputcontroller.dart' show InputController;
+import 'package:abm07_mouse_key_listener/level.dart' show Level, Level000;
 import 'package:abm07_mouse_key_listener/sprite.dart' show Sprite;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -18,9 +19,11 @@ class GameState {
   int dt = 20;
 
   AssetController assetController = AssetController.instance;
+  Level level = Level000();
+
   //final Map<Symbol, ui.Image> mapSymbolToImage = HashMap();
   final List<Sprite> listSprite = [];
-  final List<String> listAssetFilename = ["assets/boomerang.000.50x50.png"];
+  //final List<String> listAssetFilename = ["assets/boomerang.000.50x50.png"];
   int nImageLoaded = 0;
 
   void loadImageAssets() {
