@@ -1,7 +1,7 @@
+import 'package:abm07_mouse_key_listener/gamestate.dart';
 import 'package:flutter/material.dart';
-import ''
+
 void main() {
-  initializeControllers();
   runApp(const MyApp(appTitle: 'abm07_mouse_key_listener'));
 }
 
@@ -16,12 +16,10 @@ class MyApp extends StatelessWidget {
       title: appTitle,
       debugShowCheckedModeBanner: false,
 
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
+      theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple)),
       home: Scaffold(
         appBar: AppBar(title: Text(appTitle)),
-        body: const MouseTrackerExample(),
+        body: const GameScreenWidget(),
       ),
     );
   }
@@ -36,6 +34,7 @@ class MouseTrackerExample extends StatefulWidget {
 
 class MouseTrackerExampleState extends State<MouseTrackerExample> {
   Offset _mousePosition = Offset.zero;
+  final GameState gameState = GameState.instance;
 
   @override
   Widget build(BuildContext context) {
