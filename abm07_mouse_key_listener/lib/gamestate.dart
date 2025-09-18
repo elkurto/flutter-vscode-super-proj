@@ -79,12 +79,13 @@ class GameState {
   }
 
   void dispose() {
-    for (var key in mapSymbolToImage.keys) {
-      ui.Image? uiImage = mapSymbolToImage[key];
-      if (uiImage != null) {
-        uiImage.dispose();
-      }
-    }
+    // for (var key in mapSymbolToImage.keys) {
+    //   ui.Image? uiImage = mapSymbolToImage[key];
+    //   if (uiImage != null) {
+    //     uiImage.dispose();
+    //   }
+    // }
+    level.dispose();
   }
 
   void addSpriteAtLocalOffset(Offset offset) {
