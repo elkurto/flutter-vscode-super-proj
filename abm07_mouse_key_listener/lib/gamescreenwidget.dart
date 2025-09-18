@@ -45,3 +45,21 @@ class _GameScreenWidgetState extends State<GameScreenWidget> with SingleTickerPr
     );
   }
 }
+
+class GamePainter extends CustomPainter {
+  final GameState gameState;
+  final Animation<double> animation;
+
+  const GamePainter(this.gameState, this.animation) : super(repaint: animation);
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    gameState.size = size;
+    gameState.draw(canvas);
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) {
+    return true;
+  }
+}
