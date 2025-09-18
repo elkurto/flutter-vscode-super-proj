@@ -4,6 +4,11 @@ import 'package:flutter/material.dart';
 
 class GameScreenWidget extends StatefulWidget {
   const GameScreenWidget({super.key});
+
+  @override
+  State<StatefulWidget> createState() {
+    return _GameScreenWidgetState();
+  }
 }
 
 class _GameScreenWidgetState extends State<GameScreenWidget> with SingleTickerProviderStateMixin {
