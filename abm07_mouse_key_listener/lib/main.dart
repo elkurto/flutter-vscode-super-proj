@@ -1,3 +1,4 @@
+import 'package:abm07_mouse_key_listener/gamescreenwidget.dart' show GameScreenWidget;
 import 'package:abm07_mouse_key_listener/gamestate.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +20,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple)),
       home: Scaffold(
         appBar: AppBar(title: Text(appTitle)),
-        body: const GameScreenWidget(),
+        backgroundColor: Colors.black,
+        body: Center(child: const GameScreenWidget()),
       ),
     );
   }
