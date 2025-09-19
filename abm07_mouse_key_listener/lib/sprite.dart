@@ -81,7 +81,7 @@ class Sprite {
     theta = theta + vtheta * gameState.dt;
   }
 
-  void draw(Canvas canvas, GameState gameState) {
+  void draw(GameState gameState, Canvas canvas) {
     /*
     Rect rectSrc = Rect.fromLTWH(sx, sy, sw, sh);
     Rect rectDest = Rect.fromLTWH(dx, dy, dw, dh);
