@@ -1,10 +1,14 @@
+import 'dart:ui';
+
 import 'package:abm07_mouse_key_listener/assetcontroller.dart' show AssetController;
 import 'package:abm07_mouse_key_listener/sprite.dart' show Sprite;
 import 'package:abm07_mouse_key_listener/symboldefn.dart';
+import 'package:abm07_mouse_key_listener/gamestate.dart' show GameState;
 
 class Level {
   Map<Symbol, Sprite> mapSymbolToSpritePrototype = {};
   bool bIsLoaded = false;
+  List<Sprite> listEM = [];
 
   void loadImages() {
     AssetController.instance.loadImageAssets(mapSymbolToSpritePrototype);
@@ -30,6 +34,18 @@ class Level {
       if (sprite.image != null) {
         sprite.image!.dispose();
       }
+    }
+  }
+
+  void act(GameState gameState) {
+    for (Sprite em in listEM) {
+      em.act(gameState);
+    }
+  }
+
+  void draw(GameState gameState, Canvas canvas) {
+    for (Sprite em in listEM) {
+      em.draw(gameState, canvas);
     }
   }
 }
