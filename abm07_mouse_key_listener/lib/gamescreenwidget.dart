@@ -18,6 +18,7 @@ class _GameScreenWidgetState extends State<GameScreenWidget> with SingleTickerPr
   @override
   void initState() {
     super.initState();
+    gameState.initState();
   }
 
   void _update() {
