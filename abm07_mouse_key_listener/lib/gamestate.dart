@@ -6,6 +6,7 @@ import 'package:abm07_mouse_key_listener/assetcontroller.dart';
 import 'package:abm07_mouse_key_listener/inputcontroller.dart' show InputController, new;
 import 'package:abm07_mouse_key_listener/level.dart' show Level, Level000;
 import 'package:abm07_mouse_key_listener/sprite.dart' show Sprite;
+import 'package:abm07_mouse_key_listener/symboldefn.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -68,9 +69,10 @@ class GameState {
     return (size != null && level.isLoaded());
   }
   void initMappingInputToFn() {
-
+    KeyMapperDefault keyMapperDefault =KeyMapperDefault();
+    keyMapperDefault.apply(this, inputController);
   }
-  
+
   void act() {
     if (isLoaded()) {
       for (Sprite sprite in listSprite) {
@@ -82,7 +84,7 @@ class GameState {
   void draw(Canvas canvas) {
     if (isLoaded()) {
       for (Sprite sprite in listSprite) {
-        sprite.draw(canvas, this);
+        sprite.draw(this, canvas);
       }
     }
   }
@@ -97,12 +99,9 @@ class GameState {
     level.dispose();
   }
 
-  void addSpriteAtLocalOffset(Offset offset) {
-    ui.Image? image = mapSymbolToImage[symbolImageBoomerang];
-    if (image != null) {
-      Sprite sprite = Sprite(image, 0, 0, 50, 50, offset.dx - 50 / 2, offset.dy - 50 / 2, 50, 50);
-      listSprite.add(sprite);
-    }
+  void addSpriteBoomerangAtLocalOffset(Offset offset) {
+    level.addSpriteAtLocalOffset(symbolBoomerang, offset);
+
   }
 
   bool bPause = false;

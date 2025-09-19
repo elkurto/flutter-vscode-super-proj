@@ -52,6 +52,17 @@ class Level {
       em.draw(gameState, canvas);
     }
   }
+
+  void addSpriteAtLocalOffset(Symbol symbolOfSprite, Offset offset) {
+    Sprite? spriteProto = mapSymbolToSpritePrototype[symbolOfSprite];
+    if (spriteProto != null && spriteProto.image != null) {
+      //(spriteProto.isLoaded()) {
+
+      Sprite sprite = spriteProto.duplicate();
+      sprite.update(sx: offset.dx, sy: offset.dy);
+      listEM.add(sprite);
+    }
+  }
 }
 
 class Level000 extends Level {
