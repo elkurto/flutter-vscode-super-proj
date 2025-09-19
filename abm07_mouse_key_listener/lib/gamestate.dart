@@ -55,6 +55,10 @@ class GameState {
   //   listSprite.add(sprite2);
   // }
 
+  void initState() {
+    level.loadImages();
+  }
+
   bool isLoaded() {
     // print(
     //   "size =$size && listSprite.length =${listSprite.length} && listAssetFilename =${listAssetFilename.length}",
