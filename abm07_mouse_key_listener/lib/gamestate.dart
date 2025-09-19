@@ -3,7 +3,7 @@ import 'dart:collection';
 import 'dart:math';
 import 'dart:ui' as ui;
 import 'package:abm07_mouse_key_listener/assetcontroller.dart';
-import 'package:abm07_mouse_key_listener/inputcontroller.dart' show InputController;
+import 'package:abm07_mouse_key_listener/inputcontroller.dart' show InputController, new;
 import 'package:abm07_mouse_key_listener/level.dart' show Level, Level000;
 import 'package:abm07_mouse_key_listener/sprite.dart' show Sprite;
 import 'package:flutter/material.dart';
@@ -19,6 +19,7 @@ class GameState {
   int dt = 20;
 
   AssetController assetController = AssetController.instance;
+  InputController inputController =InputController();
   Level level = Level000();
 
   //final Map<Symbol, ui.Image> mapSymbolToImage = HashMap();
@@ -56,7 +57,8 @@ class GameState {
   // }
 
   void initState() {
-    level.loadImages();
+    level.initState(); // load images, load sound, init input controller
+    initMappingInputToFn();
   }
 
   bool isLoaded() {
@@ -65,7 +67,10 @@ class GameState {
     // );
     return (size != null && level.isLoaded());
   }
+  void initMappingInputToFn() {
 
+  }
+  
   void act() {
     if (isLoaded()) {
       for (Sprite sprite in listSprite) {

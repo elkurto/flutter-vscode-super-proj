@@ -43,7 +43,7 @@ class _GameScreenWidgetState extends State<GameScreenWidget> with SingleTickerPr
       child: GestureDetector(
         onTapDown: (details) => gameState.addSpriteAtLocalOffset(details.localPosition),
         child: CustomPaint(
-          painter: SpriteGamePainter(gameState, _controller),
+          painter: GamePainter(gameState, _controller),
           child: const SizedBox.expand(),
         ),
       ),

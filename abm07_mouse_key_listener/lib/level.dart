@@ -10,6 +10,10 @@ class Level {
   bool bIsLoaded = false;
   List<Sprite> listEM = [];
 
+  void initState() {
+    loadImages();
+  }
+
   void loadImages() {
     AssetController.instance.loadImageAssets(mapSymbolToSpritePrototype);
   }
