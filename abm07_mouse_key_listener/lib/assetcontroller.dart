@@ -21,7 +21,9 @@ class AssetController {
         String assetPath = sprite.assetPath;
         Future<ui.Image> futureUiImage = loadImageAsync(assetPath);
 
-        futureUiImage.then(initSpriteFromLoadedImage);
+        futureUiImage.then((image) {
+          sprite.image = image;
+        });
       }
     }
   }
@@ -35,6 +37,4 @@ class AssetController {
     var frame = await codec.getNextFrame();
     return frame.image;
   }
-
-  void initSpriteFromLoadedImage(ui.Image image) {}
 }

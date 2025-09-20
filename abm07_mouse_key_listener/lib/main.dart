@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple)),
       home: Scaffold(
         appBar: AppBar(title: Text(appTitle)),
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.red,
         body: Center(child: const GameScreenWidget()),
       ),
     );

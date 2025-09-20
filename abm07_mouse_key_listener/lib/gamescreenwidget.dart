@@ -42,9 +42,10 @@ class _GameScreenWidgetState extends State<GameScreenWidget> with SingleTickerPr
     }
 
     return Container(
-      decoration: BoxDecoration(color: Colors.black),
+      decoration: BoxDecoration(color: Colors.blueGrey),
       child: GestureDetector(
         onTapDown: (tapDownDetails) => gameState.inputController.handleTapDownEvent(tapDownDetails),
+
         child: CustomPaint(
           painter: GamePainter(gameState, _controller),
           child: const SizedBox.expand(),

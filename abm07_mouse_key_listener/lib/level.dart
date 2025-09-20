@@ -22,6 +22,7 @@ class Level {
     if (!bIsLoaded) {
       bool bTempIsAllLoaded = true;
       for (Sprite spritePrototype in mapSymbolToSpritePrototype.values) {
+        print("spritePrototype.image =${spritePrototype.image}");
         if (spritePrototype.image == null) {
           bTempIsAllLoaded = false;
           break;

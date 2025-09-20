@@ -84,6 +84,7 @@ interface class InputController {
   }
 
   void handleTapDownEvent(TapDownDetails tapDownDetails) {
+    print("in handleTapDownEvent :::: ${tapDownDetails.localPosition}");
     for (var handler in listFnTapDownDetails) {
       handler(tapDownDetails);
     }

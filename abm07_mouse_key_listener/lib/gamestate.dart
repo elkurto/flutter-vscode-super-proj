@@ -1,9 +1,5 @@
-import 'dart:async';
-import 'dart:collection';
-import 'dart:math';
-import 'dart:ui' as ui;
 import 'package:abm07_mouse_key_listener/assetcontroller.dart';
-import 'package:abm07_mouse_key_listener/inputcontroller.dart' show InputController, new;
+import 'package:abm07_mouse_key_listener/inputcontroller.dart' show InputController;
 import 'package:abm07_mouse_key_listener/level.dart' show Level, Level000;
 import 'package:abm07_mouse_key_listener/sprite.dart' show Sprite;
 import 'package:abm07_mouse_key_listener/symboldefn.dart';
@@ -20,42 +16,13 @@ class GameState {
   int dt = 20;
 
   AssetController assetController = AssetController.instance;
-  InputController inputController =InputController();
+  InputController inputController = InputController();
   Level level = Level000();
 
   //final Map<Symbol, ui.Image> mapSymbolToImage = HashMap();
   final List<Sprite> listSprite = [];
   //final List<String> listAssetFilename = ["assets/boomerang.000.50x50.png"];
   int nImageLoaded = 0;
-
-  // void loadImageAssets() {
-  //   print("in loadImageAssets");
-  //   Future<ui.Image> futureUiImage = loadImageAsync(listAssetFilename[0]);
-
-  //   futureUiImage.then(initSpriteFromLoadedImage);
-  // }
-
-  // Future<ui.Image> loadImageAsync(String assetFilename) async {
-  //   print("in loadImageAsync");
-
-  //   // this block works 100%
-  //   ImmutableBuffer immutableBuffer = await rootBundle.loadBuffer(assetFilename);
-  //   var codec = await ui.instantiateImageCodecFromBuffer(immutableBuffer);
-  //   var frame = await codec.getNextFrame();
-  //   return frame.image;
-  // }
-
-  // void initSpriteFromLoadedImage(ui.Image image) {
-  //   print("in initSpriteFromLoadedImage");
-  //   nImageLoaded += 1;
-  //   mapSymbolToImage[symbolImageBoomerang] = image;
-
-  //   Sprite sprite = Sprite(image, 0, 0, 50, 50, 100, 100, 50, 50);
-  //   listSprite.add(sprite);
-
-  //   Sprite sprite2 = Sprite(image, 0, 0, 50, 50, 200, 100, 50, 50);
-  //   listSprite.add(sprite2);
-  // }
 
   void initState() {
     level.initState(); // load images, load sound, init input controller
@@ -68,8 +35,9 @@ class GameState {
     // );
     return (size != null && level.isLoaded());
   }
+
   void initMappingInputToFn() {
-    KeyMapperDefault keyMapperDefault =KeyMapperDefault();
+    KeyMapperDefault keyMapperDefault = KeyMapperDefault();
     keyMapperDefault.apply(this, inputController);
   }
 
@@ -101,7 +69,6 @@ class GameState {
 
   void addSpriteBoomerangAtLocalOffset(Offset offset) {
     level.addSpriteAtLocalOffset(symbolBoomerang, offset);
-
   }
 
   bool bPause = false;
@@ -130,6 +97,7 @@ class GameState {
 
 class KeyMapperDefault {
   void apply(GameState gameState, InputController inputController) {
+    print("in KeyMapperDefault::apply");
     // pause
     inputController.registerListenerOfKeyDownEvent(LogicalKeyboardKey.keyP, gameState.togglePause);
 
