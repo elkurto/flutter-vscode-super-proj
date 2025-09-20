@@ -19,6 +19,9 @@ class _GameScreenWidgetState extends State<GameScreenWidget> with SingleTickerPr
   void initState() {
     super.initState();
     gameState.initState();
+    _controller.duration = duration;
+    _controller.repeat();
+    _controller.addListener(_update);
   }
 
   void _update() {
@@ -41,7 +44,7 @@ class _GameScreenWidgetState extends State<GameScreenWidget> with SingleTickerPr
     return Container(
       decoration: BoxDecoration(color: Colors.black),
       child: GestureDetector(
-        onTapDown: (details) => gameState.addSpriteAtLocalOffset(details.localPosition),
+        onTapDown: (tapDownDetails) => gameState.inputController.handleTapDownEvent(tapDownDetails),
         child: CustomPaint(
           painter: GamePainter(gameState, _controller),
           child: const SizedBox.expand(),
