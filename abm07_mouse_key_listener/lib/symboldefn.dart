@@ -1,1 +1,1 @@
-final Symbol symbolBoomerang = "boomerang";
+final Symbol symbolBoomerang = Symbol("boomerang");
