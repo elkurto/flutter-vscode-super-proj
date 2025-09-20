@@ -20,7 +20,7 @@ class GameState {
   Level level = Level000();
 
   //final Map<Symbol, ui.Image> mapSymbolToImage = HashMap();
-  final List<Sprite> listSprite = [];
+  //final List<Sprite> listSprite = [];
   //final List<String> listAssetFilename = ["assets/boomerang.000.50x50.png"];
   int nImageLoaded = 0;
 
@@ -43,17 +43,13 @@ class GameState {
 
   void act() {
     if (isLoaded()) {
-      for (Sprite sprite in listSprite) {
-        sprite.act(this);
-      }
+      level.act(this);
     }
   }
 
   void draw(Canvas canvas) {
     if (isLoaded()) {
-      for (Sprite sprite in listSprite) {
-        sprite.draw(this, canvas);
-      }
+      level.draw(this, canvas);
     }
   }
 
@@ -87,6 +83,7 @@ class GameState {
     //- https://api.flutter.dev/flutter/gestures/TapDownDetails/TapDownDetails.html
     //- inputController.registerListenerOfTapDownDetails(gameState.requestFireTertiaryTap);
     bRequestFirePrimary = true;
+    level.addSpriteAtLocalOffset(symbolBoomerang, tapDownDetails.localPosition);
   }
 
   bool bRequestFireSecondary = false;

@@ -82,32 +82,9 @@ class Sprite {
   }
 
   void draw(GameState gameState, Canvas canvas) {
-    /*
-    Rect rectSrc = Rect.fromLTWH(sx, sy, sw, sh);
-    Rect rectDest = Rect.fromLTWH(dx, dy, dw, dh);
-
-    
-    // draw boomerang 01
-    canvas.save(); // must save to restore // must restore to avoid side effects
-    canvas.translate(1 * (dx + dw / 2), 1 * (dy + dh / 2));
-    canvas.rotate(theta); // rotate at 1 * vtheta
-    canvas.translate(-1 * (dx + dw / 2), -1 * (dy + dh / 2));
-    canvas.drawImageRect(image, rectSrc, rectDest, paintBackground);
-    canvas.restore(); // reset the transform // to avoid side effects.
-
-    // draw boomerang 02
-    canvas.save(); // must save to restore // must restore to avoid side effects
-
-    canvas.translate(1 * (dx + dw / 2), 1 * (dy + dh / 2));
-    canvas.rotate(-1 * theta); // rotate at 2 * vtheta
-    canvas.translate(-1 * (dx + dw / 2), -1 * (dy + dh / 2));
-    canvas.drawImageRect(image, rectSrc, rectDest, paintBackground);
-
-    canvas.restore(); // reset the transform // to avoid side effects.
-    */
-
     //// Extrapolated from code comments in source code
     ////   https://github.com/flutter/engine/blob/main/lib/ui/painting.dart#L5951
+    ///
 
     // rotate clockwise (forward/ positive)
     var rSTransform = RSTransform.fromComponents(
@@ -152,6 +129,7 @@ class Sprite {
 
   Sprite duplicate() {
     var dup = Sprite(this.assetPath);
+    dup.image = this.image;
     dup.update(
       sx: sx,
       sy: sy,
