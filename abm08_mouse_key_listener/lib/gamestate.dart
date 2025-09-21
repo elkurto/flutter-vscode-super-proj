@@ -1,8 +1,7 @@
-import 'package:abm07_mouse_key_listener/assetcontroller.dart';
-import 'package:abm07_mouse_key_listener/inputcontroller.dart' show InputController;
-import 'package:abm07_mouse_key_listener/level.dart' show Level, Level000;
-import 'package:abm07_mouse_key_listener/sprite.dart' show Sprite;
-import 'package:abm07_mouse_key_listener/symboldefn.dart';
+import 'package:abm08_mouse_key_listener/assetcontroller.dart';
+import 'package:abm08_mouse_key_listener/inputcontroller.dart' show InputController;
+import 'package:abm08_mouse_key_listener/level.dart' show Level, Level000;
+import 'package:abm08_mouse_key_listener/symboldefn.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -19,9 +18,6 @@ class GameState {
   InputController inputController = InputController();
   Level level = Level000();
 
-  //final Map<Symbol, ui.Image> mapSymbolToImage = HashMap();
-  //final List<Sprite> listSprite = [];
-  //final List<String> listAssetFilename = ["assets/boomerang.000.50x50.png"];
   int nImageLoaded = 0;
 
   void initState() {
@@ -30,9 +26,6 @@ class GameState {
   }
 
   bool isLoaded() {
-    // print(
-    //   "size =$size && listSprite.length =${listSprite.length} && listAssetFilename =${listAssetFilename.length}",
-    // );
     return (size != null && level.isLoaded());
   }
 
@@ -54,12 +47,6 @@ class GameState {
   }
 
   void dispose() {
-    // for (var key in mapSymbolToImage.keys) {
-    //   ui.Image? uiImage = mapSymbolToImage[key];
-    //   if (uiImage != null) {
-    //     uiImage.dispose();
-    //   }
-    // }
     level.dispose();
   }
 

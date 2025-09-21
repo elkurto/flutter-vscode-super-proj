@@ -1,9 +1,9 @@
 import 'dart:ui';
 
-import 'package:abm07_mouse_key_listener/assetcontroller.dart' show AssetController;
-import 'package:abm07_mouse_key_listener/sprite.dart' show Sprite;
-import 'package:abm07_mouse_key_listener/symboldefn.dart';
-import 'package:abm07_mouse_key_listener/gamestate.dart' show GameState;
+import 'package:abm08_mouse_key_listener/assetcontroller.dart' show AssetController;
+import 'package:abm08_mouse_key_listener/sprite.dart' show Sprite;
+import 'package:abm08_mouse_key_listener/symboldefn.dart';
+import 'package:abm08_mouse_key_listener/gamestate.dart' show GameState;
 
 class Level {
   Map<Symbol, Sprite> mapSymbolToSpritePrototype = {};
