@@ -14,6 +14,7 @@ class _GameScreenWidgetState extends State<GameScreenWidget> with SingleTickerPr
   late final AnimationController _controller = AnimationController(vsync: this, upperBound: 100.0);
   final Duration duration = const Duration(seconds: 20);
   final GameState gameState = GameState.instance;
+  final FocusNode _focusNode = FocusNode();
 
   @override
   void initState() {
@@ -41,14 +42,22 @@ class _GameScreenWidgetState extends State<GameScreenWidget> with SingleTickerPr
       return const Center(child: Text('loading...'));
     }
 
-    return Container(
-      decoration: BoxDecoration(color: Colors.blueGrey),
-      child: GestureDetector(
-        onTapDown: (tapDownDetails) => gameState.inputController.handleTapDownEvent(tapDownDetails),
+    return KeyboardListener(
+      focusNode: _focusNode,
+      autofocus: true,
+      onKeyEvent: (KeyEvent event) {
+        gameState.inputController.handleKeyEvent(event);
+      },
+      child: Container(
+        decoration: BoxDecoration(color: Colors.blueGrey),
+        child: GestureDetector(
+          onTapDown: (tapDownDetails) =>
+              gameState.inputController.handleTapDownEvent(tapDownDetails),
 
-        child: CustomPaint(
-          painter: GamePainter(gameState, _controller),
-          child: const SizedBox.expand(),
+          child: CustomPaint(
+            painter: GamePainter(gameState, _controller),
+            child: const SizedBox.expand(),
+          ),
         ),
       ),
     );
