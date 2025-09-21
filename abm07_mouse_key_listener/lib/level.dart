@@ -60,7 +60,8 @@ class Level {
       //(spriteProto.isLoaded()) {
 
       Sprite sprite = spriteProto.duplicate();
-      sprite.update(sx: offset.dx, sy: offset.dy);
+      sprite.update(dx: offset.dx, dy: offset.dy);
+      print("sprite dx,dy =${sprite.dx},${sprite.dy}");
       listEM.add(sprite);
     }
   }
