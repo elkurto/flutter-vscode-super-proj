@@ -87,6 +87,15 @@ class GameState {
   void requestFireSecondary(KeyEvent keyEvent) {
     bRequestFireSecondary = true;
   }
+
+  Offset offsetMouse = Offset.zero;
+  void updateOffsetMouse(PointerHoverEvent pointerHoverEvent) {
+    if (offsetMouse.dx != pointerHoverEvent.localPosition.dx ||
+        offsetMouse.dy != pointerHoverEvent.localPosition.dy) {
+      print("pointerHoverEvent.localPosition =${pointerHoverEvent.localPosition.toString()}");
+    }
+    offsetMouse = pointerHoverEvent.localPosition;
+  }
 }
 
 class KeyMapperDefault {
@@ -111,5 +120,7 @@ class KeyMapperDefault {
     // tapDownDetails == [button03], then requestSecondaryFire
     inputController.registerListenerOfTapDownDetails(gameState.requestFirePrimaryTap);
     // todo handle secondary and tertiary taps.
+
+    inputController.registerListenerOfPointerHoverEvent(gameState.updateOffsetMouse);
   }
 }

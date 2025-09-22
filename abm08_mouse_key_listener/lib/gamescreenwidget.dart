@@ -48,15 +48,20 @@ class _GameScreenWidgetState extends State<GameScreenWidget> with SingleTickerPr
       onKeyEvent: (KeyEvent event) {
         gameState.inputController.handleKeyEvent(event);
       },
-      child: Container(
-        decoration: BoxDecoration(color: Colors.blueGrey),
-        child: GestureDetector(
-          onTapDown: (tapDownDetails) =>
-              gameState.inputController.handleTapDownEvent(tapDownDetails),
+      child: MouseRegion(
+        onHover: (pointerHoverEvent) {
+          gameState.inputController.handlePointerHoverEvent(pointerHoverEvent);
+        },
+        child: Container(
+          decoration: BoxDecoration(color: Colors.blueGrey),
+          child: GestureDetector(
+            onTapDown: (tapDownDetails) =>
+                gameState.inputController.handleTapDownEvent(tapDownDetails),
 
-          child: CustomPaint(
-            painter: GamePainter(gameState, _controller),
-            child: const SizedBox.expand(),
+            child: CustomPaint(
+              painter: GamePainter(gameState, _controller),
+              child: const SizedBox.expand(),
+            ),
           ),
         ),
       ),
