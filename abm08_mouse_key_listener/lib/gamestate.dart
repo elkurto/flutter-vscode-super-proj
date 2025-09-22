@@ -5,6 +5,8 @@ import 'package:abm08_mouse_key_listener/symboldefn.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+final int DT_DEFAULT = 20;
+
 class GameState {
   GameState._internal();
   static final GameState _instance = GameState._internal();
@@ -12,7 +14,8 @@ class GameState {
 
   Size? size;
   int? prevEpochMillis;
-  int dt = 20;
+  int dt = DT_DEFAULT;
+  bool bRunning = true;
 
   AssetController assetController = AssetController.instance;
   InputController inputController = InputController();
@@ -35,8 +38,16 @@ class GameState {
   }
 
   void act() {
-    if (isLoaded()) {
-      level.act(this);
+    if (isLoaded() && bRunning) {
+      if (prevEpochMillis == null) {
+        prevEpochMillis = DateTime.now().millisecondsSinceEpoch;
+        dt = DT_DEFAULT;
+      } else {
+        int nowEpochMillis = DateTime.now().millisecondsSinceEpoch;
+        dt = nowEpochMillis - prevEpochMillis!;
+        level.act(this);
+        prevEpochMillis = nowEpochMillis;
+      }
     }
   }
 
@@ -54,9 +65,8 @@ class GameState {
     level.addSpriteAtLocalOffset(symbolBoomerang, offset);
   }
 
-  bool bPause = false;
   void togglePause(KeyEvent keyEvent) {
-    bPause = !bPause;
+    bRunning = !bRunning;
   }
 
   bool bRequestFirePrimary = false;

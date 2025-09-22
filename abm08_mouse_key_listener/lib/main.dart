@@ -3,7 +3,7 @@ import 'package:abm08_mouse_key_listener/gamestate.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp(appTitle: 'abm07_mouse_key_listener'));
+  runApp(const MyApp(appTitle: 'abm08_mouse_key_listener'));
 }
 
 class MyApp extends StatelessWidget {
