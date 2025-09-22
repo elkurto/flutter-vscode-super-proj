@@ -67,6 +67,9 @@ class GameState {
 
   void togglePause(KeyEvent keyEvent) {
     bRunning = !bRunning;
+    if (!bRunning) {
+      prevEpochMillis = null;
+    }
   }
 
   bool bRequestFirePrimary = false;
