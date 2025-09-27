@@ -1,10 +1,11 @@
 import 'package:abm08_mouse_key_listener/gamescreenwidget.dart' show GameScreenWidget;
+import 'package:abm08_mouse_key_listener/homescreenwidget.dart' show HomeScreenWidget;
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 void main() {
   //runApp(const MyApp(appTitle: 'abm08_mouse_key_listener'));
-  runApp(const OuterRouterAppWidget());
+  runApp(OuterRouterAppWidget());
 }
 
 class OuterRouterAppWidget extends StatelessWidget {
@@ -16,13 +17,30 @@ class OuterRouterAppWidget extends StatelessWidget {
       routerConfig: _router,
       title: 'abm08_mouse_key_listener',
       debugShowCheckedModeBanner: false,
-    )
+    );
   }
 
-  late final GoRouter _router =GoRouter(
+  late final GoRouter _router = GoRouter(
     debugLogDiagnostics: true,
-
-  )
+    routes: <GoRoute>[
+      GoRoute(
+        name: 'home',
+        path: '/',
+        builder: (BuildContext buildContenxt, GoRouterState goRouterState) {
+          return const HomeScreenWidget();
+        },
+        routes: <RouteBase>[
+          GoRoute(
+            name: 'game',
+            path: 'game',
+            builder: (BuildContext buildContext, GoRouterState goRouterState) {
+              return const GameScreenWidget();
+            },
+          ),
+        ],
+      ),
+    ],
+  );
 }
 
 class MyApp extends StatelessWidget {

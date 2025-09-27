@@ -2,28 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 /// The home screen that shows a start button.
-class HomeScreen extends StatelessWidget {
+class HomeScreenWidget extends StatelessWidget {
   /// Creates a [HomeScreen].
-  const HomeScreen({super.key});
+  const HomeScreenWidget({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext buildContext) {
     return Scaffold(
-      appBar: AppBar(title: const Text(App.title)),
-      body: ListView(
-        children: <Widget>[
-          // make a :widget:ListTile
-          for (final MapEntry<String, Artist> entry in mapIdArtist.entries)
-            ListTile(
-              title: Text(entry.value.name),
-              onTap: () => context.go(
-                context.namedLocation(
-                  'artist',
-                  pathParameters: <String, String>{'artistid': entry.key.toString()},
-                ),
-              ),
-            ),
-        ],
+      appBar: AppBar(title: const Text('abm08')),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () => buildContext.go(buildContext.namedLocation('game')),
+          child: const Text('Play the game!'),
+        ),
       ),
     );
   }
