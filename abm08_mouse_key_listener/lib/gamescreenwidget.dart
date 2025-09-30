@@ -33,7 +33,7 @@ class _GameScreenWidgetState extends State<GameScreenWidget> with SingleTickerPr
   void dispose() {
     _focusNode.dispose();
     _controller.dispose();
-    gameState.dispose();
+    //gameState.dispose();
     super.dispose();
   }
 
