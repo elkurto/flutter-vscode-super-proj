@@ -12,7 +12,7 @@ class _CoffeePrefsState extends State<CoffeePrefs> {
   int strength = 1;
   int sugarCube = 1;
   final int maxN = 5;
-  final int minN = 1;
+  final int minN = 0;
   void increaseStrength() {
     setState(() {
       strength = math.min(maxN, strength + 1);
@@ -43,15 +43,18 @@ class _CoffeePrefsState extends State<CoffeePrefs> {
       children: [
         Row(
           children: [
-            Image.asset(
-              'assets/img/coffee_bean.png',
-              width: 25,
-              colorBlendMode: BlendMode.multiply,
-              color: Colors.brown[100],
-            ),
             const Text('Strength: '),
-            Text("$strength"),
+            Text("$strength  "),
 
+            if (strength == 0) Text("Really Weak"),
+
+            for (int i = 0; i < strength; i++)
+              Image.asset(
+                'assets/img/coffee_bean.png',
+                width: 25,
+                colorBlendMode: BlendMode.multiply,
+                color: Colors.brown[100],
+              ),
             const Expanded(child: SizedBox(width: 100)),
             FilledButton(
               style: FilledButton.styleFrom(
@@ -73,14 +76,19 @@ class _CoffeePrefsState extends State<CoffeePrefs> {
         ),
         Row(
           children: [
-            Image.asset(
-              'assets/img/sugar_cube.png',
-              width: 25,
-              colorBlendMode: BlendMode.multiply,
-              color: Colors.brown[100],
-            ),
             const Text('Sugars: '),
-            Text("$sugarCube"),
+            Text("$sugarCube  "),
+
+            if (sugarCube == 0) const Text('None...'),
+
+            for (int i = 0; i < sugarCube; i++)
+              Image.asset(
+                'assets/img/sugar_cube.png',
+                width: 25,
+                colorBlendMode: BlendMode.multiply,
+                color: Colors.brown[100],
+              ),
+
             const Expanded(child: SizedBox(width: 100)),
             TextButton(
               style: TextButton.styleFrom(foregroundColor: Colors.brown),
