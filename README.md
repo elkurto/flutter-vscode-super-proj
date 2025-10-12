@@ -31,3 +31,40 @@ project that contains flutter example
 https://docs.flutter.dev/ui/widgets/material#actions
 
 ![nna15_button.000.png](nna15_button.000.png)
+
+
+#### nna16_stateful_widget and nna17_conditional_rendering
+- stateful widget and conditional rendering
+
+```
+...
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          children: [
+            const Text('Strength: '),
+            Text("$strength  "),
+
+            if (strength == 0) Text("Really Weak"),  // conditional rendering
+
+            for (int i = 0; i < strength; i++)   // conditional rendering
+              Image.asset(
+                'assets/img/coffee_bean.png',
+                width: 25,
+                colorBlendMode: BlendMode.multiply,
+                color: Colors.brown[100],
+              ),
+            const Expanded(child: SizedBox(width: 100)),
+            FilledButton(
+              style: FilledButton.styleFrom(
+                backgroundColor: Colors.brown,
+                foregroundColor: Colors.white,
+              ),
+              onPressed: increaseStrength,
+              child: const Text('+'),
+            ),
+
+```
+![nna16_stateful_widget.png](nna16_stateful_widget.png)
