@@ -7,8 +7,10 @@ class CoffeePrefs extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Column(
       children: [
+        // note: sized box expands to fill right side of row.
+        //  which provides some imperfect column alignment
         Row(children: [Text('Strength: '), Text('3'), SizedBox(width: 50)]),
-        Row(children: [Text('Sugars: '), Text('3'), SizedBox(width: 50)]),
+        Row(children: [Text('Sugars:   '), Text('3'), SizedBox(width: 50)]),
       ],
     );
   }
