@@ -30,7 +30,7 @@ project that contains flutter example
 - add buttons and custom styles coffee_prefs.dart
 https://docs.flutter.dev/ui/widgets/material#actions
 
-![nna15_button.000.png](nna15_button.000.png)
+![nna15_button.000.png](./zzzdoc/nna15_button.000.png)
 
 
 #### nna16_stateful_widget and nna17_conditional_rendering
@@ -67,4 +67,13 @@ https://docs.flutter.dev/ui/widgets/material#actions
             ),
 
 ```
-![nna16_stateful_widget.png](nna16_stateful_widget.png)
+![nna16_stateful_widget.png](./zzzdoc/nna16_stateful_widget.png)
+
+
+#### nna18_reusable_widget
+- Pass parameters to custom widgets to ensure reusablility and DRY principle
+- see [class StyledBodyText](./nna18_reusable_widget/lib/styled_body_text.dart)
+- see [class StyledButton](./nna18_reusable_widget/lib/styled_button.dart)
+
+
+![nna18_reusable_widget](./zzzdoc/nna18_reusable_widget.png)
