@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math' as math;
 
 class CoffeePrefs extends StatefulWidget {
   const CoffeePrefs({super.key});
@@ -10,28 +11,29 @@ class CoffeePrefs extends StatefulWidget {
 class _CoffeePrefsState extends State<CoffeePrefs> {
   int strength = 1;
   int sugarCube = 1;
-
+  final int maxN = 5;
+  final int minN = 1;
   void increaseStrength() {
     setState(() {
-      strength += 1;
+      strength = math.min(maxN, strength + 1);
     });
   }
 
   void increaseSugarCube() {
     setState(() {
-      sugarCube += 1;
+      sugarCube = math.min(maxN, sugarCube + 1);
     });
   }
 
   void decreaseStrength() {
     setState(() {
-      strength -= 1;
+      strength = math.max(minN, strength - 1);
     });
   }
 
   void decreaseSugarCube() {
     setState(() {
-      sugarCube -= 1;
+      sugarCube = math.max(minN, sugarCube - 1);
     });
   }
 
