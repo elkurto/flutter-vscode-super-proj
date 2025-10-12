@@ -25,3 +25,9 @@ project that contains flutter example
   ...
 ```  
 ![nna14_expanded_widget.000.png](./zzzdoc/nna14_expanded_widget.001.png)        
+
+#### nna15_buttons 
+- add buttons and custom styles coffee_prefs.dart
+https://docs.flutter.dev/ui/widgets/material#actions
+
+![nna15_button.000.png](nna15_button.000.png)
