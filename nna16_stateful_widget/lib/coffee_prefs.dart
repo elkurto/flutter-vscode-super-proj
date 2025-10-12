@@ -23,6 +23,18 @@ class _CoffeePrefsState extends State<CoffeePrefs> {
     });
   }
 
+  void decreaseStrength() {
+    setState(() {
+      strength -= 1;
+    });
+  }
+
+  void decreaseSugarCube() {
+    setState(() {
+      sugarCube -= 1;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -47,6 +59,14 @@ class _CoffeePrefsState extends State<CoffeePrefs> {
               onPressed: increaseStrength,
               child: const Text('+'),
             ),
+            FilledButton(
+              style: FilledButton.styleFrom(
+                backgroundColor: Colors.brown,
+                foregroundColor: Colors.white,
+              ),
+              onPressed: decreaseStrength,
+              child: const Text('-'),
+            ),
           ],
         ),
         Row(
@@ -64,6 +84,11 @@ class _CoffeePrefsState extends State<CoffeePrefs> {
               style: TextButton.styleFrom(foregroundColor: Colors.brown),
               onPressed: increaseSugarCube,
               child: Text('+'),
+            ),
+            TextButton(
+              style: TextButton.styleFrom(foregroundColor: Colors.brown),
+              onPressed: decreaseSugarCube,
+              child: Text('-'),
             ),
           ],
         ),
