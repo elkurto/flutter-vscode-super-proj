@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_masterclass/screens/home/home.dart';
-import 'package:flutter_masterclass/theme.dart';
+import 'package:nna21_theme_custom/screens/home/home.dart';
+import 'package:nna21_theme_custom/theme.dart';
 
 void main() {
+  // apply the theme defined in ./theme.dart (see :ThemeData:"primaryTheme" )
   runApp(MaterialApp(theme: primaryTheme, home: const Home()));
 }
 

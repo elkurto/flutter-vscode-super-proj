@@ -13,7 +13,9 @@ class AppColors {
   static Color highlightColor = const Color.fromRGBO(212, 172, 13, 1);
 }
 
-// :ThemeData:"primaryTheme" is the actual ThemeData instance for the app.
+// - :ThemeData:"primaryTheme" is the actual ThemeData instance for the app.
+// - There are many other field/widgetThemes to define in :class:ThemeData
+//     (if one desires).
 ThemeData primaryTheme = ThemeData(
   // seed color theme  (ah ha!)
   colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primaryColor),
