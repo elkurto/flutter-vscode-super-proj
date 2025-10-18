@@ -18,9 +18,13 @@ class _HomeState extends State<Home> {
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            const Text('character list'),
-            Text('character list', style: Theme.of(context).textTheme.headlineMedium),
-            Text('character list', style: Theme.of(context).textTheme.titleMedium),
+            const Text('character list - default textTheme'),
+            Text(
+              'character list - headlineMedium',
+              style: Theme.of(context).textTheme.headlineMedium,
+            ),
+            // access custom theme via :attribute: "style" and :obj:"context"
+            Text('character list - titleMedium', style: Theme.of(context).textTheme.titleMedium),
 
             FilledButton(
               onPressed: () {
