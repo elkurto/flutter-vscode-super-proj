@@ -77,3 +77,10 @@ https://docs.flutter.dev/ui/widgets/material#actions
 
 
 ![nna18_reusable_widget](./zzzdoc/nna18_reusable_widget.png)
+
+
+#### nna21_theme_custom
+- Define custom theme
+- Pass :parameter:"themePrimary" to MaterialApp's ctor
+
+![nna21_theme_custom](./zzzdoc/nna21_theme_custom.000.png)
