@@ -17,9 +17,10 @@ class _HomeState extends State<Home> {
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            const StyledTitle('title'),
-            const StyledHeading('heading'),
-            const StyledText('text'),
+            // use the custom widgets that use custom theme from :file:theme.dart
+            const StyledTitle('title - :widget:StyledTitle'),
+            const StyledHeading('heading - :widget:StyledHeading'),
+            const StyledText('text - :widget:StyledText'),
 
             FilledButton(
               onPressed: () {

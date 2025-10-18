@@ -3,7 +3,8 @@ import 'package:nna22_theme_shared/screens/home/home.dart';
 import 'package:nna22_theme_shared/theme.dart';
 
 void main() {
-  runApp(MaterialApp(theme: primaryTheme, home: const Home()));
+  // register the primaryTheme from :file:theme.dart
+  runApp(MaterialApp(theme: primaryTheme, home: const Home(), debugShowCheckedModeBanner: false));
 }
 
 // sandbox
