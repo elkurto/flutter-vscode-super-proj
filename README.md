@@ -84,3 +84,10 @@ https://docs.flutter.dev/ui/widgets/material#actions
 - Pass :parameter:"themePrimary" to MaterialApp's ctor
 
 ![nna21_theme_custom](./zzzdoc/nna21_theme_custom.000.png)
+
+
+#### nna22_theme_shared
+- Define custom widgets that use the custom theme
+- Pass :parameter:"themePrimary" to MaterialApp's ctor
+
+![nna22_theme_shared](./zzzdoc/nna22_theme_shared.000.png)
