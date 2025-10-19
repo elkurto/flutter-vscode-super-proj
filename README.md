@@ -91,3 +91,33 @@ https://docs.flutter.dev/ui/widgets/material#actions
 - Pass :parameter:"themePrimary" to MaterialApp's ctor
 
 ![nna22_theme_shared](./zzzdoc/nna22_theme_shared.000.png)
+
+
+#### nna23_google_fonts
+A. Using google fonts
+  1. import google_fonts as a dependency in `pubspec.yml` <br/>
+  ```bash
+    flutter pub add google_fonts
+  ```
+
+  2. import google_fonts and use the factory method in a widget.
+  ```dart
+  import 'package:flutter/material.dart';
+  import 'package:google_fonts/google_fonts.dart'; // 2. import googe_fonts
+
+  class StyledText extends StatelessWidget {
+    const StyledText(this.text, {super.key});
+
+    final String text;
+
+    @override
+    Widget build(BuildContext context) {
+      // 3. use GoogleFonts factory methos in :attr:"style"
+      return Text(
+        text, // --
+        style: GoogleFonts.kanit(textStyle: Theme.of(context).textTheme.bodyMedium),
+      );
+    }
+  }
+  ```
+  ![nna23_google_font.000.png](./zzzdoc/nna23_google_font.000.png)
