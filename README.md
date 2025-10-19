@@ -166,7 +166,7 @@ A. Using google fonts
 
 
   #### nna25_listview 
-    - see [https://docs.flutter.dev/cookbook/lists/long-lists](https://docs.flutter.dev/cookbook/lists/long-lists)
+    - see [ListView usage : https://docs.flutter.dev/cookbook/lists/long-lists](https://docs.flutter.dev/cookbook/lists/long-lists)
     - :widget:Expanded wraps :widget:ListView  to provide hint to Flutter Layout manager, because ListView is automatically scollable (so ListView has no inherent height).
     - ListView renders a list of items. 
 
@@ -224,3 +224,39 @@ A. Using google fonts
     }
 
     ```
+
+#### nna26_card_widget
+  - see [Card - in https://docs.flutter.dev/ui/layout#card](https://docs.flutter.dev/ui/layout#card)
+  - Create and use a custom reusable :widget:"CharacterCard"
+  - [obsolete] cardTheme in In :file:theme.dart - specify a custom 'cardTheme'.
+  - Specified reusable style in :widget:CharacterCard
+  
+  ```dart
+  // file=nna26_card_widget/screens/home_screen/character_card.dart
+  import 'package:flutter/material.dart';
+  import 'package:nna26_card_widget/theme.dart' show AppColors;
+
+  class CharacterCard extends StatelessWidget {
+    const CharacterCard(this.character, {super.key});
+
+    final String character;
+
+    @override
+    Widget build(BuildContext context) {
+      return Card(
+        color: AppColors.secondaryColor,
+        surfaceTintColor: Colors.transparent,
+        shape: const RoundedRectangleBorder(),
+        shadowColor: Colors.transparent,
+        margin: const EdgeInsets.only(bottom: 16),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+
+          child: Row(children: [Text(character)]),
+        ),
+      );
+    }
+  }
+  ```
+  ![nna26_card_widget](./zzzdoc/nna26_card_widget.000.png)
+   
