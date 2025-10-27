@@ -266,3 +266,9 @@ A. Using google fonts
   - for more icons - see https://fonts.googe.com/icons
 
   ![nna27_icon_button](./zzzdoc/nna27_icon_button.png)
+
+### nnna35_data_model_static
+  - finish section on data model (culmination of lesson-26..lesson-35)
+  - create a working app with character screen and proper layout.
+
+  ![nna35_data_model_static](./zzzdoc/nna35_data_model_static.png)
