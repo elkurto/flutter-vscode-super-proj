@@ -260,3 +260,9 @@ A. Using google fonts
   ```
   ![nna26_card_widget](./zzzdoc/nna26_card_widget.000.png)
    
+### nna27_icon_button
+  - included in code, nna26_card_widget/lib/screens/home_screen/character_card.dart
+  - add icon to rhs of each CharacterCard instance
+  - for more icons - see https://fonts.googe.com/icons
+
+  ![nna27_icon_button](./zzzdoc/nna27_icon_button.png)
