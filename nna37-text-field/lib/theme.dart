@@ -51,4 +51,14 @@ ThemeData primaryTheme = ThemeData(
   //   shadowColor: Colors.transparent,
   //   margin: const EdgeInsets.only(bottom: 16),
   // ),
+
+  // input decoration theme
+  inputDecorationTheme: InputDecorationTheme(
+    filled: true,
+    // fillColor: AppColors.secondaryColor.withOpacity(0.5), // deprecated; use .withValues or .withAlpha
+    fillColor: AppColors.secondaryColor.withAlpha(128),
+    border: InputBorder.none,
+    labelStyle: TextStyle(color: AppColors.textColor),
+    prefixIconColor: AppColors.textColor,
+  ),
 );
