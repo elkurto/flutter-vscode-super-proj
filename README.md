@@ -285,3 +285,15 @@ A. Using google fonts
   - includes code, lesson-38 and lesson-39
   - Use text controllers correctly
   - Create an onSubmit callback
+  
+  ![nna39_text_controller_and_submit.000.png](./zzzdoc/nna39_text_controller_and_submit.000.png)
+
+### nna44_select_list_vocation_and_submit
+  - includes code from lessons; 40,41,42,43
+  - lesson-40 - add vocation card (screens/create/vocation_card.dart)
+  - lesson-41 - wrap vocation list in :widget:SingleChildScrollView 
+    - a. to avoid content overflow warnings
+    - b. make the list of vocations scrollable
+    (see screens/create/create.dart)
+   - lesson-42 onTap 
+   - lesson-43 selection and submit (see screens/create/create.dart)
