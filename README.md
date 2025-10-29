@@ -272,3 +272,16 @@ A. Using google fonts
   - create a working app with character screen and proper layout.
 
   ![nna35_data_model_static](./zzzdoc/nna35_data_model_static.png)
+
+
+### nna37_text_field
+   - includes code, lesson-36 and lesson-37, 38, 39
+   - created a "create screen"
+   - added text field with styling to create.dart
+   - cursor custom style - to make cursor more visible and same color as text (harmony)
+
+   ![nna37_text_field](./zzzdoc/nna37_text_field.000.png)
+
+  - includes code, lesson-38 and lesson-39
+  - Use text controllers correctly
+  - Create an onSubmit callback
