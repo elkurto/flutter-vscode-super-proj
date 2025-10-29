@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:nna37_text_field/screens/home/home.dart';
 import 'package:nna37_text_field/theme.dart';
+import 'package:nna37_text_field/screens/create/create.dart';
 
 void main() {
-  runApp(MaterialApp(theme: primaryTheme, home: const Home()));
+  //runApp(MaterialApp(theme: primaryTheme, home: const Home()));  // reinstate later
+
+  // show create screen for debugging and feedback
+  runApp(MaterialApp(theme: primaryTheme, home: const Create()));
 }
 
 // sandbox
