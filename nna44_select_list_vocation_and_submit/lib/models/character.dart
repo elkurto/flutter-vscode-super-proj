@@ -1,6 +1,6 @@
-import 'package:nna37_text_field/models/skill.dart';
-import 'package:nna37_text_field/models/stats.dart';
-import 'package:nna37_text_field/models/vocation.dart';
+import 'package:nna44_select_list_vocation_and_submit/models/skill.dart';
+import 'package:nna44_select_list_vocation_and_submit/models/stats.dart';
+import 'package:nna44_select_list_vocation_and_submit/models/vocation.dart';
 
 class Character with Stats {
   // constructor

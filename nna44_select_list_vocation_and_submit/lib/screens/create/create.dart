@@ -2,7 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:nna44_select_list_vocation_and_submit/shared/styled_button.dart';
 import 'package:nna44_select_list_vocation_and_submit/shared/styled_text.dart';
 import 'package:nna44_select_list_vocation_and_submit/theme.dart';
+import 'package:nna44_select_list_vocation_and_submit/models/character.dart';
+import 'package:nna44_select_list_vocation_and_submit/models/vocation.dart';
+import 'package:nna44_select_list_vocation_and_submit/screens/create/vocation_card.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:uuid/uuid.dart';
+
+var uuid = const Uuid();
 
 class Create extends StatefulWidget {
   const Create({super.key});
@@ -16,6 +22,9 @@ class _CreateState extends State<Create> {
   // Here we use TextEditingController
   final _nameController = TextEditingController();
   final _sloganController = TextEditingController();
+
+  // handling vocation selection
+  Vocation selectedVocation = Vocation.junkie;
 
   @override
   void dispose() {
@@ -31,14 +40,32 @@ class _CreateState extends State<Create> {
     // validations
     if (_nameController.text.trim().isEmpty) {
       print('name must not be empty');
+      //@todo: show error dialog
       return;
     }
     if (_sloganController.text.trim().isEmpty) {
       print('slogan must not be empty');
+      //@todo: show error dialog
       return;
     }
     print(_nameController.text);
     print(_sloganController.text);
+
+    characters.add(
+      Character(
+        name: _nameController.text.trim(),
+        slogan: _sloganController.text.trim(),
+        vocation: selectedVocation,
+        id: uuid.v4(),
+      ),
+    );
+  }
+
+  // a method that handles onTap events (when selecting/de-selecting vocations in list)
+  void updateVocation(Vocation vocation) {
+    setState(() {
+      selectedVocation = vocation;
+    });
   }
 
   @override
@@ -80,7 +107,34 @@ class _CreateState extends State<Create> {
             ),
             const SizedBox(height: 30),
 
-            // submit button w/ onSubmit
+            // select a vocation title
+            Center(child: Icon(Icons.code, color: AppColors.primaryColor)),
+            const Center(child: StyledHeading("Choose a Vocation")),
+            const Center(child: StyledText("This determines your available skills.")),
+            const SizedBox(height: 30),
+            //
+            // selectable list of vocation cards
+            VocationCard(
+              vocation: Vocation.junkie,
+              onTap: updateVocation,
+              selected: selectedVocation == Vocation.junkie,
+            ),
+            VocationCard(
+              vocation: Vocation.ninja,
+              onTap: updateVocation,
+              selected: selectedVocation == Vocation.ninja,
+            ),
+            VocationCard(
+              vocation: Vocation.wizard,
+              onTap: updateVocation,
+              selected: selectedVocation == Vocation.wizard,
+            ),
+            VocationCard(
+              vocation: Vocation.raider,
+              onTap: updateVocation,
+              selected: selectedVocation == Vocation.raider,
+            ),
+            // submit button w/ :handler:handleSubmit
             Center(
               child: StyledButton(
                 onPressed: handleSubmit,
