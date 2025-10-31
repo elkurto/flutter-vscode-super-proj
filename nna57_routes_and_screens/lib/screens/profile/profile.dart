@@ -29,6 +29,8 @@ class Profile extends StatelessWidget {
                     height: 140,
                   ),
                   const SizedBox(width: 20),
+                  // must use the :widget:"Expanded" to prevent :error:overflow
+                  //   and to force text-wrapping.
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -41,9 +43,37 @@ class Profile extends StatelessWidget {
                 ],
               ),
             ),
+            // weapon and ability and slogan
+            /// vertical space
+            const SizedBox(height: 20),
 
-            // weapon and ability
+            /// ??
+            Center(child: Icon(Icons.code, color: AppColors.primaryColor)),
 
+            /// content (weapon,ability,slogan)
+            Padding(
+              // fmt
+              padding: const EdgeInsets.all(16),
+              child: Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(16),
+                color: AppColors.secondaryColor.withAlpha(127), // 255*0.5 =127
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const StyledHeading('Slogan'),
+                    StyledText(character.slogan),
+                    const SizedBox(height: 10),
+                    const StyledHeading('Weapon of Choice'),
+                    StyledText(character.vocation.weapon),
+                    const SizedBox(height: 10),
+                    const StyledHeading('Unique Ability'),
+                    StyledText(character.vocation.ability),
+                    const SizedBox(height: 10),
+                  ],
+                ),
+              ),
+            ),
             // stats & skills
 
             // save button
