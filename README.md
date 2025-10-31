@@ -308,4 +308,30 @@ A. Using google fonts
      - in create.dart's :method:handleSubmit -- create a new character object
 
   ![nna44_select_list_vocation_and_submit.000.png](./zzzdoc/nna44_select_list_vocation_and_submit.000.png)        
-  
+
+
+  ### nna57_routes_and_screens
+  - includes lessons 48..57
+  - lesson-47 
+    - (see screens/home/home.dart and screens/create/create.dart)
+    - Navigator.push()  
+  - lesson-48
+    - showDialog(...) and AlertDialog - to signify response to validation errors (also navigation)
+  - lesson-49 
+    - style the the AlertDialog
+  - lesson-50
+    - create :screen:Profile
+    - View character
+      - Added navigation/route from :widget:CharacterCard to :screen:Profile
+  - lesson-51 
+
+  - post:lesson-49 - AlertDialog - on bad form data
+  ![nna57_routes_and_screens.000.png](./zzzdoc/nna57_routes_and_screens.000.png)
+  ![nna57_routes_and_screens.001.png](./zzzdoc/nna57_routes_and_screens.001.png)
+
+  - post:lesson-51 - navigate via :widget:CharacterCard to :screen-widget:Profile
+  ![nna57_routes_and_screens.002.png](./zzzdoc/nna57_routes_and_screens.002.png)
+  ![nna57_routes_and_screens.003.png](./zzzdoc/nna57_routes_and_screens.003.png)
+
+  - post:lesson-52 - added content to :widget-screen:Profile
+  ![nna57_routes_and_screens.004.png](./zzzdoc/nna57_routes_and_screens.004.png)
