@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nna57_routes_and_screens/models/character.dart';
+import 'package:nna57_routes_and_screens/screens/profile/profile.dart' show Profile;
 import 'package:nna57_routes_and_screens/shared/styled_text.dart';
 import 'package:nna57_routes_and_screens/theme.dart';
 
@@ -36,6 +37,10 @@ class CharacterCard extends StatelessWidget {
             IconButton(
               onPressed: () {
                 // navigate to character profile screen
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (ctx) => Profile(character: character)),
+                );
               },
               icon: Icon(Icons.arrow_forward, color: AppColors.textColor),
             ),
