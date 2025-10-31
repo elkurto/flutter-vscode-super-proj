@@ -299,5 +299,9 @@ A. Using google fonts
     (see screens/create/create.dart)
 
    - lesson-42 onTap 
+
+   - lesson-43 selection vocation (in list) and conditional styling of a VocationCard
    
-   - lesson-43 selection and submit (see screens/create/create.dart)
+   - lesson-44 submit (see screens/create/create.dart)
+     // add the :package:uuid
+     dart pub add uuid 
