@@ -290,10 +290,14 @@ A. Using google fonts
 
 ### nna44_select_list_vocation_and_submit
   - includes code from lessons; 40,41,42,43
+
   - lesson-40 - add vocation card (screens/create/vocation_card.dart)
+
   - lesson-41 - wrap vocation list in :widget:SingleChildScrollView 
     - a. to avoid content overflow warnings
     - b. make the list of vocations scrollable
     (see screens/create/create.dart)
+
    - lesson-42 onTap 
+   
    - lesson-43 selection and submit (see screens/create/create.dart)
