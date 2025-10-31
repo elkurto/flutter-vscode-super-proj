@@ -306,4 +306,6 @@ A. Using google fonts
      - add the :package:uuid
        -`dart pub add uuid `
      - in create.dart's :method:handleSubmit -- create a new character object
-        
+
+  ![nna44_select_list_vocation_and_submit.000.png](./zzzdoc/nna44_select_list_vocation_and_submit.000.png)        
+  
