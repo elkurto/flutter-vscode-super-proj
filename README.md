@@ -303,5 +303,7 @@ A. Using google fonts
    - lesson-43 selection vocation (in list) and conditional styling of a VocationCard
    
    - lesson-44 submit (see screens/create/create.dart)
-     // add the :package:uuid
-     dart pub add uuid 
+     - add the :package:uuid
+       -`dart pub add uuid `
+     - in create.dart's :method:handleSubmit -- create a new character object
+        
