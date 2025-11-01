@@ -22,7 +22,7 @@ class Character with Stats {
     _isFav = !_isFav;
   }
 
-  void updateSkills(Skill skill) {
+  void updateSkill(Skill skill) {
     skills.clear();
     skills.add(skill);
   }

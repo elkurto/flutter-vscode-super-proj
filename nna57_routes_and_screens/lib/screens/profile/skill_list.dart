@@ -17,6 +17,7 @@ class _SkillListState extends State<SkillList> {
   // declare availableSkills as "late" bc availableSkills initialized
   //   in :fn:initState() instead of ctor.
   late List<Skill> availableSkills;
+  late Skill selectedSkill;
 
   @override
   void initState() {
@@ -25,6 +26,13 @@ class _SkillListState extends State<SkillList> {
       return skill.vocation == widget.character.vocation;
     }).toList();
 
+    // apply reasonable default to :data-member:selectedSkill
+    if (widget.character.skills.isEmpty) {
+      selectedSkill = availableSkills[0];
+    }
+    if (widget.character.skills.isNotEmpty) {
+      selectedSkill = widget.character.skills.first;
+    }
     super.initState();
   }
 
@@ -37,9 +45,11 @@ class _SkillListState extends State<SkillList> {
         color: AppColors.secondaryColor.withAlpha(127), // 255 * 0.5 =127
         child: Column(
           children: [
+            // fmt
             const StyledHeading('Choose an active skill'),
             const StyledText('Skills are unique to your vocation.'),
             const SizedBox(height: 20),
+            // fmt
             // row displays skills
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -48,11 +58,22 @@ class _SkillListState extends State<SkillList> {
                 return Container(
                   margin: const EdgeInsets.all(5),
                   padding: const EdgeInsets.all(2),
-                  child: Image.asset('assets/img/skills/${skill.image}', width: 70),
+                  color: skill == selectedSkill ? Colors.yellow : Colors.transparent,
+                  child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        widget.character.updateSkill(skill);
+                        selectedSkill = skill;
+                      });
+                    },
+                    child: Image.asset('assets/img/skills/${skill.image}', width: 70),
+                  ),
                 );
               }).toList(),
             ),
             const SizedBox(height: 10),
+            // display name of selectedSkill
+            StyledText(selectedSkill.name),
           ],
         ),
       ),
