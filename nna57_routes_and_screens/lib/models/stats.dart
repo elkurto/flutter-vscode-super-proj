@@ -12,7 +12,7 @@ mixin Stats {
     {'title': 'health', 'value': _health.toString()},
     {'title': 'attack', 'value': _attack.toString()},
     {'title': 'defense', 'value': _defense.toString()},
-    {'title': 'skill', 'value': _skill.toString()}
+    {'title': 'skill', 'value': _skill.toString()},
   ];
 
   Map<String, int> get statsAsMap => {
@@ -27,17 +27,20 @@ mixin Stats {
     if (_points > 0) {
       if (stat == 'health') {
         _health++;
+        _points--;
       }
       if (stat == 'attack') {
         _attack++;
+        _points--;
       }
       if (stat == 'defense') {
         _defense++;
+        _points--;
       }
-      if (stat =='skill') {
+      if (stat == 'skill') {
         _skill++;
+        _points--;
       }
-      _points--;
     }
   }
 
