@@ -344,3 +344,10 @@ A. Using google fonts
       (note: StatsTable is a Row (not a Table))
     - See bottom row of :widget/screen:Profile
     - ![nna57_routes_and_screens.005.png](./zzzdoc/nna57_routes_and_screens.005.png)
+
+  - post:lesson-54 - actaully use Table for health,attack,defense,skill in stats_table.dart
+    - mods to :stateful_widget:StatsTable
+    - use of map_function to convert from :podo:stats.statsAsFormatedList to :widget:TableRow 
+    - implement onPress/onTap callbacks that modify state (stat points) and update view
+
+    - ![nna57_routes_and_screens.006.png](./zzzdoc/nna57_routes_and_screens.006.png)
