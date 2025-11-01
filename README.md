@@ -326,12 +326,21 @@ A. Using google fonts
   - lesson-51 
 
   - post:lesson-49 - AlertDialog - on bad form data
-  ![nna57_routes_and_screens.000.png](./zzzdoc/nna57_routes_and_screens.000.png)
-  ![nna57_routes_and_screens.001.png](./zzzdoc/nna57_routes_and_screens.001.png)
+    - ![nna57_routes_and_screens.000.png](./zzzdoc/nna57_routes_and_screens.000.png)
+    - ![nna57_routes_and_screens.001.png](./zzzdoc/nna57_routes_and_screens.001.png)
 
   - post:lesson-51 - navigate via :widget:CharacterCard to :screen-widget:Profile
-  ![nna57_routes_and_screens.002.png](./zzzdoc/nna57_routes_and_screens.002.png)
-  ![nna57_routes_and_screens.003.png](./zzzdoc/nna57_routes_and_screens.003.png)
+    - ![nna57_routes_and_screens.002.png](./zzzdoc/nna57_routes_and_screens.002.png)
+    - ![nna57_routes_and_screens.003.png](./zzzdoc/nna57_routes_and_screens.003.png)
 
   - post:lesson-52 - added content to :widget-screen:Profile
-  ![nna57_routes_and_screens.004.png](./zzzdoc/nna57_routes_and_screens.004.png)
+    - ![nna57_routes_and_screens.004.png](./zzzdoc/nna57_routes_and_screens.004.png)
+
+  - post:lesson-53 - create :StatfulWidget:StatsTable (that displays character info).
+    - Used :context_reference:widget.character in _StatsTableState to access 
+      :data_member:"character" in StatsTable.
+    - Used conditional formatting to compute/change icon color.
+    - Mods in :widget/screen:Profile and created :stateful_widget:StatsTable
+      (note: StatsTable is a Row (not a Table))
+    - See bottom row of :widget/screen:Profile
+    - ![nna57_routes_and_screens.005.png](./zzzdoc/nna57_routes_and_screens.005.png)
