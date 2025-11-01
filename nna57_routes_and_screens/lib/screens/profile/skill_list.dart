@@ -14,6 +14,8 @@ class SkillList extends StatefulWidget {
 }
 
 class _SkillListState extends State<SkillList> {
+  // declare availableSkills as "late" bc availableSkills initialized
+  //   in :fn:initState() instead of ctor.
   late List<Skill> availableSkills;
 
   @override
@@ -38,9 +40,10 @@ class _SkillListState extends State<SkillList> {
             const StyledHeading('Choose an active skill'),
             const StyledText('Skills are unique to your vocation.'),
             const SizedBox(height: 20),
-
+            // row displays skills
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
+              // use map-fn to create a container per skill in :List<Skill>:availableSkills
               children: availableSkills.map((skill) {
                 return Container(
                   margin: const EdgeInsets.all(5),

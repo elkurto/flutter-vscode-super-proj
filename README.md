@@ -355,4 +355,6 @@ A. Using google fonts
   - post:lesson-55 - filter list of skill  by selected-vocation
     - "availableSkills" - filter list of skill  by selected-vocation
     - create :stateful-widget:SkillList (see screens/profile/skills_list.dart)
-    - 
+    
+    - ![nna57_routes_and_screens.007.png](./zzzdoc/nna57_routes_and_screens.007.png)
+    
