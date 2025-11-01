@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nna57_routes_and_screens/models/character.dart';
+import 'package:nna57_routes_and_screens/screens/profile/stats_table.dart' show StatsTable;
 import 'package:nna57_routes_and_screens/shared/styled_text.dart';
 import 'package:nna57_routes_and_screens/theme.dart' show AppColors;
 
@@ -61,12 +62,15 @@ class Profile extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    // character.slogan
                     const StyledHeading('Slogan'),
                     StyledText(character.slogan),
                     const SizedBox(height: 10),
+                    // character.vocation.weapon
                     const StyledHeading('Weapon of Choice'),
                     StyledText(character.vocation.weapon),
                     const SizedBox(height: 10),
+                    // character.vocation.ability
                     const StyledHeading('Unique Ability'),
                     StyledText(character.vocation.ability),
                     const SizedBox(height: 10),
@@ -75,7 +79,11 @@ class Profile extends StatelessWidget {
               ),
             ),
             // stats & skills
-
+            // (see :stateful_widget:StatsTable)
+            Container(
+              alignment: Alignment.center,
+              child: Column(children: [StatsTable(character)]),
+            ),
             // save button
           ],
         ),
