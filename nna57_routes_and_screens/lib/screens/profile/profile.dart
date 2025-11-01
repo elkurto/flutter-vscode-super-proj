@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nna57_routes_and_screens/models/character.dart';
+import 'package:nna57_routes_and_screens/screens/profile/skill_list.dart' show SkillList;
 import 'package:nna57_routes_and_screens/screens/profile/stats_table.dart' show StatsTable;
 import 'package:nna57_routes_and_screens/shared/styled_text.dart';
 import 'package:nna57_routes_and_screens/theme.dart' show AppColors;
@@ -82,7 +83,13 @@ class Profile extends StatelessWidget {
             // (see :stateful_widget:StatsTable)
             Container(
               alignment: Alignment.center,
-              child: Column(children: [StatsTable(character)]),
+              child: Column(
+                children: [
+                  // fmt
+                  StatsTable(character), // fmt
+                  SkillList(character), // fmt
+                ], // end Column.children
+              ),
             ),
             // save button
           ],

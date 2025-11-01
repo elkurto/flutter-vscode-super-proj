@@ -351,3 +351,8 @@ A. Using google fonts
     - implement onPress/onTap callbacks that modify state (stat points) and update view
 
     - ![nna57_routes_and_screens.006.png](./zzzdoc/nna57_routes_and_screens.006.png)
+
+  - post:lesson-55 - filter list of skill  by selected-vocation
+    - "availableSkills" - filter list of skill  by selected-vocation
+    - create :stateful-widget:SkillList (see screens/profile/skills_list.dart)
+    - 
