@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:nna57_routes_and_screens/models/character.dart';
 import 'package:nna57_routes_and_screens/screens/profile/skill_list.dart' show SkillList;
 import 'package:nna57_routes_and_screens/screens/profile/stats_table.dart' show StatsTable;
+import 'package:nna57_routes_and_screens/shared/styled_button.dart' show StyledButton;
 import 'package:nna57_routes_and_screens/shared/styled_text.dart';
-import 'package:nna57_routes_and_screens/theme.dart' show AppColors;
+import 'package:nna57_routes_and_screens/theme.dart' show AppColors, new;
 
 class Profile extends StatelessWidget {
   const Profile({super.key, required this.character});
@@ -49,7 +50,7 @@ class Profile extends StatelessWidget {
             /// vertical space
             const SizedBox(height: 20),
 
-            /// ??
+            /// decoration (icon)
             Center(child: Icon(Icons.code, color: AppColors.primaryColor)),
 
             /// content (weapon,ability,slogan)
@@ -91,8 +92,24 @@ class Profile extends StatelessWidget {
                 ], // end Column.children
               ),
             ),
-            // save button
-          ],
+
+            // save button that opens a snackbar/toast message
+            StyledButton(
+              //fmt
+              onPressed: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  //fmt
+                  SnackBar(//fmt
+                    content: const StyledHeading("Character Saved"),
+                    showCloseIcon: true,
+                    backgroundColor: AppColors.secondaryColor,
+                    duration: Duration(seconds: 2)
+                  ),
+                );
+              }, //fmt
+              child: StyledHeading("save character"),
+            ),
+          ], //end-children in Column
         ),
       ),
     );
