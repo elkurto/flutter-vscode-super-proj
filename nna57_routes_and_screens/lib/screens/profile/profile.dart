@@ -4,7 +4,7 @@ import 'package:nna57_routes_and_screens/screens/profile/skill_list.dart' show S
 import 'package:nna57_routes_and_screens/screens/profile/stats_table.dart' show StatsTable;
 import 'package:nna57_routes_and_screens/shared/styled_button.dart' show StyledButton;
 import 'package:nna57_routes_and_screens/shared/styled_text.dart';
-import 'package:nna57_routes_and_screens/theme.dart' show AppColors, new;
+import 'package:nna57_routes_and_screens/theme.dart' show AppColors;
 
 class Profile extends StatelessWidget {
   const Profile({super.key, required this.character});
@@ -99,11 +99,12 @@ class Profile extends StatelessWidget {
               onPressed: () {
                 ScaffoldMessenger.of(context).showSnackBar(
                   //fmt
-                  SnackBar(//fmt
+                  SnackBar(
+                    //fmt
                     content: const StyledHeading("Character Saved"),
                     showCloseIcon: true,
                     backgroundColor: AppColors.secondaryColor,
-                    duration: Duration(seconds: 2)
+                    duration: Duration(seconds: 2),
                   ),
                 );
               }, //fmt
