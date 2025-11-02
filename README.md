@@ -383,3 +383,16 @@ A. Using google fonts
         ...
 
      ```
+#### nna62_provider_global_state
+  - includes lesson-58... lesson-62
+  - effected files: 
+    - services/character_store.dart // lesson 59
+    - main.dart  // lesson 60
+    - screens/home/home.dart  // lesson 61
+    - screens/create/create.dart // lesson 62
+  - create :ChangeNotifier:CharacterStore (see services/character_store.dart)
+  - :ChangeNotifier:CharacterStore houses the :List<Character>:"characters" for the app.
+  - main.dart uses provider to add :ChangeNotifier:CharacterStore to app's context.
+    - `dart pub add provider`
+    - (see https://pub.dev/packages/provider )
+  
