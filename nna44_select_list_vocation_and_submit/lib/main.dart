@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nna44_select_list_vocation_and_submit/screens/home/home.dart';
+//import 'package:nna44_select_list_vocation_and_submit/screens/home/home.dart';
 import 'package:nna44_select_list_vocation_and_submit/theme.dart';
 import 'package:nna44_select_list_vocation_and_submit/screens/create/create.dart';
 
