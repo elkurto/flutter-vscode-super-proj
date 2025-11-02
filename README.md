@@ -363,3 +363,23 @@ A. Using google fonts
      - added selected skill title below "row of skill icons" on bottom of :widget:SkillList
 
      - ![nna57_routes_and_screens.007.png](./zzzdoc/nna57_routes_and_screens.008.png)
+
+  - post:lesson-57 - added save button (that opens a snackbar/toast confirmation but does not save to database (yet))
+    - files effected - profile.dart
+     ```dart
+        ...
+            // save button
+            StyledButton(onPressed: () {
+              // show snackbar
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: const StyledHeading('Character saved.'),
+                showCloseIcon: true,
+                backgroundColor: AppColors.secondaryColor,
+                duration: const Duration(seconds: 2),
+              ));
+
+            }, child: const StyledHeading('save character')),
+            const SizedBox(height: 20),
+        ...
+
+     ```
