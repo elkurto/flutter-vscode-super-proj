@@ -396,3 +396,11 @@ A. Using google fonts
     - `dart pub add provider`
     - (see https://pub.dev/packages/provider )
   
+
+
+
+  #### zzz00_namer_adv 
+  - src https://dartpad.dev/?id=e7076b40fb17a0fa899f9f7a154a02e8
+  - https://github.com/flutter/codelabs/tree/main/namer
+  - https://codelabs.developers.google.com/codelabs/flutter-codelab-first#8
+  
