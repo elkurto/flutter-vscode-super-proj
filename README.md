@@ -396,10 +396,26 @@ A. Using google fonts
     - `dart pub add provider`
     - (see https://pub.dev/packages/provider )
   
-
-
-
-  #### zzz00_namer_adv 
+#### nna74_firestore
+  - includes lessons, 63 .. 74
+  - lesson-63 - intro to firebase
+  - lesson-64 - jaundiced firebase sdk setup
+  - lesson-65 - jaundiced firestore setup
+  - lesson-66 - factory ctor of Photo (aside)
+     - see ${HOME}/flutterprog/testit/dart-start-cli/aaa_dart_cli/bin/013_01_factory_ctor_photo.dart
+  - lesson-67 - convert Character instance to Map<String,dynamic> 
+    - see Character::toFirestore() in character.dart
+    - ?? what about the character.id ??
+  - lesson-68 - convert Map<String,dynamic> to Character (via factory ctor)
+    - see Character::fromFirestore() in character.dart
+  - lesson-69 - convert stats instance to/from Map<String,dynamic>
+    - see Character::fromFirestore(...) in character.dart
+    - see Stats.setStats(points,stats)
+  - lesson-70 - Firestore converters
+    - see firestore_service.dart
+  - lesson-71 - 
+     
+#### zzz00_namer_adv 
   - src https://dartpad.dev/?id=e7076b40fb17a0fa899f9f7a154a02e8
   - https://github.com/flutter/codelabs/tree/main/namer
   - https://codelabs.developers.google.com/codelabs/flutter-codelab-first#8
