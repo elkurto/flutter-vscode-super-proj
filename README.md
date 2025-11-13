@@ -398,6 +398,14 @@ A. Using google fonts
   
 #### nna74_firestore
   - includes lessons, 63 .. 74
+  - ref docs on firebase and firestore
+    - https://firebase.google.com/docs/firestore/data-model
+      - firestore data model
+        - collection contains 0..N subcollections
+        - subcollections contain 0..M documents
+        - each document has an id (that firestore uses to id the doc)
+        - each document consists of json.
+        
   - lesson-63 - intro to firebase
   - lesson-64 - jaundiced firebase sdk setup
   - lesson-65 - jaundiced firestore setup
@@ -413,8 +421,16 @@ A. Using google fonts
     - see Stats.setStats(points,stats)
   - lesson-70 - Firestore converters
     - see firestore_service.dart
-  - lesson-71 - 
+  - lesson-71 - on create character (a) add character to character store and (b) add new character to database.
+    - see :method:"FirestoreService::addCharacter(c)
+    - see :method:"CharacterStore::addCharacter(c)
      
+  - lesson-72 - initial fetch of All character to firestore
+
+  - lesson-73 - save one character to firestore
+
+  - lesson-74 - delete character from firestore
+
 #### zzz00_namer_adv 
   - src https://dartpad.dev/?id=e7076b40fb17a0fa899f9f7a154a02e8
   - https://github.com/flutter/codelabs/tree/main/namer
