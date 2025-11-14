@@ -405,7 +405,7 @@ A. Using google fonts
         - subcollections contain 0..M documents
         - each document has an id (that firestore uses to id the doc)
         - each document consists of json.
-        
+
   - lesson-63 - intro to firebase
   - lesson-64 - jaundiced firebase sdk setup
   - lesson-65 - jaundiced firestore setup
@@ -430,6 +430,16 @@ A. Using google fonts
   - lesson-73 - save one character to firestore
 
   - lesson-74 - delete character from firestore
+  
+  - more security ref docs
+    ● flutter app check - https://firebase.google.com/docs/app-check - ensure requests only originate from your app.
+      - (attestation provider for web,ios,android )
+    ● security articles
+    - https://codewithandrea.com/articles/flutter-api-keys-dart-define-env-files/
+    - https://codewithandrea.com/articles/api-keys-2ndgen-cloud-functions-firebase/
+    - https://docs.flutter.dev/deployment/obfuscate
+      - https://docs.flutter.dev/deployment/obfuscate
+    - https://www.12factor.net/
 
 #### zzz00_namer_adv 
   - src https://dartpad.dev/?id=e7076b40fb17a0fa899f9f7a154a02e8
