@@ -1,7 +1,12 @@
 import 'package:envied/envied.dart';
 /**
+ * 0 add the following to .gitignore
+ *   .env
+ *   env.g.dart
+ *   firebase.json
  * 1. (one-time) install envied dependencies
  *   dart pub add envied dev:envied_generator dev:build_runner
+ *
  * 2. define :file:".env" that contains non-secret config items
  *  e.g. not actual config-items
  * 
